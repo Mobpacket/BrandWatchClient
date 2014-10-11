@@ -14,6 +14,19 @@
 		1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9B5C4219E797A20062F44A /* Images.xcassets */; };
 		1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D9B5C4419E797A20062F44A /* LaunchScreen.xib */; };
 		1D9B5C5219E797A20062F44A /* BrandWatchClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B5C5119E797A20062F44A /* BrandWatchClientTests.swift */; };
+		1D9B5C6519E79C5E0062F44A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */; };
+		1D9B5C6719E79C6C0062F44A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */; };
+		1D9B5C6919E79C7B0062F44A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */; };
+		1D9B5C6B19E79C880062F44A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6A19E79C880062F44A /* CoreLocation.framework */; };
+		1D9B5C6D19E79C9B0062F44A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6C19E79C9B0062F44A /* libz.dylib */; };
+		1D9B5C6F19E79CCA0062F44A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C6E19E79CCA0062F44A /* MobileCoreServices.framework */; };
+		1D9B5C7119E79CD70062F44A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7019E79CD70062F44A /* QuartzCore.framework */; };
+		1D9B5C7319E79CE80062F44A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7219E79CE80062F44A /* Security.framework */; };
+		1D9B5C7519E79CF30062F44A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7419E79CF30062F44A /* StoreKit.framework */; };
+		1D9B5C7719E79CFE0062F44A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */; };
+		1D9B5C7B19E79D3A0062F44A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7819E79D3A0062F44A /* Bolts.framework */; };
+		1D9B5C7C19E79D3A0062F44A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7919E79D3A0062F44A /* Parse.framework */; };
+		1D9B5C7D19E79D3A0062F44A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +51,23 @@
 		1D9B5C4B19E797A20062F44A /* BrandWatchClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrandWatchClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B5C5019E797A20062F44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B5C5119E797A20062F44A /* BrandWatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandWatchClientTests.swift; sourceTree = "<group>"; };
+		1D9B5C5B19E7986C0062F44A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/parse-library-1.4.1/Bolts.framework"; sourceTree = "<group>"; };
+		1D9B5C5C19E7986C0062F44A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Downloads/parse-library-1.4.1/Parse.framework"; sourceTree = "<group>"; };
+		1D9B5C5D19E7986C0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Downloads/parse-library-1.4.1/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BrandWatchClient-Bridging-Header.h"; sourceTree = "<group>"; };
+		1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1D9B5C6A19E79C880062F44A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1D9B5C6C19E79C9B0062F44A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		1D9B5C6E19E79CCA0062F44A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1D9B5C7019E79CD70062F44A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1D9B5C7219E79CE80062F44A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1D9B5C7419E79CF30062F44A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1D9B5C7819E79D3A0062F44A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		1D9B5C7919E79D3A0062F44A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +75,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9B5C6519E79C5E0062F44A /* AudioToolbox.framework in Frameworks */,
+				1D9B5C6719E79C6C0062F44A /* CFNetwork.framework in Frameworks */,
+				1D9B5C6919E79C7B0062F44A /* CoreGraphics.framework in Frameworks */,
+				1D9B5C6B19E79C880062F44A /* CoreLocation.framework in Frameworks */,
+				1D9B5C6D19E79C9B0062F44A /* libz.dylib in Frameworks */,
+				1D9B5C6F19E79CCA0062F44A /* MobileCoreServices.framework in Frameworks */,
+				1D9B5C7119E79CD70062F44A /* QuartzCore.framework in Frameworks */,
+				1D9B5C7319E79CE80062F44A /* Security.framework in Frameworks */,
+				1D9B5C7519E79CF30062F44A /* StoreKit.framework in Frameworks */,
+				1D9B5C7719E79CFE0062F44A /* SystemConfiguration.framework in Frameworks */,
+				1D9B5C7B19E79D3A0062F44A /* Bolts.framework in Frameworks */,
+				1D9B5C7C19E79D3A0062F44A /* Parse.framework in Frameworks */,
+				1D9B5C7D19E79D3A0062F44A /* ParseFacebookUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,9 +104,26 @@
 		1D9B5C2A19E797A20062F44A = {
 			isa = PBXGroup;
 			children = (
+				1D9B5C7819E79D3A0062F44A /* Bolts.framework */,
+				1D9B5C7919E79D3A0062F44A /* Parse.framework */,
+				1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */,
+				1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */,
+				1D9B5C7419E79CF30062F44A /* StoreKit.framework */,
+				1D9B5C7219E79CE80062F44A /* Security.framework */,
+				1D9B5C7019E79CD70062F44A /* QuartzCore.framework */,
+				1D9B5C6E19E79CCA0062F44A /* MobileCoreServices.framework */,
+				1D9B5C6C19E79C9B0062F44A /* libz.dylib */,
+				1D9B5C6A19E79C880062F44A /* CoreLocation.framework */,
+				1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */,
+				1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */,
+				1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */,
+				1D9B5C5B19E7986C0062F44A /* Bolts.framework */,
+				1D9B5C5C19E7986C0062F44A /* Parse.framework */,
+				1D9B5C5D19E7986C0062F44A /* ParseFacebookUtils.framework */,
 				1D9B5C3519E797A20062F44A /* BrandWatchClient */,
 				1D9B5C4E19E797A20062F44A /* BrandWatchClientTests */,
 				1D9B5C3419E797A20062F44A /* Products */,
+				1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -340,9 +400,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/nabib/Downloads/parse-library-1.4.1",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BrandWatchClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BrandWatchClient-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -350,9 +418,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/nabib/Downloads/parse-library-1.4.1",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BrandWatchClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BrandWatchClient-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -409,6 +484,7 @@
 				1D9B5C5719E797A20062F44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D9B5C5819E797A20062F44A /* Build configuration list for PBXNativeTarget "BrandWatchClientTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +493,7 @@
 				1D9B5C5A19E797A20062F44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
