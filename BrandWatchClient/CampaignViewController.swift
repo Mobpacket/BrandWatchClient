@@ -10,9 +10,22 @@ import UIKit
 
 class CampaignViewController: UIViewController {
     
+    @IBOutlet weak var q25Label: UILabel!
+    @IBOutlet weak var q50Label: UILabel!
+    @IBOutlet weak var q75Label: UILabel!
+    @IBOutlet weak var q100Label: UILabel!
+    @IBOutlet weak var q25ValueLabel: UILabel!
+    @IBOutlet weak var q50ValueLabel: UILabel!
+    @IBOutlet weak var q75ValueLabel: UILabel!
+    @IBOutlet weak var q100ValueLabel: UILabel!
+
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get campaign view nib
         var nib = UINib(nibName: "CampaignView", bundle: nil)
         
         var objects = nib.instantiateWithOwner(self, options: nil)
@@ -20,6 +33,7 @@ class CampaignViewController: UIViewController {
         var campaignView = objects[0] as UIView
         view.addSubview(campaignView)
         
+        // Setup line breaks according to autolayout values from campaign view
         var titleLineView = CampaignLineView(frame: CGRect(x: 10, y: 64, width: 300, height: 4))
         titleLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(titleLineView)
@@ -52,6 +66,31 @@ class CampaignViewController: UIViewController {
         likesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(likesLineView)
 
+        // draw borders for quartile table
+        q25Label.layer.borderColor = UIColor.blackColor().CGColor
+        q25Label.layer.borderWidth = 1
+        
+        q50Label.layer.borderColor = UIColor.blackColor().CGColor
+        q50Label.layer.borderWidth = 1
+        
+        q75Label.layer.borderColor = UIColor.blackColor().CGColor
+        q75Label.layer.borderWidth = 1
+        
+        q100Label.layer.borderColor = UIColor.blackColor().CGColor
+        q100Label.layer.borderWidth = 1
+        
+        q25ValueLabel.layer.borderColor = UIColor.blackColor().CGColor
+        q25ValueLabel.layer.borderWidth = 1
+        
+        q50ValueLabel.layer.borderColor = UIColor.blackColor().CGColor
+        q50ValueLabel.layer.borderWidth = 1
+        
+        q75ValueLabel.layer.borderColor = UIColor.blackColor().CGColor
+        q75ValueLabel.layer.borderWidth = 1
+        
+        q100ValueLabel.layer.borderColor = UIColor.blackColor().CGColor
+        q100ValueLabel.layer.borderWidth = 1
+        
         var testObject = PFObject(className: "TestObject")
         
         testObject["foo"] = "bar"
@@ -59,6 +98,7 @@ class CampaignViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+
     
     override func didReceiveMemoryWarning() {
         
