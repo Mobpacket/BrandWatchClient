@@ -23,16 +23,31 @@ PODS:
   - BDBOAuth1Manager (1.4.1):
     - AFNetworking/NSURLConnection (~> 2.4.0)
     - AFNetworking/NSURLSession (~> 2.4.0)
+  - Bolts (1.1.3)
+  - google-plus-ios-sdk (1.7.1)
+  - LRGooglePlusClient (1.1.0):
+    - google-plus-ios-sdk (~> 1.5)
   - NSDateMinimalTimeAgo (0.1.0)
+  - NXOAuth2Client (1.2.8)
+  - Parse (1.4.1):
+    - Bolts (~> 1.1.2)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - LRGooglePlusClient
   - NSDateMinimalTimeAgo
+  - NXOAuth2Client (~> 1.2.8)
+  - Parse (~> 1.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BDBOAuth1Manager: 0625ba20bd7d36461bbf6dc3d29276b5932b7409
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
+  LRGooglePlusClient: cfa0b8d1b64a83a1c355f4ae6ca9968384371360
   NSDateMinimalTimeAgo: 11f443d88edcfc2af23309b2641fd063c3d3a125
+  NXOAuth2Client: fa81be68c9ce628202028ae037c9c92cfbb37865
+  Parse: db1a09c832b7509edcc88a65dc07229f5e578c73
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.2

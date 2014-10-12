@@ -14,7 +14,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LRGooglePlusClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-NSDateMinimalTimeAgo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NXOAuth2Client.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Parse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-google-plus-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09CA719184E94FEF88DAD82D</key>
+		<key>2023E5C4FA405E3D433EFE95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6F5CAAA97CE4C7B93D7241D</key>
+		<key>2DBC9416B8D4862C896ABC62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0D743C33CAD495CA0DBE109</key>
+		<key>46E5EB032651096E197022C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6351A8193094231AC6A7D4C</key>
+		<key>48DCC57B082091FB81DC919A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>58087CE0705F12939E1B3F7A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B006BE31B4E8F7F2D45FF6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85DC3CF91887D1C7F598A796</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D01189B70F862431D8234F88</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF6162EC21A8F27F597EEED4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
