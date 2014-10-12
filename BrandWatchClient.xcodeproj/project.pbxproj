@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1D9B5C3919E797A20062F44A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B5C3819E797A20062F44A /* AppDelegate.swift */; };
 		1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B5C3A19E797A20062F44A /* BrandWatchClient.xcdatamodeld */; };
-		1D9B5C3E19E797A20062F44A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9B5C3D19E797A20062F44A /* ViewController.swift */; };
 		1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D9B5C3F19E797A20062F44A /* Main.storyboard */; };
 		1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9B5C4219E797A20062F44A /* Images.xcassets */; };
 		1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D9B5C4419E797A20062F44A /* LaunchScreen.xib */; };
@@ -27,6 +26,10 @@
 		1D9B5C7B19E79D3A0062F44A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7819E79D3A0062F44A /* Bolts.framework */; };
 		1D9B5C7C19E79D3A0062F44A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7919E79D3A0062F44A /* Parse.framework */; };
 		1D9B5C7D19E79D3A0062F44A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */; };
+		D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */; };
+		D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */; };
+		D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */; };
+		D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +47,6 @@
 		1D9B5C3719E797A20062F44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B5C3819E797A20062F44A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D9B5C3B19E797A20062F44A /* BrandWatchClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrandWatchClient.xcdatamodel; sourceTree = "<group>"; };
-		1D9B5C3D19E797A20062F44A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1D9B5C4019E797A20062F44A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D9B5C4219E797A20062F44A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1D9B5C4519E797A20062F44A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -68,6 +70,10 @@
 		1D9B5C7819E79D3A0062F44A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1D9B5C7919E79D3A0062F44A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
+		D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
+		D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignLineView.swift; sourceTree = "<group>"; };
+		D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +145,11 @@
 		1D9B5C3519E797A20062F44A /* BrandWatchClient */ = {
 			isa = PBXGroup;
 			children = (
+				D9E3D3EA19EA09C900101EC6 /* API */,
+				D9E3D3EB19EA09CF00101EC6 /* Model */,
+				D9E3D3E819EA099D00101EC6 /* Views */,
+				D9E3D3E919EA09A500101EC6 /* ViewControllers */,
 				1D9B5C3819E797A20062F44A /* AppDelegate.swift */,
-				1D9B5C3D19E797A20062F44A /* ViewController.swift */,
 				1D9B5C3F19E797A20062F44A /* Main.storyboard */,
 				1D9B5C4219E797A20062F44A /* Images.xcassets */,
 				1D9B5C4419E797A20062F44A /* LaunchScreen.xib */,
@@ -173,6 +182,38 @@
 				1D9B5C5019E797A20062F44A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9E3D3E819EA099D00101EC6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */,
+				D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */,
+				D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D9E3D3E919EA09A500101EC6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D9E3D3EA19EA09C900101EC6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		D9E3D3EB19EA09CF00101EC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */,
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
@@ -275,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D9B5C3E19E797A20062F44A /* ViewController.swift in Sources */,
+				D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */,
+				D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */,
+				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */,
 				1D9B5C3919E797A20062F44A /* AppDelegate.swift in Sources */,
 			);
