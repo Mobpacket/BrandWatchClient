@@ -6,6 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CampaignViewController" customModule="BrandWatchClient" customModuleProvider="target">
             <connections>
+                <outlet property="campaignNameLabel" destination="Vyz-Ne-Nka" id="bWU-SN-mi4"/>
+                <outlet property="commentsCountLabel" destination="AOw-XT-tUf" id="Ofk-I9-Ugc"/>
+                <outlet property="ctrValueLabel" destination="50p-cg-tSS" id="QrL-gE-gyw"/>
+                <outlet property="likesCountLabel" destination="0rn-iJ-Hpd" id="26S-rR-HZO"/>
                 <outlet property="q100Label" destination="v3f-aA-SL6" id="gmJ-TL-3YT"/>
                 <outlet property="q100ValueLabel" destination="Mer-jz-A4h" id="WBx-d6-WNf"/>
                 <outlet property="q25Label" destination="bSh-H5-7Hq" id="A4Z-9K-lj0"/>
@@ -14,6 +18,10 @@
                 <outlet property="q50ValueLabel" destination="Hhc-9m-pRF" id="D4N-7o-pkA"/>
                 <outlet property="q75Label" destination="Zmd-4o-ks6" id="RlG-2b-wVg"/>
                 <outlet property="q75ValueLabel" destination="MpA-DS-WKA" id="wfF-6I-vc2"/>
+                <outlet property="scoreValueLabel" destination="Fec-LU-nnV" id="mdC-Z4-aLu"/>
+                <outlet property="sharesCountLabel" destination="50r-t3-Ofh" id="WKT-zD-whs"/>
+                <outlet property="tweetsCountLabel" destination="OYi-Wi-keU" id="COh-ok-0Dk"/>
+                <outlet property="vtrValueLabel" destination="M6m-Qc-TJY" id="eof-fw-pjK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

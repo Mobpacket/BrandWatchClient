@@ -19,8 +19,14 @@ class CampaignViewController: UIViewController {
     @IBOutlet weak var q75ValueLabel: UILabel!
     @IBOutlet weak var q100ValueLabel: UILabel!
 
-    
-    
+    @IBOutlet weak var campaignNameLabel: UILabel!
+    @IBOutlet weak var scoreValueLabel: UILabel!
+    @IBOutlet weak var vtrValueLabel: UILabel!
+    @IBOutlet weak var ctrValueLabel: UILabel!
+    @IBOutlet weak var sharesCountLabel: UILabel!
+    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var commentsCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +97,9 @@ class CampaignViewController: UIViewController {
         q100ValueLabel.layer.borderColor = UIColor.blackColor().CGColor
         q100ValueLabel.layer.borderWidth = 1
         
+        // NAJ: Test
+        loadTestData()
+        
         var testObject = PFObject(className: "TestObject")
         
         testObject["foo"] = "bar"
@@ -106,6 +115,38 @@ class CampaignViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func loadTestData() {
+        
+        // NAJ: This is just a place holder to test loading values into all the labels
+        let q25Count = 10
+        let q50Count = 3
+        let q75Count = 1
+        let q100Count = 18
+        
+        let scoreValue = 73
+        let vtrValue = 45
+        let ctrValue = 0.1
+        let sharesValue = 1216
+        let tweetsValue = 34
+        let likesValue = 239
+        let commentsValue = 87
+        
+        // Set values
+        campaignNameLabel.text = "Acme Campaign"
+        
+        q25ValueLabel.text = "\(q25Count)"
+        q50ValueLabel.text = "\(q50Count)"
+        q75ValueLabel.text = "\(q75Count)"
+        q100ValueLabel.text = "\(q100Count)"
+        
+        scoreValueLabel.text = "\(scoreValue)"
+        vtrValueLabel.text = "\(vtrValue)%"
+        ctrValueLabel.text = "\(ctrValue)%"
+        sharesCountLabel.text = "\(sharesValue)"
+        tweetsCountLabel.text = "\(tweetsValue)"
+        likesCountLabel.text = "\(likesValue)"
+        commentsCountLabel.text = "\(commentsValue)"
+    }
 
     /*
     // MARK: - Navigation

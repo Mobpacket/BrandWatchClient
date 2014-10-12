@@ -30,6 +30,7 @@
 		D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */; };
 		D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */; };
 		D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */; };
+		D9E3D3F519EA7AE100101EC6 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F419EA7AE100101EC6 /* Campaign.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
 		D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignLineView.swift; sourceTree = "<group>"; };
 		D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionLineView.swift; sourceTree = "<group>"; };
+		D9E3D3F419EA7AE100101EC6 /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 		D9E3D3EB19EA09CF00101EC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D9E3D3F419EA7AE100101EC6 /* Campaign.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */,
+				D9E3D3F519EA7AE100101EC6 /* Campaign.swift in Sources */,
 				D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */,
 				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */,
