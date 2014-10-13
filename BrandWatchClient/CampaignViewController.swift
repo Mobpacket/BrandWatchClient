@@ -190,112 +190,68 @@ class CampaignViewController: UIViewController {
     }
     
     func loadTestCampaignA() {
-        
-        
-            var query = PFQuery(className:"Campaign")
-            query.getObjectInBackgroundWithId("jsSsc3kxrn") {
-                (pfCampaign: PFObject!, error: NSError!) -> Void in
-                if error == nil {
-                    NSLog("%@", pfCampaign)
-                    // Set values
-                    let name = pfCampaign["name"] as String
-                    self.campaignNameLabel.text = "\(name)"
-                    
-                    let quartile25Count = pfCampaign["quartile25Count"] as Int
-                    self.q25ValueLabel.text = "\(quartile25Count)"
-                    
-                    let quartile50Count = pfCampaign["quartile50Count"] as Int
-                    self.q50ValueLabel.text = "\(quartile50Count)"
-                    
-                    let quartile75Count = pfCampaign["quartile75Count"] as Int
-                    self.q75ValueLabel.text = "\(quartile75Count)"
-                    
-                    let quartile100Count = pfCampaign["quartile100Count"] as Int
-                    self.q100ValueLabel.text = "\(quartile100Count)"
-                    
-                    let score = pfCampaign["score"] as Int
-                    self.scoreValueLabel.text = "\(score)"
-                    
-                    let vtr = pfCampaign["vtr"] as Float
-                    self.vtrValueLabel.text = "\(vtr)%"
-                    
-                    let ctr = pfCampaign["ctr"] as Float
-                    self.ctrValueLabel.text = "\(ctr)%"
-                    
-                    let shares = pfCampaign["score"] as Int
-                    self.sharesCountLabel.text = "\(shares)"
-                    
-                    let tweets = pfCampaign["tweets"] as Int
-                    self.tweetsCountLabel.text = "\(tweets)"
-                    
-                    let likes = pfCampaign["likes"] as Int
-                    self.likesCountLabel.text = "\(likes)"
-                    
-                    let comments = pfCampaign["comments"] as Int
-                    self.commentsCountLabel.text = "\(comments)"
-                    
-                } else {
-                    NSLog("%@", error)
-                }
-            }
             
-            
-     
+        loadCampaign("jsSsc3kxrn")
 
     }
 
     
     func loadTestCampaignB() {
-        
-        var query = PFQuery(className:"Campaign")
-        query.getObjectInBackgroundWithId("3agqQCqwsX") {
-            (pfCampaign: PFObject!, error: NSError!) -> Void in
-            if error == nil {
-                NSLog("%@", pfCampaign)
-                // Set values
-                let name = pfCampaign["name"] as String
-                self.campaignNameLabel.text = "\(name)"
-                
-                let quartile25Count = pfCampaign["quartile25Count"] as Int
-                self.q25ValueLabel.text = "\(quartile25Count)"
-                
-                let quartile50Count = pfCampaign["quartile50Count"] as Int
-                self.q50ValueLabel.text = "\(quartile50Count)"
-                
-                let quartile75Count = pfCampaign["quartile75Count"] as Int
-                self.q75ValueLabel.text = "\(quartile75Count)"
-                
-                let quartile100Count = pfCampaign["quartile100Count"] as Int
-                self.q100ValueLabel.text = "\(quartile100Count)"
-                
-                let score = pfCampaign["score"] as Int
-                self.scoreValueLabel.text = "\(score)"
-                
-                let vtr = pfCampaign["vtr"] as Float
-                self.vtrValueLabel.text = "\(vtr)%"
-                
-                let ctr = pfCampaign["ctr"] as Float
-                self.ctrValueLabel.text = "\(ctr)%"
-                
-                let shares = pfCampaign["score"] as Int
-                self.sharesCountLabel.text = "\(shares)"
-                
-                let tweets = pfCampaign["tweets"] as Int
-                self.tweetsCountLabel.text = "\(tweets)"
-                
-                let likes = pfCampaign["likes"] as Int
-                self.likesCountLabel.text = "\(likes)"
-                
-                let comments = pfCampaign["comments"] as Int
-                self.commentsCountLabel.text = "\(comments)"
-                
-            } else {
-                NSLog("%@", error)
-            }
-        }
-        
-        
-
+    
+        loadCampaign("3agqQCqwsX")
+    }
+    
+    private func loadCampaign(id: String) {
+    
+       var query = PFQuery(className:"Campaign")
+       query.getObjectInBackgroundWithId(id) {
+          (pfCampaign: PFObject!, error: NSError!) -> Void in
+                if error == nil {
+                    NSLog("%@", pfCampaign)
+    // Set values
+    let name = pfCampaign["name"] as String
+    self.campaignNameLabel.text = "\(name)"
+    
+    let quartile25Count = pfCampaign["quartile25Count"] as Int
+    self.q25ValueLabel.text = "\(quartile25Count)"
+    
+    let quartile50Count = pfCampaign["quartile50Count"] as Int
+    self.q50ValueLabel.text = "\(quartile50Count)"
+    
+    let quartile75Count = pfCampaign["quartile75Count"] as Int
+    self.q75ValueLabel.text = "\(quartile75Count)"
+    
+    let quartile100Count = pfCampaign["quartile100Count"] as Int
+    self.q100ValueLabel.text = "\(quartile100Count)"
+    
+    let score = pfCampaign["score"] as Int
+    self.scoreValueLabel.text = "\(score)"
+    
+    let vtrF = pfCampaign["vtr"] as Float
+    let vtr = vtrF.format(".1")
+    self.vtrValueLabel.text = "\(vtr)%"
+    
+    let ctrF = pfCampaign["ctr"] as Float
+    let ctr = ctrF.format(".1")
+    self.ctrValueLabel.text = "\(ctr)%"
+    
+    let shares = pfCampaign["score"] as Int
+    self.sharesCountLabel.text = "\(shares)"
+    
+    let tweets = pfCampaign["tweets"] as Int
+    self.tweetsCountLabel.text = "\(tweets)"
+    
+    let likes = pfCampaign["likes"] as Int
+    self.likesCountLabel.text = "\(likes)"
+    
+    let comments = pfCampaign["comments"] as Int
+    self.commentsCountLabel.text = "\(comments)"
+    
+    } else {
+    NSLog("%@", error)
+    }
+    }
+    
     }
     
     @IBAction func onCampaignA(sender: UIButton) {

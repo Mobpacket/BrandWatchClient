@@ -24,6 +24,7 @@
 		1D9B5C7519E79CF30062F44A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7419E79CF30062F44A /* StoreKit.framework */; };
 		1D9B5C7719E79CFE0062F44A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */; };
 		8BA9DCC9E0ADF39993228C01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA6880E8B51DEE88CD049FC /* libPods.a */; };
+		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
 		D9327D0619EBA45E00C686F3 /* MenuSideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */; };
@@ -55,9 +56,6 @@
 		1D9B5C4B19E797A20062F44A /* BrandWatchClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrandWatchClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B5C5019E797A20062F44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B5C5119E797A20062F44A /* BrandWatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandWatchClientTests.swift; sourceTree = "<group>"; };
-		1D9B5C5B19E7986C0062F44A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/parse-library-1.4.1/Bolts.framework"; sourceTree = "<group>"; };
-		1D9B5C5C19E7986C0062F44A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Downloads/parse-library-1.4.1/Parse.framework"; sourceTree = "<group>"; };
-		1D9B5C5D19E7986C0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Downloads/parse-library-1.4.1/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BrandWatchClient-Bridging-Header.h"; sourceTree = "<group>"; };
 		1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -74,6 +72,7 @@
 		1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		5A159AEC92D45D9F0171BA06 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6148789C5F3BE6E1391F9043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSideBarView.xib; sourceTree = "<group>"; };
@@ -130,9 +129,6 @@
 				1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */,
 				1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */,
 				1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */,
-				1D9B5C5B19E7986C0062F44A /* Bolts.framework */,
-				1D9B5C5C19E7986C0062F44A /* Parse.framework */,
-				1D9B5C5D19E7986C0062F44A /* ParseFacebookUtils.framework */,
 				1D9B5C3519E797A20062F44A /* BrandWatchClient */,
 				1D9B5C4E19E797A20062F44A /* BrandWatchClientTests */,
 				1D9B5C3419E797A20062F44A /* Products */,
@@ -164,6 +160,7 @@
 				1D9B5C4419E797A20062F44A /* LaunchScreen.xib */,
 				1D9B5C3A19E797A20062F44A /* BrandWatchClient.xcdatamodeld */,
 				1D9B5C3619E797A20062F44A /* Supporting Files */,
+				A86E341A19EBBEEC00745230 /* Helper.swift */,
 			);
 			path = BrandWatchClient;
 			sourceTree = "<group>";
@@ -391,6 +388,7 @@
 				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */,
 				1D9B5C3919E797A20062F44A /* AppDelegate.swift in Sources */,
+				A86E341B19EBBEEC00745230 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
