@@ -57,9 +57,16 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
     
     @IBAction func onLogin(sender: UIButton) {
         
+        let campaignVC = CampaignViewController() as CampaignViewController
+        
         println("OnLogin() pressed")
         
         GPPSignIn.sharedInstance().authenticate()
+        
+        self.presentViewController(campaignVC, animated: true) { () -> Void in
+            
+            println("transitioning to campaign controller")
+        }
     }
 
     /*

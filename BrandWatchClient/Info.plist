@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.brandwatch</string>
+			<string>com.brandwatch.BrandWatchClient</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.brandwatch.oauth2callback</string>
+				<string>com.brandwatch.BrandWatchClient</string>
 			</array>
 		</dict>
 	</array>
