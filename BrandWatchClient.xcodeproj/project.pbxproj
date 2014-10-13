@@ -26,6 +26,7 @@
 		8BA9DCC9E0ADF39993228C01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA6880E8B51DEE88CD049FC /* libPods.a */; };
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
+		D9327D0619EBA45E00C686F3 /* MenuSideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */; };
 		D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */; };
 		D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */; };
 		D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */; };
@@ -75,6 +76,7 @@
 		6148789C5F3BE6E1391F9043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSideBarView.xib; sourceTree = "<group>"; };
 		D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
 		D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignLineView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */,
 				D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */,
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
+				D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
+				D9327D0619EBA45E00C686F3 /* MenuSideBarView.xib in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

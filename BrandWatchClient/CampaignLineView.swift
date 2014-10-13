@@ -18,7 +18,9 @@ class CampaignLineView: UIView {
         
         var context = UIGraphicsGetCurrentContext()
         
-        CGContextSetStrokeColor(context, [1, 0, 0, 1]) // Red = 1, Alpha = 1
+//        CGContextSetStrokeColor(context, [1, 0, 0, 1]) // Red = 1, Alpha = 1
+
+        CGContextSetStrokeColorWithColor(context, UIColor.orangeColor().CGColor)
         
         CGContextBeginPath(context)
         

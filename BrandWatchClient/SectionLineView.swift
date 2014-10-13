@@ -18,7 +18,7 @@ class SectionLineView: UIView {
         
         var context = UIGraphicsGetCurrentContext()
         
-        CGContextSetStrokeColor(context, [0, 0, 0, 1]) // Black = 1, Alpha = 1
+        CGContextSetStrokeColor(context, [1, 1, 1, 1]) // White, Alpha = 1
         
         CGContextBeginPath(context)
         

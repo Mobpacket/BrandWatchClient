@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-NSDateMinimalTimeAgo.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-NXOAuth2Client.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2023E5C4FA405E3D433EFE95</key>
+		<key>1398FF198D488232FB30A97D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2DBC9416B8D4862C896ABC62</key>
+		<key>177D6DE42ADC5F14081E3A19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46E5EB032651096E197022C2</key>
+		<key>3D2E71807FF3F3406776C10F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>48DCC57B082091FB81DC919A</key>
+		<key>54E5EBC7443C1AF3F096C31F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58087CE0705F12939E1B3F7A</key>
+		<key>797B24B51DB848F6FB700FF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B006BE31B4E8F7F2D45FF6F</key>
+		<key>84B10219571F98BF16460799</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85DC3CF91887D1C7F598A796</key>
+		<key>D259F6F81A3CC21B52922403</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D01189B70F862431D8234F88</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF6162EC21A8F27F597EEED4</key>
+		<key>D27397F9F648FB5E99346791</key>
 		<dict>
 			<key>primary</key>
 			<true/>

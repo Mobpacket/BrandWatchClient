@@ -7,4 +7,4 @@
 #import "LRGooglePlusClient.h"
 #import "GPPSignIn.h"
 #import "GTMOAuth2SignIn.h"
-#import <Parse/Parse.h>
+#import "Parse.h"

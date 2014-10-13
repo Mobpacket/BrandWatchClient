@@ -66,12 +66,6 @@
 #define COCOAPODS_VERSION_MINOR_LRGooglePlusClient 1
 #define COCOAPODS_VERSION_PATCH_LRGooglePlusClient 0
 
-// NSDateMinimalTimeAgo
-#define COCOAPODS_POD_AVAILABLE_NSDateMinimalTimeAgo
-#define COCOAPODS_VERSION_MAJOR_NSDateMinimalTimeAgo 0
-#define COCOAPODS_VERSION_MINOR_NSDateMinimalTimeAgo 1
-#define COCOAPODS_VERSION_PATCH_NSDateMinimalTimeAgo 0
-
 // NXOAuth2Client
 #define COCOAPODS_POD_AVAILABLE_NXOAuth2Client
 #define COCOAPODS_VERSION_MAJOR_NXOAuth2Client 1
