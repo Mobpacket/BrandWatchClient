@@ -25,10 +25,23 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
         
         var loginView = objects[0] as UIView
         
+        // setup view and button colors
+        loginView.backgroundColor = UIColor.clearColor()
+        loginView.backgroundColor = UIColor.blackColor()
+        loginButton.layer.backgroundColor = UIColor.clearColor().CGColor
+        loginButton.layer.borderColor = UIColor.orangeColor().CGColor
+        loginButton.layer.cornerRadius = 8
+        loginButton.layer.borderWidth = 2
+        loginButton.layer.backgroundColor = UIColor.whiteColor().CGColor
+        loginButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
+        loginButton.clipsToBounds = true
+        
         view.addSubview(loginView)
         
         // Google Plus OAuth2 setup
         signIn = GPPSignIn.sharedInstance() as GPPSignIn
+        
+        signIn.trySilentAuthentication()
         
         signIn.shouldFetchGooglePlusUser = true
         

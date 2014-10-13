@@ -14,14 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BrandWatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdn-vd-jEt">
-                    <rect key="frame" x="20" y="200" width="560" height="54"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-QG-IEm">
-                    <rect key="frame" x="30" y="314" width="540" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-QG-IEm">
+                    <rect key="frame" x="0.0" y="314" width="280" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="sBu-vx-Mmy"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <state key="normal" title="Log In">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,15 +27,22 @@
                         <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="UZU-J6-pdE"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BrandWatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdn-vd-jEt">
+                    <rect key="frame" x="0.0" y="200" width="280" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="0eA-U7-fbr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="5rZ-QG-IEm" firstAttribute="top" secondItem="Wdn-vd-jEt" secondAttribute="bottom" constant="60" id="1Uv-7B-8c6"/>
-                <constraint firstAttribute="trailing" secondItem="5rZ-QG-IEm" secondAttribute="trailing" constant="30" id="8mm-1x-OAm"/>
-                <constraint firstAttribute="trailing" secondItem="Wdn-vd-jEt" secondAttribute="trailing" constant="20" id="Mdx-pE-ofe"/>
-                <constraint firstItem="Wdn-vd-jEt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="fYB-ej-W6J"/>
-                <constraint firstItem="5rZ-QG-IEm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="kB8-Bh-ixl"/>
-                <constraint firstItem="Wdn-vd-jEt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="u9S-CU-lyA"/>
+                <constraint firstItem="5rZ-QG-IEm" firstAttribute="top" secondItem="Wdn-vd-jEt" secondAttribute="bottom" constant="60" id="7l5-FW-mIX"/>
+                <constraint firstItem="Wdn-vd-jEt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9TH-OU-ACa"/>
+                <constraint firstItem="5rZ-QG-IEm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="BhM-fu-pOh"/>
+                <constraint firstItem="Wdn-vd-jEt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="yd0-SW-pJz"/>
             </constraints>
         </view>
     </objects>
