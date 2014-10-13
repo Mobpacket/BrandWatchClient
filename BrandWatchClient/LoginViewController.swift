@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
         super.viewDidLoad()
 
         // Login View NIB setup
-        var loginNIB = UINib(nibName: "LoginScreenView", bundle: nil)
+        var loginNIB = UINib(nibName: "LoginView", bundle: nil)
         
         var objects = loginNIB.instantiateWithOwner(self, options: nil)
         
