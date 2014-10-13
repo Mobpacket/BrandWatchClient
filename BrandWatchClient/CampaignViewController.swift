@@ -57,7 +57,7 @@ class CampaignViewController: UIViewController {
         titleLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(titleLineView)
         
-        var quartileLineView = SectionLineView(frame: CGRect(x: 10, y: 156, width: 300, height: 1))
+        var quartileLineView = SectionLineView(frame: CGRect(x: 10, y: 156, width: 300, height: 2))
         quartileLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(quartileLineView)
         
@@ -128,7 +128,6 @@ class CampaignViewController: UIViewController {
         campaignAButton.layer.cornerRadius = 8
         campaignAButton.layer.borderWidth = 2
         campaignAButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-        campaignAButton.setTitle("Umbrella", forState: UIControlState.Normal)
         campaignAButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
         campaignAButton.clipsToBounds = true
         campaignBButton.layer.backgroundColor = UIColor.clearColor().CGColor
@@ -136,8 +135,6 @@ class CampaignViewController: UIViewController {
         campaignBButton.layer.cornerRadius = 8
         campaignBButton.layer.borderWidth = 2
         campaignBButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-        
-        campaignBButton.setTitle("Acme", forState: UIControlState.Normal)
         campaignBButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
         campaignBButton.clipsToBounds = true
         signOutButton.layer.backgroundColor = UIColor.clearColor().CGColor
@@ -149,7 +146,6 @@ class CampaignViewController: UIViewController {
         signOutButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
         signOutButton.clipsToBounds = true
         
-        campaignNameLabel.text = "Umbrella"
         campaignNameLabel.textColor = UIColor.whiteColor()
         
         scoreLabel.textColor = UIColor.orangeColor()
@@ -168,19 +164,15 @@ class CampaignViewController: UIViewController {
         likesCountLabel.textColor = UIColor.orangeColor()
         commentsCountLabel.textColor = UIColor.orangeColor()
         
+        loadTestCampaignA()
+        setButtonTitles()
+        
         // Add swipe menu bar
         var swipeGestureMenu = UISwipeGestureRecognizer(target: self, action: "onSwipeMenu:")
         
         swipeGestureMenu.direction = UISwipeGestureRecognizerDirection.Right
         
         view.addGestureRecognizer(swipeGestureMenu)
-        
-        var testObject = PFObject(className: "TestObject")
-        
-        testObject["foo"] = "bar"
-        testObject.saveInBackground()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -191,67 +183,115 @@ class CampaignViewController: UIViewController {
     
     func loadTestCampaignA() {
             
-        loadCampaign("jsSsc3kxrn")
-
-    }
-
-    
-    func loadTestCampaignB() {
-    
         loadCampaign("3agqQCqwsX")
     }
     
+    func loadTestCampaignB() {
+    
+        loadCampaign("jsSsc3kxrn")
+    }
+    
+    func setButtonTitles() {
+        
+        setCampaignAButtonName()
+        setCampaignBButtonName()
+    }
+    
     private func loadCampaign(id: String) {
-    
-       var query = PFQuery(className:"Campaign")
-       query.getObjectInBackgroundWithId(id) {
-          (pfCampaign: PFObject!, error: NSError!) -> Void in
-                if error == nil {
-                    NSLog("%@", pfCampaign)
-    // Set values
-    let name = pfCampaign["name"] as String
-    self.campaignNameLabel.text = "\(name)"
-    
-    let quartile25Count = pfCampaign["quartile25Count"] as Int
-    self.q25ValueLabel.text = "\(quartile25Count)"
-    
-    let quartile50Count = pfCampaign["quartile50Count"] as Int
-    self.q50ValueLabel.text = "\(quartile50Count)"
-    
-    let quartile75Count = pfCampaign["quartile75Count"] as Int
-    self.q75ValueLabel.text = "\(quartile75Count)"
-    
-    let quartile100Count = pfCampaign["quartile100Count"] as Int
-    self.q100ValueLabel.text = "\(quartile100Count)"
-    
-    let score = pfCampaign["score"] as Int
-    self.scoreValueLabel.text = "\(score)"
-    
-    let vtrF = pfCampaign["vtr"] as Float
-    let vtr = vtrF.format(".1")
-    self.vtrValueLabel.text = "\(vtr)%"
-    
-    let ctrF = pfCampaign["ctr"] as Float
-    let ctr = ctrF.format(".1")
-    self.ctrValueLabel.text = "\(ctr)%"
-    
-    let shares = pfCampaign["score"] as Int
-    self.sharesCountLabel.text = "\(shares)"
-    
-    let tweets = pfCampaign["tweets"] as Int
-    self.tweetsCountLabel.text = "\(tweets)"
-    
-    let likes = pfCampaign["likes"] as Int
-    self.likesCountLabel.text = "\(likes)"
-    
-    let comments = pfCampaign["comments"] as Int
-    self.commentsCountLabel.text = "\(comments)"
-    
-    } else {
-    NSLog("%@", error)
+        
+        var query = PFQuery(className:"Campaign")
+        
+        query.getObjectInBackgroundWithId(id) {
+            (pfCampaign: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                
+                NSLog("%@", pfCampaign)
+                
+                // Set values
+                let name = pfCampaign["name"] as String
+                self.campaignNameLabel.text = "\(name)"
+                
+                let quartile25Count = pfCampaign["quartile25Count"] as Int
+                self.q25ValueLabel.text = "\(quartile25Count)"
+                
+                let quartile50Count = pfCampaign["quartile50Count"] as Int
+                self.q50ValueLabel.text = "\(quartile50Count)"
+                
+                let quartile75Count = pfCampaign["quartile75Count"] as Int
+                self.q75ValueLabel.text = "\(quartile75Count)"
+                
+                let quartile100Count = pfCampaign["quartile100Count"] as Int
+                self.q100ValueLabel.text = "\(quartile100Count)"
+                
+                let score = pfCampaign["score"] as Int
+                self.scoreValueLabel.text = "\(score)"
+                
+                let vtrF = pfCampaign["vtr"] as Float
+                let vtr = vtrF.format(".1")
+                self.vtrValueLabel.text = "\(vtr)%"
+                
+                let ctrF = pfCampaign["ctr"] as Float
+                let ctr = ctrF.format(".1")
+                self.ctrValueLabel.text = "\(ctr)%"
+                
+                let shares = pfCampaign["score"] as Int
+                self.sharesCountLabel.text = "\(shares)"
+                
+                let tweets = pfCampaign["tweets"] as Int
+                self.tweetsCountLabel.text = "\(tweets)"
+                
+                let likes = pfCampaign["likes"] as Int
+                self.likesCountLabel.text = "\(likes)"
+                
+                let comments = pfCampaign["comments"] as Int
+                self.commentsCountLabel.text = "\(comments)"
+            } else {
+                
+                NSLog("%@", error)
+            }
+        }
+        
     }
+    
+    private func setCampaignAButtonName() {
+        
+        var query = PFQuery(className:"Campaign")
+        
+        
+        query.getObjectInBackgroundWithId("3agqQCqwsX") {
+            (pfCampaign: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                
+                NSLog("%@", pfCampaign)
+                
+                // Set button name
+                let name = pfCampaign["name"] as String
+                self.campaignAButton.setTitle("\(name)", forState: UIControlState.Normal)
+            } else {
+                
+                NSLog("%@", error)
+            }
+        }
     }
     
+    private func setCampaignBButtonName() {
+        
+        var query = PFQuery(className: "Campaign")
+        
+        query.getObjectInBackgroundWithId("jsSsc3kxrn") {
+            (pfCampaign: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                
+                NSLog("%@", pfCampaign)
+                
+                // Set button name
+                let name = pfCampaign["name"] as String
+                self.campaignBButton.setTitle("\(name)", forState: UIControlState.Normal)
+            } else {
+                
+                NSLog("%@", error)
+            }
+        }
     }
     
     @IBAction func onCampaignA(sender: UIButton) {
