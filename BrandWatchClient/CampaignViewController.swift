@@ -191,70 +191,111 @@ class CampaignViewController: UIViewController {
     
     func loadTestCampaignA() {
         
-        // NAJ: This is just a place holder to test loading values into all the labels
-        let q25Count = 5
-        let q50Count = 4
-        let q75Count = 0
-        let q100Count = 2
         
-        let scoreValue = 85
-        let vtrValue = 70
-        let ctrValue = 0.2
-        let sharesValue = 1000
-        let tweetsValue = 100
-        let likesValue = 300
-        let commentsValue = 500
-        
-        // Set values
-        campaignNameLabel.text = "Umbrella"
-        campaignNameLabel.textColor = UIColor.whiteColor()
-        
-        q25ValueLabel.text = "\(q25Count)"
-        q50ValueLabel.text = "\(q50Count)"
-        q75ValueLabel.text = "\(q75Count)"
-        q100ValueLabel.text = "\(q100Count)"
-        
-        scoreValueLabel.text = "\(scoreValue)"
-        vtrValueLabel.text = "\(vtrValue)%"
-        ctrValueLabel.text = "\(ctrValue)%"
-        sharesCountLabel.text = "\(sharesValue)"
-        tweetsCountLabel.text = "\(tweetsValue)"
-        likesCountLabel.text = "\(likesValue)"
-        commentsCountLabel.text = "\(commentsValue)"
+            var query = PFQuery(className:"Campaign")
+            query.getObjectInBackgroundWithId("jsSsc3kxrn") {
+                (pfCampaign: PFObject!, error: NSError!) -> Void in
+                if error == nil {
+                    NSLog("%@", pfCampaign)
+                    // Set values
+                    let name = pfCampaign["name"] as String
+                    self.campaignNameLabel.text = "\(name)"
+                    
+                    let quartile25Count = pfCampaign["quartile25Count"] as Int
+                    self.q25ValueLabel.text = "\(quartile25Count)"
+                    
+                    let quartile50Count = pfCampaign["quartile50Count"] as Int
+                    self.q50ValueLabel.text = "\(quartile50Count)"
+                    
+                    let quartile75Count = pfCampaign["quartile75Count"] as Int
+                    self.q75ValueLabel.text = "\(quartile75Count)"
+                    
+                    let quartile100Count = pfCampaign["quartile100Count"] as Int
+                    self.q100ValueLabel.text = "\(quartile100Count)"
+                    
+                    let score = pfCampaign["score"] as Int
+                    self.scoreValueLabel.text = "\(score)"
+                    
+                    let vtr = pfCampaign["vtr"] as Float
+                    self.vtrValueLabel.text = "\(vtr)%"
+                    
+                    let ctr = pfCampaign["ctr"] as Float
+                    self.ctrValueLabel.text = "\(ctr)%"
+                    
+                    let shares = pfCampaign["score"] as Int
+                    self.sharesCountLabel.text = "\(shares)"
+                    
+                    let tweets = pfCampaign["tweets"] as Int
+                    self.tweetsCountLabel.text = "\(tweets)"
+                    
+                    let likes = pfCampaign["likes"] as Int
+                    self.likesCountLabel.text = "\(likes)"
+                    
+                    let comments = pfCampaign["comments"] as Int
+                    self.commentsCountLabel.text = "\(comments)"
+                    
+                } else {
+                    NSLog("%@", error)
+                }
+            }
+            
+            
+     
+
     }
+
     
     func loadTestCampaignB() {
         
-        // NAJ: This is just a place holder to test loading values into all the labels
-        let q25Count = 10
-        let q50Count = 3
-        let q75Count = 1
-        let q100Count = 18
+        var query = PFQuery(className:"Campaign")
+        query.getObjectInBackgroundWithId("3agqQCqwsX") {
+            (pfCampaign: PFObject!, error: NSError!) -> Void in
+            if error == nil {
+                NSLog("%@", pfCampaign)
+                // Set values
+                let name = pfCampaign["name"] as String
+                self.campaignNameLabel.text = "\(name)"
+                
+                let quartile25Count = pfCampaign["quartile25Count"] as Int
+                self.q25ValueLabel.text = "\(quartile25Count)"
+                
+                let quartile50Count = pfCampaign["quartile50Count"] as Int
+                self.q50ValueLabel.text = "\(quartile50Count)"
+                
+                let quartile75Count = pfCampaign["quartile75Count"] as Int
+                self.q75ValueLabel.text = "\(quartile75Count)"
+                
+                let quartile100Count = pfCampaign["quartile100Count"] as Int
+                self.q100ValueLabel.text = "\(quartile100Count)"
+                
+                let score = pfCampaign["score"] as Int
+                self.scoreValueLabel.text = "\(score)"
+                
+                let vtr = pfCampaign["vtr"] as Float
+                self.vtrValueLabel.text = "\(vtr)%"
+                
+                let ctr = pfCampaign["ctr"] as Float
+                self.ctrValueLabel.text = "\(ctr)%"
+                
+                let shares = pfCampaign["score"] as Int
+                self.sharesCountLabel.text = "\(shares)"
+                
+                let tweets = pfCampaign["tweets"] as Int
+                self.tweetsCountLabel.text = "\(tweets)"
+                
+                let likes = pfCampaign["likes"] as Int
+                self.likesCountLabel.text = "\(likes)"
+                
+                let comments = pfCampaign["comments"] as Int
+                self.commentsCountLabel.text = "\(comments)"
+                
+            } else {
+                NSLog("%@", error)
+            }
+        }
         
-        let scoreValue = 73
-        let vtrValue = 45
-        let ctrValue = 0.1
-        let sharesValue = 1216
-        let tweetsValue = 34
-        let likesValue = 239
-        let commentsValue = 87
         
-        // Set values
-        campaignNameLabel.text = "Acme"
-        campaignNameLabel.textColor = UIColor.whiteColor()
-        
-        q25ValueLabel.text = "\(q25Count)"
-        q50ValueLabel.text = "\(q50Count)"
-        q75ValueLabel.text = "\(q75Count)"
-        q100ValueLabel.text = "\(q100Count)"
-        
-        scoreValueLabel.text = "\(scoreValue)"
-        vtrValueLabel.text = "\(vtrValue)%"
-        ctrValueLabel.text = "\(ctrValue)%"
-        sharesCountLabel.text = "\(sharesValue)"
-        tweetsCountLabel.text = "\(tweetsValue)"
-        likesCountLabel.text = "\(likesValue)"
-        commentsCountLabel.text = "\(commentsValue)"
+
     }
     
     @IBAction func onCampaignA(sender: UIButton) {
