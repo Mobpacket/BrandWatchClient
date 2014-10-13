@@ -33,6 +33,7 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
         loginButton.layer.cornerRadius = 8
         loginButton.layer.borderWidth = 2
         loginButton.layer.backgroundColor = UIColor.whiteColor().CGColor
+        loginButton.setTitle("Sign In", forState: UIControlState.Normal)
         loginButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
         loginButton.clipsToBounds = true
         
