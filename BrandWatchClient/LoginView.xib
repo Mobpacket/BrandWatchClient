@@ -14,8 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-QG-IEm">
-                    <rect key="frame" x="0.0" y="314" width="280" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-QG-IEm">
+                    <rect key="frame" x="20" y="354" width="280" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="280" id="sBu-vx-Mmy"/>
                     </constraints>
@@ -27,8 +27,8 @@
                         <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="UZU-J6-pdE"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BrandWatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdn-vd-jEt">
-                    <rect key="frame" x="0.0" y="200" width="280" height="54"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BrandWatch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdn-vd-jEt">
+                    <rect key="frame" x="20" y="240" width="280" height="54"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="280" id="0eA-U7-fbr"/>
                     </constraints>
@@ -36,14 +36,26 @@
                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brandwatch.png" translatesAutoresizingMaskIntoConstraints="NO" id="SHW-mz-NhX">
+                    <rect key="frame" x="85" y="70" width="150" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="0fP-4d-UIh"/>
+                        <constraint firstAttribute="height" constant="120" id="5Af-il-29a"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5rZ-QG-IEm" firstAttribute="top" secondItem="Wdn-vd-jEt" secondAttribute="bottom" constant="60" id="7l5-FW-mIX"/>
                 <constraint firstItem="Wdn-vd-jEt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9TH-OU-ACa"/>
+                <constraint firstItem="SHW-mz-NhX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="9pF-Ri-0Z9"/>
                 <constraint firstItem="5rZ-QG-IEm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="BhM-fu-pOh"/>
-                <constraint firstItem="Wdn-vd-jEt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="yd0-SW-pJz"/>
+                <constraint firstItem="SHW-mz-NhX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="85" id="Dvu-9V-BEe"/>
+                <constraint firstItem="Wdn-vd-jEt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="240" id="yd0-SW-pJz"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="brandwatch.png" width="400" height="300"/>
+    </resources>
 </document>
