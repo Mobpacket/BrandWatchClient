@@ -16,10 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
         Parse.setApplicationId("OXkpE2XPHyUMnVGWZ3iUjAGgnKgUJ7pfVQsPzgD2", clientKey: "s4CjfVbpBuQAu3lILxoX1zJzbjA7miUYRIHqFIyD")
+        
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        // Setup Google Plus OAuth2 sign-in
+        LRGooglePlusClient.sharedInstance().clientID = "339371255167-ejgk1s6ujk3eja1f1mgj5rg18oldliqm.apps.googleusercontent.com"
+        
+        GPPSignIn.sharedInstance().clientID = "339371255167-ejgk1s6ujk3eja1f1mgj5rg18oldliqm.apps.googleusercontent.com"
+        
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+        
+        return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation:annotation)
+        
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
