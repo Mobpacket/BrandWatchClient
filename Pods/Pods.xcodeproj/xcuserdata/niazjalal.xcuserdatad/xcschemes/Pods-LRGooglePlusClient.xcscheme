@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "177D6DE42ADC5F14081E3A19"
+               BlueprintIdentifier = "DFAE524C763DAE004685E37E"
                BuildableName = "libPods-LRGooglePlusClient.a"
                BlueprintName = "Pods-LRGooglePlusClient"
                ReferencedContainer = "container:Pods.xcodeproj">

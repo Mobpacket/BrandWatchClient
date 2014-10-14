@@ -20,7 +20,7 @@ class CampaignLineView: UIView {
         
 //        CGContextSetStrokeColor(context, [1, 0, 0, 1]) // Red = 1, Alpha = 1
 
-        CGContextSetStrokeColorWithColor(context, UIColor.orangeColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor)
         
         CGContextBeginPath(context)
         

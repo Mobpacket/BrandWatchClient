@@ -78,6 +78,12 @@
 #define COCOAPODS_VERSION_MINOR_Parse 4
 #define COCOAPODS_VERSION_PATCH_Parse 1
 
+// RWDropdownMenu
+#define COCOAPODS_POD_AVAILABLE_RWDropdownMenu
+#define COCOAPODS_VERSION_MAJOR_RWDropdownMenu 1
+#define COCOAPODS_VERSION_MINOR_RWDropdownMenu 0
+#define COCOAPODS_VERSION_PATCH_RWDropdownMenu 1
+
 // google-plus-ios-sdk
 #define COCOAPODS_POD_AVAILABLE_google_plus_ios_sdk
 #define COCOAPODS_VERSION_MAJOR_google_plus_ios_sdk 1

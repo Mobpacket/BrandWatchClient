@@ -27,7 +27,6 @@
 		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
-		D9327D0619EBA45E00C686F3 /* MenuSideBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */; };
 		D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = D99C83C019EBCEED004DB96A /* brandwatch.png */; };
 		D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */; };
 		D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */; };
@@ -57,7 +56,7 @@
 		1D9B5C4B19E797A20062F44A /* BrandWatchClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrandWatchClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9B5C5019E797A20062F44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D9B5C5119E797A20062F44A /* BrandWatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandWatchClientTests.swift; sourceTree = "<group>"; };
-		1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BrandWatchClient-Bridging-Header.h"; sourceTree = "<group>"; };
+		1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BrandWatchClient-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,7 +75,6 @@
 		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSideBarView.xib; sourceTree = "<group>"; };
 		D99C83C019EBCEED004DB96A /* brandwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brandwatch.png; sourceTree = "<group>"; };
 		D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
@@ -118,6 +116,9 @@
 		1D9B5C2A19E797A20062F44A = {
 			isa = PBXGroup;
 			children = (
+				1D9B5C3519E797A20062F44A /* BrandWatchClient */,
+				1D9B5C4E19E797A20062F44A /* BrandWatchClientTests */,
+				1D9B5C3419E797A20062F44A /* Products */,
 				1D9B5C7819E79D3A0062F44A /* Bolts.framework */,
 				1D9B5C7919E79D3A0062F44A /* Parse.framework */,
 				1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */,
@@ -131,10 +132,6 @@
 				1D9B5C6819E79C7B0062F44A /* CoreGraphics.framework */,
 				1D9B5C6619E79C6C0062F44A /* CFNetwork.framework */,
 				1D9B5C6419E79C5E0062F44A /* AudioToolbox.framework */,
-				1D9B5C3519E797A20062F44A /* BrandWatchClient */,
-				1D9B5C4E19E797A20062F44A /* BrandWatchClientTests */,
-				1D9B5C3419E797A20062F44A /* Products */,
-				1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */,
 				C580DF099754398225EB19F6 /* Pods */,
 				8F5A40E19CD3ED07CE6D383F /* Frameworks */,
 			);
@@ -170,6 +167,7 @@
 		1D9B5C3619E797A20062F44A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */,
 				D99C83C019EBCEED004DB96A /* brandwatch.png */,
 				1D9B5C3719E797A20062F44A /* Info.plist */,
 			);
@@ -217,7 +215,6 @@
 				D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */,
 				D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */,
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
-				D9327D0519EBA45E00C686F3 /* MenuSideBarView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -332,7 +329,6 @@
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
-				D9327D0619EBA45E00C686F3 /* MenuSideBarView.xib in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
 			);

@@ -5,3 +5,5 @@ pod 'BDBOAuth1Manager'
 pod 'NXOAuth2Client', '~> 1.2.8'
 pod 'LRGooglePlusClient'
 pod 'Parse', '~> 1.4'
+
+pod 'RWDropdownMenu', '~> 1.0.0'

@@ -22,10 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-//        // Setup Google Plus OAuth2 sign-in
-//        LRGooglePlusClient.sharedInstance().clientID = "339371255167-ejgk1s6ujk3eja1f1mgj5rg18oldliqm.apps.googleusercontent.com"
-//        
-//        GPPSignIn.sharedInstance().clientID = "339371255167-ejgk1s6ujk3eja1f1mgj5rg18oldliqm.apps.googleusercontent.com"
         LRGooglePlusClient.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
         GPPSignIn.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
         
