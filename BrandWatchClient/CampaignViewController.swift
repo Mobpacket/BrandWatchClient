@@ -303,6 +303,14 @@ class CampaignViewController: UIViewController {
     @IBAction func onCampaignMenuDropdownTapped(sender: UIButton) {
         
         var styleItems = NSArray(objects:
+            RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
+                println("loading settings view (create)")
+                self.loadSettingsView()
+            }),
+            RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
+                println("loading settings view (edit)")
+                self.loadSettingsView()
+            }),
             RWDropdownMenuItem(text:campaignTitleA, image:nil, action:{
                 println("loading campaign \(self.campaignTitleA)")
                 self.loadTestCampaignA()
@@ -319,6 +327,18 @@ class CampaignViewController: UIViewController {
         )
         
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+    }
+    
+    func loadSettingsView() {
+        
+        let settingsVC = SettingsViewController() as SettingsViewController
+        
+        println("loadSettingsView() pressed")
+        
+        self.presentViewController(settingsVC, animated: true) { () -> Void in
+            
+            println("transitioning to settings controller")
+        }
     }
     
     /*
