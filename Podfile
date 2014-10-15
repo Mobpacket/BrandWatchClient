@@ -7,4 +7,3 @@ pod 'LRGooglePlusClient'
 pod 'Parse', '~> 1.4'
 
 pod 'RWDropdownMenu', '~> 1.0.0'
-pod 'RestKit', '~> 0.23.3'

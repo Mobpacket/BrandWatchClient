@@ -1,1 +1,0 @@
-PODS_LRGOOGLEPLUSCLIENT_OTHER_LDFLAGS = -framework AddressBook -framework AssetsLibrary -framework CoreGraphics -framework CoreLocation -framework CoreMotion -framework CoreText -framework Foundation -framework MediaPlayer -framework Security -framework SystemConfiguration -framework UIKit
