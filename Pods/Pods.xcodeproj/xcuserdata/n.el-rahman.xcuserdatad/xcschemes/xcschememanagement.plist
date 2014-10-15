@@ -6,83 +6,143 @@
 	<dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-BDBOAuth1Manager.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ISO8601DateFormatterValueTransformer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-LRGooglePlusClient.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-NXOAuth2Client.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RKValueTransformers.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RWDropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RestKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SOCKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TransitionKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-google-plus-ios-sdk.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1398FF198D488232FB30A97D</key>
+		<key>02ADD4F201C64B82984520B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>177D6DE42ADC5F14081E3A19</key>
+		<key>0EDFB253B6AA4624AD85E1FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D2E71807FF3F3406776C10F</key>
+		<key>0FD6CE9CF09F42A187B24CC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54E5EBC7443C1AF3F096C31F</key>
+		<key>11D3EE673CC6447CBC1E9140</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>797B24B51DB848F6FB700FF6</key>
+		<key>37B6C0C4000F41A8AEACB560</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84B10219571F98BF16460799</key>
+		<key>59418AC600294CDA8B38CC6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D259F6F81A3CC21B52922403</key>
+		<key>6068CD0006F44674A42CDF99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D27397F9F648FB5E99346791</key>
+		<key>A2C844DB4C814A7F978C6DFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D2DCB9034A9E49E4923AED45</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8A5C1AAB9184AB09487A908</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E95462D57A1D4326AE1D4CB9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED6C0D0E87EE4EDEB8305E9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1906A471A1A429B86F39406</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6CAAFC07F8A4B199CBF0E9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
