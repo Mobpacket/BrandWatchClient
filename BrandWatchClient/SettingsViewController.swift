@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
-    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var vtrTarget: UITextField!
     @IBOutlet weak var ctrTarget: UITextField!
     @IBOutlet weak var sharesTarget: UITextField!
-    @IBOutlet weak var tweetsTarget: UITextField!
+    @IBOutlet weak var favoritesTarget: UITextField!
     @IBOutlet weak var likesTarget: UITextField!
     @IBOutlet weak var commentsTarget: UITextField!
     
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
         vtrLabel.textColor = UIColor.orangeColor()
         ctrLabel.textColor = UIColor.orangeColor()
         sharesLabel.textColor = UIColor.orangeColor()
-        tweetsLabel.textColor = UIColor.orangeColor()
+        favoritesLabel.textColor = UIColor.orangeColor()
         likesLabel.textColor = UIColor.orangeColor()
         commentsLabel.textColor = UIColor.orangeColor()
         

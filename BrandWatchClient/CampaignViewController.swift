@@ -24,7 +24,7 @@ class CampaignViewController: UIViewController {
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
-    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
@@ -32,7 +32,7 @@ class CampaignViewController: UIViewController {
     @IBOutlet weak var vtrValueLabel: UILabel!
     @IBOutlet weak var ctrValueLabel: UILabel!
     @IBOutlet weak var sharesCountLabel: UILabel!
-    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var favoritesCountLabel: UILabel!
     @IBOutlet weak var likesCountLabel: UILabel!
     @IBOutlet weak var commentsCountLabel: UILabel!
     
@@ -77,9 +77,9 @@ class CampaignViewController: UIViewController {
         sharesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(sharesLineView)
 
-        var tweetsLineView = SectionLineView(frame: CGRect(x: 10, y: 366, width: 300, height: 2))
-        tweetsLineView.backgroundColor = UIColor.clearColor()
-        view.addSubview(tweetsLineView)
+        var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 366, width: 300, height: 2))
+        favoritesLineView.backgroundColor = UIColor.clearColor()
+        view.addSubview(favoritesLineView)
 
         var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 408, width: 300, height: 2))
         likesLineView.backgroundColor = UIColor.clearColor()
@@ -154,7 +154,7 @@ class CampaignViewController: UIViewController {
         vtrLabel.textColor = UIColor.whiteColor()
         ctrLabel.textColor = UIColor.whiteColor()
         sharesLabel.textColor = UIColor.whiteColor()
-        tweetsLabel.textColor = UIColor.whiteColor()
+        favoritesLabel.textColor = UIColor.whiteColor()
         likesLabel.textColor = UIColor.whiteColor()
         commentsLabel.textColor = UIColor.whiteColor()
         
@@ -162,7 +162,7 @@ class CampaignViewController: UIViewController {
         vtrValueLabel.textColor = UIColor.whiteColor()
         ctrValueLabel.textColor = UIColor.whiteColor()
         sharesCountLabel.textColor = UIColor.whiteColor()
-        tweetsCountLabel.textColor = UIColor.whiteColor()
+        favoritesCountLabel.textColor = UIColor.whiteColor()
         likesCountLabel.textColor = UIColor.whiteColor()
         commentsCountLabel.textColor = UIColor.whiteColor()
         
@@ -232,8 +232,9 @@ class CampaignViewController: UIViewController {
                 let shares = pfCampaign["score"] as Int
                 self.sharesCountLabel.text = "\(shares)"
                 
-                let tweets = pfCampaign["tweets"] as Int
-                self.tweetsCountLabel.text = "\(tweets)"
+                // NAJ: Update tweets to favorites in PARSE
+                let favorites = pfCampaign["tweets"] as Int
+                self.favoritesCountLabel.text = "\(favorites)"
                 
                 let likes = pfCampaign["likes"] as Int
                 self.likesCountLabel.text = "\(likes)"
