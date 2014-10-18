@@ -28,8 +28,8 @@ PODS:
   - LRGooglePlusClient (1.1.0):
     - google-plus-ios-sdk (~> 1.5)
   - NXOAuth2Client (1.2.8)
-  - Parse (1.4.1):
-    - Bolts (~> 1.1.2)
+  - Parse (1.4.2):
+    - Bolts (~> 1.1.3)
   - RWDropdownMenu (1.0.1)
 
 DEPENDENCIES:
@@ -47,7 +47,7 @@ SPEC CHECKSUMS:
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   LRGooglePlusClient: cfa0b8d1b64a83a1c355f4ae6ca9968384371360
   NXOAuth2Client: fa81be68c9ce628202028ae037c9c92cfbb37865
-  Parse: db1a09c832b7509edcc88a65dc07229f5e578c73
+  Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
   RWDropdownMenu: 74ad34e54804b33acac90cf54653a0cf9b59a689
 
 COCOAPODS: 0.34.2

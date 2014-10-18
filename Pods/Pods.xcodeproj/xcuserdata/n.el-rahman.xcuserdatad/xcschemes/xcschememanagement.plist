@@ -6,83 +6,93 @@
 	<dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-BDBOAuth1Manager.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-LRGooglePlusClient.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-NXOAuth2Client.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-RWDropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-google-plus-ios-sdk.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1398FF198D488232FB30A97D</key>
+		<key>08648BF0CE418C615212DA59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>177D6DE42ADC5F14081E3A19</key>
+		<key>218C69214A64BCDB467BED2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D2E71807FF3F3406776C10F</key>
+		<key>280833BF472C1C3AA0D4245F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54E5EBC7443C1AF3F096C31F</key>
+		<key>2B159B01093BAD924EC3E9E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>797B24B51DB848F6FB700FF6</key>
+		<key>6029BD2EB0653CC6DBDB2985</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84B10219571F98BF16460799</key>
+		<key>9F7ED165A2A1CC9F46001858</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D259F6F81A3CC21B52922403</key>
+		<key>A8134DED08FD67B07DFEBC27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D27397F9F648FB5E99346791</key>
+		<key>C27DE119E7FE534D1FA4BB86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E541B62AA4FEBE92E870C359</key>
 		<dict>
 			<key>primary</key>
 			<true/>

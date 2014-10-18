@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.setApplicationId("OXkpE2XPHyUMnVGWZ3iUjAGgnKgUJ7pfVQsPzgD2", clientKey: "s4CjfVbpBuQAu3lILxoX1zJzbjA7miUYRIHqFIyD")
         
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions
+            , block: { (success: Bool, error: NSError!) -> Void in
+                println("done")
+        })
+        
+        
         
         LRGooglePlusClient.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
         GPPSignIn.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
