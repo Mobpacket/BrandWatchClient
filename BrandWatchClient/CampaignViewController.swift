@@ -293,11 +293,14 @@ class CampaignViewController: UIViewController {
     func signOut() {
         
         println("Signing out...")
-//        GPPSignIn.sharedInstance().signOut()
+        
+        // kKeyChainItemName will move to the User Model
+        var kKeyChainItemName = "BrandWatch Client: YouTube"
+        GTMOAuth2ViewControllerTouch.removeAuthFromKeychainForName(kKeyChainItemName)
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
-            println("going to login screen")
+            println("going to the login screen")
         })
     }
     

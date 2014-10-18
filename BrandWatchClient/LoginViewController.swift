@@ -8,9 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController/*, GPPSignInDelegate*/ {
-
-//    var signIn: GPPSignIn!
+class LoginViewController: UIViewController {
+    
+    var clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
+    var clientSecret = "lQZuQS4OfWGxCIYphaYFFqei"
+    // Keychain item name for saving the user's authentication information.
+    var kKeyChainItemName = "BrandWatch Client: YouTube"
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -38,29 +41,36 @@ class LoginViewController: UIViewController/*, GPPSignInDelegate*/ {
         loginButton.clipsToBounds = true
         
         view.addSubview(loginView)
-        
-        // Google Plus OAuth2 setup
-//        signIn = GPPSignIn.sharedInstance() as GPPSignIn
-//        
-//        signIn.trySilentAuthentication()
-//        
-//        signIn.shouldFetchGooglePlusUser = true
-//        
-//        signIn.shouldFetchGoogleUserEmail = true
-//        
-//        signIn.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
 
-//    func finishedWithAuth(auth: GTMOAuth2Authentication,  error: NSError ) -> Void {
-//        
-//        println("finishWithAuth()")
-//    }
+
     
-    func didDisconnectWithError ( error: NSError) -> Void {
+    func authentication(viewController: GTMOAuth2ViewControllerTouch, finishedWithAuth: GTMOAuth2Authentication, error: NSError)
+    {
+        // TODO: Handle the error case for invalid username / password
+        //        if (error != nil)
+        //        {
+        //            println("error")
+        //
+        //        }
+        //        else
+        //        {
+        //        }
+        // Authentication Succeeded
+        //self.mytoken = finishedWithAuth.accessToken
+        println("success oauth")
         
-        println("didDisconnectWithError()")
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            println("dismissed")
+        })
+        
+        let campaignVC = CampaignViewController() as CampaignViewController
+        
+        self.presentViewController(campaignVC, animated: true) { () -> Void in
+            
+            println("transitioning to campaign controller")
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,12 +85,12 @@ class LoginViewController: UIViewController/*, GPPSignInDelegate*/ {
         
         println("OnLogin() pressed")
         
-//        GPPSignIn.sharedInstance().authenticate()
+        var vc = GTMOAuth2ViewControllerTouch(scope: "https://www.googleapis.com/auth/youtube", clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
         
-        self.presentViewController(campaignVC, animated: true) { () -> Void in
-            
-            println("transitioning to campaign controller")
+        self.presentViewController(vc, animated: true) { () -> Void in
+            println("auth done")
         }
+
     }
 
     /*

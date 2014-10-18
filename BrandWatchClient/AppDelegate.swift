@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             , block: { (success: Bool, error: NSError!) -> Void in
                 println("done")
         })
-        
-//        LRGooglePlusClient.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
-//        GPPSignIn.sharedInstance().clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
-        
+      
         return true
     }
     
