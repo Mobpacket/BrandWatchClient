@@ -9,3 +9,5 @@ pod 'LRGooglePlusClient'
 pod 'Parse', '~> 1.4'
 
 pod 'RWDropdownMenu', '~> 1.0.0'
+
+pod 'JBChartView', '~> 2.8.9'

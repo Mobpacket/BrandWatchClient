@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JBChartView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LRGooglePlusClient.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0ADD4827EBBA195F3399BF31</key>
+		<key>11C69102565C0FABA7C9F4D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58178978D4BDFAFAE79953D1</key>
+		<key>1C8F56EE4413C8AC08CA2056</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>611223B23E8F4F353E4D91F7</key>
+		<key>9929BC9ABBC4E179D3CA318D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1B1DA7F53766007D64DCE24</key>
+		<key>9A4B8152D657F4F7C180E369</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7D794BFD00A7130CB985CB9</key>
+		<key>B09A7A08EDFB5B7064B48E46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D19C97B66AF215E832FD0AE3</key>
+		<key>C5172F4509A5B3554A69184F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA05CAF8ADD9B595C8C8180A</key>
+		<key>E39A69825D3F0625CFDE757A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DFAE524C763DAE004685E37E</key>
+		<key>F1863DBDB98BBE0DAA139D7C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0415B0BAF8283D963DB3BD0</key>
+		<key>F23FA01868186D19CE6546D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBD771FEF7EC9E1FD7A7A584</key>
 		<dict>
 			<key>primary</key>
 			<true/>
