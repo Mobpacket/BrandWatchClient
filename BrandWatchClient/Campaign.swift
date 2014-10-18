@@ -29,7 +29,8 @@ class Campaign: NSObject {
     var likes_target: Int?          // Facebook Likes target
     var comments_target: Int?       // YouTube Comment Count target
 
-    var metrics_total: Metrics?      // Aggregated campaign metrics values
+    var video_ids: NSArray?         // Video IDs part of the campaign
+    var metrics_total: Metrics?     // Aggregated campaign metrics values
     var metrics_daily: Dictionary <NSDate, Metrics>? // Aggregated dictionary of daily metrics
     
     var dictionary: NSDictionary?   // Serialized data model
@@ -56,6 +57,8 @@ class Campaign: NSObject {
         favorites_target = dictionary["favorites_target"] as? Int
         likes_target = dictionary["likes_target"] as? Int
 
+        video_ids = dictionary["video_ids"] as? NSArray
+        
         metrics_total = dictionary["metrics_total"] as? Metrics
         metrics_daily = dictionary["metrics_daily"] as? Dictionary
     }
