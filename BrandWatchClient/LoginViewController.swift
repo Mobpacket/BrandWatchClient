@@ -8,9 +8,9 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, GPPSignInDelegate {
+class LoginViewController: UIViewController/*, GPPSignInDelegate*/ {
 
-    var signIn: GPPSignIn!
+//    var signIn: GPPSignIn!
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -40,23 +40,23 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
         view.addSubview(loginView)
         
         // Google Plus OAuth2 setup
-        signIn = GPPSignIn.sharedInstance() as GPPSignIn
-        
-        signIn.trySilentAuthentication()
-        
-        signIn.shouldFetchGooglePlusUser = true
-        
-        signIn.shouldFetchGoogleUserEmail = true
-        
-        signIn.delegate = self
+//        signIn = GPPSignIn.sharedInstance() as GPPSignIn
+//        
+//        signIn.trySilentAuthentication()
+//        
+//        signIn.shouldFetchGooglePlusUser = true
+//        
+//        signIn.shouldFetchGoogleUserEmail = true
+//        
+//        signIn.delegate = self
         
         // Do any additional setup after loading the view.
     }
 
-    func finishedWithAuth(auth: GTMOAuth2Authentication,  error: NSError ) -> Void {
-        
-        println("finishWithAuth()")
-    }
+//    func finishedWithAuth(auth: GTMOAuth2Authentication,  error: NSError ) -> Void {
+//        
+//        println("finishWithAuth()")
+//    }
     
     func didDisconnectWithError ( error: NSError) -> Void {
         
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController, GPPSignInDelegate {
         
         println("OnLogin() pressed")
         
-        GPPSignIn.sharedInstance().authenticate()
+//        GPPSignIn.sharedInstance().authenticate()
         
         self.presentViewController(campaignVC, animated: true) { () -> Void in
             

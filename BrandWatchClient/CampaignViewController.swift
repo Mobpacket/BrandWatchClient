@@ -293,7 +293,7 @@ class CampaignViewController: UIViewController {
     func signOut() {
         
         println("Signing out...")
-        GPPSignIn.sharedInstance().signOut()
+//        GPPSignIn.sharedInstance().signOut()
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
