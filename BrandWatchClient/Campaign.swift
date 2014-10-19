@@ -38,8 +38,8 @@ class Campaign: NSObject {
         id = object.objectId
         user_id = object["user_id"] as? String
         name = object["name"] as? String
-        start = object["start_date"] as? String
-        end = object["end_date"] as? String
+        start = object["start"] as? String
+        end = object["end"] as? String
     
         score = object["score"] as? Int
         vtr_target = object["vtr_target"] as? Int
@@ -48,6 +48,7 @@ class Campaign: NSObject {
         shares_target = object["shares_target"] as? Int
         favorites_target = object["favorites_target"] as? Int
         likes_target = object["likes_target"] as? Int
+        comments_target = object["comments_target"] as? Int
 
         video_ids = object["video_ids"] as? NSArray
     }
@@ -67,6 +68,10 @@ class Campaign: NSObject {
         
         if let start = self.start? {
             self.pfObject?["start"] = start
+        }
+        
+        if let end = self.end? {
+            self.pfObject?["end"] = end
         }
         
         if let score = self.score? {
@@ -95,6 +100,10 @@ class Campaign: NSObject {
         
         if let likes_target = self.likes_target? {
             self.pfObject?["likes_target"] = likes_target
+        }
+        
+        if let comments_target = self.comments_target? {
+            self.pfObject?["comments_target"] = comments_target
         }
         
         if let video_ids = self.video_ids? {

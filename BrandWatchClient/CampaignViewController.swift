@@ -32,6 +32,7 @@ class CampaignViewController: UIViewController {
     
     var campaigns: [Campaign]!
     var activeCampaign: Campaign!
+    var campaign: Campaign!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,8 +114,6 @@ class CampaignViewController: UIViewController {
                 self.loadCampaign(self.activeCampaign.id!)
             }
         }
-        
-       
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,7 +127,27 @@ class CampaignViewController: UIViewController {
         CampaignService.getCampaignById(id) { (campaign, error) -> Void in
             if error == nil {
                 
+                self.campaign = campaign
+                
+                var video = Video(dictionary: NSDictionary())
+                video.video_id = "4ar6S_D_keM"
+                
                 NSLog("%@", campaign)
+                println("CAMPAIGN: \(campaign)")
+
+//                for (index, video) in enumerate(videos) {
+//                    
+                    YouTubeClient.sharedInstance.queryVideoMetricsWithParams(video, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
+                        
+                        if error == nil {
+                            video.metrics_total = metrics
+                        }
+                    })
+//                }
+                
+                campaign.metrics_total = video.metrics_total
+                
+                NSLog("%@", video)
                 
                 // Set values
                 self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
@@ -160,9 +179,7 @@ class CampaignViewController: UIViewController {
                 
                 NSLog("%@", error)
             }
-
         }
-        
     }
     
     func signOut() {

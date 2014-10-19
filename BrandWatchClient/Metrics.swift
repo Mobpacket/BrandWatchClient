@@ -20,8 +20,8 @@ class Metrics: NSObject {
      * comments: comments
      */
     var score: Int?                 // Engagement Score
-    var vtr: Int?                   // View Through Rate (VTR) value
-    var ctr: Int?                   // Click Through Rate (CTR) value
+    var vtr: String?                   // View Through Rate (VTR) value
+    var ctr: String?                   // Click Through Rate (CTR) value
     var views: Int?                 // Views
     var shares: Int?                // Social Shares (LinkedIn, Twitter, Facebook, etc.) value
     var favorites: Int?             // YouTube Favorites value
@@ -34,8 +34,8 @@ class Metrics: NSObject {
         self.dictionary = dictionary
         
         score = dictionary["score"] as? Int
-        vtr = dictionary["vtr"] as? Int
-        ctr = dictionary["ctr"] as? Int
+        vtr = dictionary["vtr"] as? String
+        ctr = dictionary["ctr"] as? String
         views = dictionary["views"] as? Int
         shares = dictionary["shares_count"] as? Int
         favorites = dictionary["favorites_count"] as? Int
