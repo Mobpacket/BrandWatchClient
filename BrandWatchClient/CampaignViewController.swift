@@ -9,17 +9,9 @@
 import UIKit
 
 class CampaignViewController: UIViewController {
-    
-    @IBOutlet weak var quartileLabel: UILabel!
-    @IBOutlet weak var q25Label: UILabel!
-    @IBOutlet weak var q50Label: UILabel!
-    @IBOutlet weak var q75Label: UILabel!
-    @IBOutlet weak var q100Label: UILabel!
-    @IBOutlet weak var q25ValueLabel: UILabel!
-    @IBOutlet weak var q50ValueLabel: UILabel!
-    @IBOutlet weak var q75ValueLabel: UILabel!
-    @IBOutlet weak var q100ValueLabel: UILabel!
 
+    @IBOutlet weak var engagementLineChartView: UIView!
+    
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
@@ -52,101 +44,46 @@ class CampaignViewController: UIViewController {
         var campaignView = objects[0] as UIView
         view.addSubview(campaignView)
         
+        // Setup Line Chart View
+        engagementLineChartView.layer.borderWidth = 1
+        engagementLineChartView.layer.borderColor = UIColor.blackColor().CGColor
+        
         // Setup line breaks according to autolayout values from campaign view
         var titleLineView = CampaignLineView(frame: CGRect(x: 10, y: 64, width: 300, height: 4))
         titleLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(titleLineView)
         
-        var quartileLineView = SectionLineView(frame: CGRect(x: 10, y: 156, width: 300, height: 2))
-        quartileLineView.backgroundColor = UIColor.clearColor()
-        view.addSubview(quartileLineView)
+        var chartLineView = SectionLineView(frame: CGRect(x: 10, y: 230, width: 300, height: 2))
+        chartLineView.backgroundColor = UIColor.clearColor()
+        view.addSubview(chartLineView)
         
-        var engagementLineView = SectionLineView(frame: CGRect(x: 10, y: 198, width: 300, height: 2))
+        var engagementLineView = SectionLineView(frame: CGRect(x: 10, y: 270, width: 300, height: 2))
         engagementLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(engagementLineView)
         
-        var vtrLineView = SectionLineView(frame: CGRect(x: 10, y: 240, width: 300, height: 2))
+        var vtrLineView = SectionLineView(frame: CGRect(x: 10, y: 310, width: 300, height: 2))
         vtrLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(vtrLineView)
         
-        var ctrLineView = SectionLineView(frame: CGRect(x: 10, y: 282, width: 300, height: 2))
+        var ctrLineView = SectionLineView(frame: CGRect(x: 10, y: 350, width: 300, height: 2))
         ctrLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(ctrLineView)
         
-        var sharesLineView = SectionLineView(frame: CGRect(x: 10, y: 324, width: 300, height: 2))
+        var sharesLineView = SectionLineView(frame: CGRect(x: 10, y: 395, width: 300, height: 2))
         sharesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(sharesLineView)
 
-        var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 366, width: 300, height: 2))
+        var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 435, width: 300, height: 2))
         favoritesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(favoritesLineView)
 
-        var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 408, width: 300, height: 2))
+        var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 480, width: 300, height: 2))
         likesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(likesLineView)
-
-        // draw borders for quartile table
-        quartileLabel.textColor = UIColor.whiteColor()
-        
-        q25Label.layer.borderColor = UIColor.whiteColor().CGColor
-        q25Label.layer.borderWidth = 1
-        q25Label.textColor = UIColor.whiteColor()
-        
-        q50Label.layer.borderColor = UIColor.whiteColor().CGColor
-        q50Label.layer.borderWidth = 1
-        q50Label.textColor = UIColor.whiteColor()
-        
-        q75Label.layer.borderColor = UIColor.whiteColor().CGColor
-        q75Label.layer.borderWidth = 1
-        q75Label.textColor = UIColor.whiteColor()
-        
-        q100Label.layer.borderColor = UIColor.whiteColor().CGColor
-        q100Label.layer.borderWidth = 1
-        q100Label.textColor = UIColor.whiteColor()
-
-        q25ValueLabel.layer.borderColor = UIColor.whiteColor().CGColor
-        q25ValueLabel.layer.borderWidth = 1
-        q25ValueLabel.textColor = UIColor.whiteColor()
-
-        q50ValueLabel.layer.borderColor = UIColor.whiteColor().CGColor
-        q50ValueLabel.layer.borderWidth = 1
-        q50ValueLabel.textColor = UIColor.whiteColor()
-
-        q75ValueLabel.layer.borderColor = UIColor.whiteColor().CGColor
-        q75ValueLabel.layer.borderWidth = 1
-        q75ValueLabel.textColor = UIColor.whiteColor()
-
-        q100ValueLabel.layer.borderColor = UIColor.whiteColor().CGColor
-        q100ValueLabel.layer.borderWidth = 1
-        q100ValueLabel.textColor = UIColor.whiteColor()
-        
+   
         // setup view and button colors
         campaignView.backgroundColor = UIColor.clearColor()
         campaignView.backgroundColor = UIColor.orangeColor()
-        
-        // NAJ: buttons were removed and replaced with new menu
-//        campaignAButton.layer.backgroundColor = UIColor.clearColor().CGColor
-//        campaignAButton.layer.borderColor = UIColor.orangeColor().CGColor
-//        campaignAButton.layer.cornerRadius = 8
-//        campaignAButton.layer.borderWidth = 2
-//        campaignAButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-//        campaignAButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-//        campaignAButton.clipsToBounds = true
-//        campaignBButton.layer.backgroundColor = UIColor.clearColor().CGColor
-//        campaignBButton.layer.borderColor = UIColor.orangeColor().CGColor
-//        campaignBButton.layer.cornerRadius = 8
-//        campaignBButton.layer.borderWidth = 2
-//        campaignBButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-//        campaignBButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-//        campaignBButton.clipsToBounds = true
-//        signOutButton.layer.backgroundColor = UIColor.clearColor().CGColor
-//        signOutButton.layer.borderColor = UIColor.orangeColor().CGColor
-//        signOutButton.layer.cornerRadius = 8
-//        signOutButton.layer.borderWidth = 2
-//        signOutButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-//        signOutButton.setTitle("Sign Out", forState: UIControlState.Normal)
-//        signOutButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-//        signOutButton.clipsToBounds = true
         
         campaignTitleButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         
@@ -201,18 +138,6 @@ class CampaignViewController: UIViewController {
                 
                 // Set values
                 self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
-                
-//                let quartile25Count = pfCampaign["quartile25Count"] as Int
-//                self.q25ValueLabel.text = "\(quartile25Count)"
-//                
-//                let quartile50Count = pfCampaign["quartile50Count"] as Int
-//                self.q50ValueLabel.text = "\(quartile50Count)"
-//                
-//                let quartile75Count = pfCampaign["quartile75Count"] as Int
-//                self.q75ValueLabel.text = "\(quartile75Count)"
-//                
-//                let quartile100Count = pfCampaign["quartile100Count"] as Int
-//                self.q100ValueLabel.text = "\(quartile100Count)"
 //                
 //                let score = pfCampaign["score"] as Int
                 self.scoreValueLabel.text = "\(campaign.score!)"

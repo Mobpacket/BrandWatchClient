@@ -16,12 +16,6 @@ class Campaign: NSObject {
     var start: NSDate?              // Start Date
     var end: NSDate?                // End Date
     
-    // NAJ: To be removed
-    var quartile25Count: Int?       // Count for 25% viewing completion rate
-    var quartile50Count: Int?       // Count for 50% viewing completion rate
-    var quartile75Count: Int?       // Count for 75% viewing completion rate
-    var quartile100Count: Int?      // Count for 100% viewing completion rate
-    
     var score: Int?                 // Engagement Score
     var vtr_target: Int?            // View Through Rate (VTR) target
     var ctr_target: Int?            // Click Through Rate (CTR) target
@@ -106,7 +100,5 @@ class Campaign: NSObject {
         }
         
         return self.pfObject!
-        
     }
-    
 }
