@@ -83,12 +83,21 @@ class LoginViewController: UIViewController {
         
         println("OnLogin() pressed")
         
-        var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
+        var auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeyChainItemName, clientID: clientID, clientSecret: clientSecret) as GTMOAuth2Authentication
         
-        var vc = GTMOAuth2ViewControllerTouch(scope: scope, clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
-        
-        self.presentViewController(vc, animated: true) { () -> Void in
-            println("auth done")
+        if !auth.canAuthorize {
+            
+            var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
+            
+            var vc = GTMOAuth2ViewControllerTouch(scope: scope, clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
+            
+            self.presentViewController(vc, animated: true) { () -> Void in
+                println("auth done")
+            }
+        }
+        else
+        {
+            authentication(GTMOAuth2ViewControllerTouch(), finishedWithAuth: auth, error: NSError())
         }
 
     }
