@@ -178,12 +178,12 @@ class CampaignViewController: UIViewController {
     
     func loadTestCampaignA() {
             
-        loadCampaign("3agqQCqwsX")
+        loadCampaign("a8Q44sVMSJ")
     }
     
     func loadTestCampaignB() {
     
-        loadCampaign("jsSsc3kxrn")
+        loadCampaign("1edruSK9m1")
     }
     
     func setCampaignTitles() {
@@ -194,99 +194,90 @@ class CampaignViewController: UIViewController {
     
     private func loadCampaign(id: String) {
         
-        var query = PFQuery(className:"Campaign")
-        
-        query.getObjectInBackgroundWithId(id) {
-            (pfCampaign: PFObject!, error: NSError!) -> Void in
+        CampaignService.getCampaignById(id) { (campaign, error) -> Void in
             if error == nil {
                 
-                NSLog("%@", pfCampaign)
+                NSLog("%@", campaign)
                 
                 // Set values
-                let name = pfCampaign["name"] as String
-                self.campaignTitleButton.setTitle("\(name)", forState: UIControlState.Normal)
+                self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
                 
-                let quartile25Count = pfCampaign["quartile25Count"] as Int
-                self.q25ValueLabel.text = "\(quartile25Count)"
+//                let quartile25Count = pfCampaign["quartile25Count"] as Int
+//                self.q25ValueLabel.text = "\(quartile25Count)"
+//                
+//                let quartile50Count = pfCampaign["quartile50Count"] as Int
+//                self.q50ValueLabel.text = "\(quartile50Count)"
+//                
+//                let quartile75Count = pfCampaign["quartile75Count"] as Int
+//                self.q75ValueLabel.text = "\(quartile75Count)"
+//                
+//                let quartile100Count = pfCampaign["quartile100Count"] as Int
+//                self.q100ValueLabel.text = "\(quartile100Count)"
+//                
+//                let score = pfCampaign["score"] as Int
+                self.scoreValueLabel.text = "\(campaign.score!)"
                 
-                let quartile50Count = pfCampaign["quartile50Count"] as Int
-                self.q50ValueLabel.text = "\(quartile50Count)"
-                
-                let quartile75Count = pfCampaign["quartile75Count"] as Int
-                self.q75ValueLabel.text = "\(quartile75Count)"
-                
-                let quartile100Count = pfCampaign["quartile100Count"] as Int
-                self.q100ValueLabel.text = "\(quartile100Count)"
-                
-                let score = pfCampaign["score"] as Int
-                self.scoreValueLabel.text = "\(score)"
-                
-                let vtrF = pfCampaign["vtr"] as Float
-                let vtr = vtrF.format(".1")
-                self.vtrValueLabel.text = "\(vtr)%"
-                
-                let ctrF = pfCampaign["ctr"] as Float
-                let ctr = ctrF.format(".1")
-                self.ctrValueLabel.text = "\(ctr)%"
-                
-                let shares = pfCampaign["score"] as Int
-                self.sharesCountLabel.text = "\(shares)"
-                
-                // NAJ: Update tweets to favorites in PARSE
-                let favorites = pfCampaign["tweets"] as Int
-                self.favoritesCountLabel.text = "\(favorites)"
-                
-                let likes = pfCampaign["likes"] as Int
-                self.likesCountLabel.text = "\(likes)"
-                
-                let comments = pfCampaign["comments"] as Int
-                self.commentsCountLabel.text = "\(comments)"
+//                let vtrF = pfCampaign["vtr"] as Float
+//                let vtr = vtrF.format(".1")
+//                self.vtrValueLabel.text = "\(vtr)%"
+//                
+//                let ctrF = pfCampaign["ctr"] as Float
+//                let ctr = ctrF.format(".1")
+//                self.ctrValueLabel.text = "\(ctr)%"
+//                
+//                let shares = pfCampaign["score"] as Int
+//                self.sharesCountLabel.text = "\(shares)"
+//                
+//                // NAJ: Update tweets to favorites in PARSE
+//                let favorites = pfCampaign["tweets"] as Int
+//                self.favoritesCountLabel.text = "\(favorites)"
+//                
+//                let likes = pfCampaign["likes"] as Int
+//                self.likesCountLabel.text = "\(likes)"
+//                
+//                let comments = pfCampaign["comments"] as Int
+//                self.commentsCountLabel.text = "\(comments)"
             } else {
                 
                 NSLog("%@", error)
             }
+
         }
         
     }
     
     private func setCampaignATitle() {
         
-        var query = PFQuery(className:"Campaign")
-        
-        
-        query.getObjectInBackgroundWithId("3agqQCqwsX") {
-            (pfCampaign: PFObject!, error: NSError!) -> Void in
+        CampaignService.getCampaignById("a8Q44sVMSJ") { (campaign, error) -> Void in
             if error == nil {
                 
-                NSLog("%@", pfCampaign)
+                NSLog("%@", campaign)
                 
                 // Set button name
-                let name = pfCampaign["name"] as String
-                self.campaignTitleA = name
+                self.campaignTitleA = campaign.name!
             } else {
                 
                 NSLog("%@", error)
             }
+
         }
+    
     }
     
     private func setCampaignBTitle() {
         
-        var query = PFQuery(className: "Campaign")
-        
-        query.getObjectInBackgroundWithId("jsSsc3kxrn") {
-            (pfCampaign: PFObject!, error: NSError!) -> Void in
+        CampaignService.getCampaignById("1edruSK9m1") { (campaign, error) -> Void in
             if error == nil {
                 
-                NSLog("%@", pfCampaign)
+                NSLog("%@", campaign)
                 
                 // Set button name
-                let name = pfCampaign["name"] as String
-                self.campaignTitleB = name
+                self.campaignTitleB = campaign.name!
             } else {
                 
                 NSLog("%@", error)
             }
+            
         }
     }
     

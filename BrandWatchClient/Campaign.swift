@@ -11,6 +11,7 @@ import UIKit
 class Campaign: NSObject {
     
     var id: String?                 // Campaign ID
+    var user_id: String?            // User ID
     var name: String?               // Campaign Name
     var start: NSDate?              // Start Date
     var end: NSDate?                // End Date
@@ -33,33 +34,79 @@ class Campaign: NSObject {
     var metrics_total: Metrics?     // Aggregated campaign metrics values
     var metrics_daily: Dictionary <NSDate, Metrics>? // Aggregated dictionary of daily metrics
     
-    var dictionary: NSDictionary?   // Serialized data model
+    private var pfObject: PFObject?   // Serialized data model
     
-    init(dictionary: NSDictionary) {
+    init(object: PFObject) {
         
-        self.dictionary = dictionary
+        self.pfObject = object
         
-        id = dictionary["id"] as? String
-        name = dictionary["name"] as? String
-        start = dictionary["start_date"] as? NSDate
-        end = dictionary["end_date"] as? NSDate
+        id = object["id"] as? String
+        user_id = object["user_id"] as? String
+        name = object["name"] as? String
+        start = object["start_date"] as? NSDate
+        end = object["end_date"] as? NSDate
     
-        // NAJ: To be removed
-        quartile25Count = dictionary["q25"] as? Int
-        quartile50Count = dictionary["q50"] as? Int
-        quartile75Count = dictionary["q75"] as? Int
-        quartile100Count = dictionary["q100"] as? Int
-        
-        score = dictionary["score"] as? Int
-        vtr_target = dictionary["vtr_target"] as? Int
-        ctr_target = dictionary["ctr_target"] as? Int
-        shares_target = dictionary["shares_target"] as? Int
-        favorites_target = dictionary["favorites_target"] as? Int
-        likes_target = dictionary["likes_target"] as? Int
+        score = object["score"] as? Int
+        vtr_target = object["vtr_target"] as? Int
+        ctr_target = object["ctr_target"] as? Int
+        shares_target = object["shares_target"] as? Int
+        favorites_target = object["favorites_target"] as? Int
+        likes_target = object["likes_target"] as? Int
 
-        video_ids = dictionary["video_ids"] as? NSArray
-        
-        metrics_total = dictionary["metrics_total"] as? Metrics
-        metrics_daily = dictionary["metrics_daily"] as? Dictionary
+        video_ids = object["video_ids"] as? NSArray
     }
+    
+    func getPFObject() -> PFObject {
+        if(self.pfObject == nil) {
+            self.pfObject = PFObject()
+        }
+        
+        if let id = self.id? {
+            self.pfObject?["id"] = id
+        }
+        
+        if let user_id = self.user_id? {
+            self.pfObject?["user_id"] = user_id
+        }
+        
+        if let name = self.name? {
+            self.pfObject?["name"] = name
+        }
+        
+        if let start = self.start? {
+            self.pfObject?["start"] = start
+        }
+        
+        if let score = self.score? {
+            self.pfObject?["score"] = score
+        }
+        
+        if let vtr_target = self.vtr_target? {
+            self.pfObject?["vtr_target"] = vtr_target
+        }
+        
+        if let ctr_target = self.ctr_target? {
+            self.pfObject?["ctr_target"] = ctr_target
+        }
+        
+        if let shares_target = self.shares_target? {
+            self.pfObject?["shares_target"] = shares_target
+        }
+        
+        if let favorites_target = self.favorites_target? {
+            self.pfObject?["favorites_target"] = favorites_target
+        }
+        
+        if let likes_target = self.likes_target? {
+            self.pfObject?["likes_target"] = likes_target
+        }
+        
+        if let video_ids = self.video_ids? {
+            self.pfObject?["video_ids"] = video_ids
+        }
+        
+        return self.pfObject!
+        
+    }
+    
 }
