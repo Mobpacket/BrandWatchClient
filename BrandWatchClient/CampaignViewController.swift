@@ -30,8 +30,8 @@ class CampaignViewController: UIViewController {
     
     @IBOutlet weak var campaignTitleButton: UIButton!
     
-    var campaignTitleA: String!
-    var campaignTitleB: String!
+    var campaigns: [Campaign]!
+    var activeCampaign: Campaign!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,30 +103,24 @@ class CampaignViewController: UIViewController {
         likesCountLabel.textColor = UIColor.whiteColor()
         commentsCountLabel.textColor = UIColor.whiteColor()
         
-        loadTestCampaignA()
-        setCampaignTitles()
+        CampaignService.getCampaigns { (campaigns, error) -> Void in
+            if error == nil {
+                self.campaigns = campaigns
+                
+                //NAB: Since its loading for the first time, set active campaign to
+                //first campaign returned.  We should store this data in the user
+                self.activeCampaign = self.campaigns[0]
+                self.loadCampaign(self.activeCampaign.id!)
+            }
+        }
+        
+       
     }
     
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func loadTestCampaignA() {
-            
-        loadCampaign("Rdg8LBU83t")
-    }
-    
-    func loadTestCampaignB() {
-    
-        loadCampaign("QVmzuT2FcS")
-    }
-    
-    func setCampaignTitles() {
-        
-        setCampaignATitle()
-        setCampaignBTitle()
     }
     
     private func loadCampaign(id: String) {
@@ -171,41 +165,6 @@ class CampaignViewController: UIViewController {
         
     }
     
-    private func setCampaignATitle() {
-        
-        CampaignService.getCampaignById("Rdg8LBU83t") { (campaign, error) -> Void in
-            if error == nil {
-                
-                NSLog("%@", campaign)
-                
-                // Set button name
-                self.campaignTitleA = campaign.name!
-            } else {
-                
-                NSLog("%@", error)
-            }
-
-        }
-    
-    }
-    
-    private func setCampaignBTitle() {
-        
-        CampaignService.getCampaignById("QVmzuT2FcS") { (campaign, error) -> Void in
-            if error == nil {
-                
-                NSLog("%@", campaign)
-                
-                // Set button name
-                self.campaignTitleB = campaign.name!
-            } else {
-                
-                NSLog("%@", error)
-            }
-            
-        }
-    }
-    
     func signOut() {
         
         println("Signing out...")
@@ -222,30 +181,40 @@ class CampaignViewController: UIViewController {
     
     @IBAction func onCampaignMenuDropdownTapped(sender: UIButton) {
         
-        var styleItems = NSArray(objects:
+        var styleItems = [RWDropdownMenuItem]()
+        styleItems.append(
             RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
                 println("loading settings view (create)")
                 self.loadSettingsView()
-            }),
+            })
+        )
+        
+        styleItems.append(
             RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
                 println("loading settings view (edit)")
                 self.loadSettingsView()
-            }),
-            RWDropdownMenuItem(text:campaignTitleA, image:nil, action:{
-                println("loading campaign \(self.campaignTitleA)")
-                self.loadTestCampaignA()
-                self.campaignTitleButton.setTitle(self.campaignTitleA, forState: UIControlState.Normal)
-            }),
-            RWDropdownMenuItem(text:campaignTitleB, image:nil, action:{
-                println("loading campaign \(self.campaignTitleB)")
-                self.loadTestCampaignB()
-                self.campaignTitleButton.setTitle(self.campaignTitleB, forState: UIControlState.Normal)
-            }),
+            })
+        )
+
+        
+        for campaign in self.campaigns {
+            styleItems.append(
+               RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
+                   println("loading campaign \(campaign.name!)")
+                  self.loadCampaign(campaign.id!)
+                  self.campaignTitleButton.setTitle(campaign.name!, forState: UIControlState.Normal)
+               })
+            )
+        }
+        
+        styleItems.append(
             RWDropdownMenuItem(text:"Sign Out", image:nil, action:{
                 self.signOut()
             })
         )
+
         
+       
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
     

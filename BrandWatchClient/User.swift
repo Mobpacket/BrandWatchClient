@@ -10,19 +10,21 @@ import UIKit
 
 class User: NSObject {
    
-    var auth_id: String?            // Authorization ID
+    var authId: String?             // Authorization ID
     var name: String?               // User Name
     var email: String?              // User Email
-    var campaign_ids: NSArray?      // Array Campaign IDs
+    var activeCampaignId: String?   // Current active campaign
+    var campaignIds: NSArray?      // Array Campaign IDs
     var dictionary: NSDictionary?   // Serialized data model
     
     init(dictionary: NSDictionary) {
         
         self.dictionary = dictionary
         
-        auth_id = dictionary["auth_id"] as? String
+        authId = dictionary["auth_id"] as? String
         name = dictionary["name"] as? String
         email = dictionary["email"] as? String
-        campaign_ids = dictionary["campaign_ids"] as? NSArray
+        activeCampaignId = dictionary["active_campaign_id"] as? String
+        campaignIds = dictionary["campaign_ids"] as? NSArray
     }
 }

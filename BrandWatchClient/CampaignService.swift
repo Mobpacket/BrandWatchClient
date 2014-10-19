@@ -31,7 +31,7 @@ class CampaignService: NSObject {
     
     class func getCampaignByUserId(userId: String, callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
         ParseClient.getCampaignsByUserId(userId) { (pfObjects: [PFObject]!, error: NSError!) -> Void in
-            if(error != nil) {
+            if error == nil {
                 var campaignArr = [Campaign]()
                 for pfObject in pfObjects {
                     campaignArr.append(Campaign(object: pfObject))
@@ -42,6 +42,21 @@ class CampaignService: NSObject {
             }
         }
     }
+    
+    class func getCampaigns(callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
+        ParseClient.getCampaigns() { (pfObjects: [PFObject]!, error: NSError!) -> Void in
+            if error == nil {
+                var campaignArr = [Campaign]()
+                for pfObject in pfObjects {
+                    campaignArr.append(Campaign(object: pfObject))
+                }
+                callback(campaigns: campaignArr, error: nil)
+            } else {
+                callback(campaigns: nil, error: error)
+            }
+        }
+    }
+
     
     class func saveCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
         ParseClient.saveCampaign(campaign, callback: callback)

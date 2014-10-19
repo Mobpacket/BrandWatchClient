@@ -34,7 +34,7 @@ class Campaign: NSObject {
         
         self.pfObject = object
         
-        id = object["id"] as? String
+        id = object.objectId
         user_id = object["user_id"] as? String
         name = object["name"] as? String
         start = object["start_date"] as? String
@@ -53,10 +53,6 @@ class Campaign: NSObject {
     func getPFObject() -> PFObject {
         if(self.pfObject == nil) {
             self.pfObject = PFObject()
-        }
-        
-        if let id = self.id? {
-            self.pfObject?["id"] = id
         }
         
         if let user_id = self.user_id? {
