@@ -15,6 +15,7 @@ class CampaignViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
@@ -23,6 +24,7 @@ class CampaignViewController: UIViewController {
     @IBOutlet weak var scoreValueLabel: UILabel!
     @IBOutlet weak var vtrValueLabel: UILabel!
     @IBOutlet weak var ctrValueLabel: UILabel!
+    @IBOutlet weak var viewsValueLabel: UILabel!
     @IBOutlet weak var sharesCountLabel: UILabel!
     @IBOutlet weak var favoritesCountLabel: UILabel!
     @IBOutlet weak var likesCountLabel: UILabel!
@@ -70,18 +72,22 @@ class CampaignViewController: UIViewController {
         ctrLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(ctrLineView)
         
-        var sharesLineView = SectionLineView(frame: CGRect(x: 10, y: 395, width: 300, height: 2))
+        var viewsLineView = SectionLineView(frame: CGRect(x: 10, y: 395, width: 300, height: 2))
+        viewsLineView.backgroundColor = UIColor.clearColor()
+        view.addSubview(viewsLineView)
+
+        var sharesLineView = SectionLineView(frame: CGRect(x: 10, y: 435, width: 300, height: 2))
         sharesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(sharesLineView)
 
-        var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 435, width: 300, height: 2))
+        var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 475, width: 300, height: 2))
         favoritesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(favoritesLineView)
-
-        var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 480, width: 300, height: 2))
+   
+        var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 520, width: 300, height: 2))
         likesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(likesLineView)
-   
+        
         // setup view and button colors
         campaignView.backgroundColor = UIColor.clearColor()
         campaignView.backgroundColor = UIColor.orangeColor()
@@ -91,6 +97,7 @@ class CampaignViewController: UIViewController {
         scoreLabel.textColor = UIColor.whiteColor()
         vtrLabel.textColor = UIColor.whiteColor()
         ctrLabel.textColor = UIColor.whiteColor()
+        viewsLabel.textColor = UIColor.whiteColor()
         sharesLabel.textColor = UIColor.whiteColor()
         favoritesLabel.textColor = UIColor.whiteColor()
         likesLabel.textColor = UIColor.whiteColor()
@@ -99,6 +106,7 @@ class CampaignViewController: UIViewController {
         scoreValueLabel.textColor = UIColor.whiteColor()
         vtrValueLabel.textColor = UIColor.whiteColor()
         ctrValueLabel.textColor = UIColor.whiteColor()
+        viewsValueLabel.textColor = UIColor.whiteColor()
         sharesCountLabel.textColor = UIColor.whiteColor()
         favoritesCountLabel.textColor = UIColor.whiteColor()
         likesCountLabel.textColor = UIColor.whiteColor()
