@@ -28,6 +28,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var endData: UITextField!
     @IBOutlet weak var videosDataLabel: UILabel!
     @IBOutlet weak var vtrTarget: UITextField!
+    @IBOutlet weak var vtrViewSeperatorLabel: UILabel!
+    @IBOutlet weak var viewsTarget: UITextField!
     @IBOutlet weak var ctrTarget: UITextField!
     @IBOutlet weak var sharesTarget: UITextField!
     @IBOutlet weak var favoritesTarget: UITextField!
@@ -75,6 +77,7 @@ class SettingsViewController: UIViewController {
         
         metricsTitleLabel.textColor = UIColor.orangeColor()
         vtrLabel.textColor = UIColor.orangeColor()
+        vtrViewSeperatorLabel.textColor = UIColor.orangeColor()
         ctrLabel.textColor = UIColor.orangeColor()
         sharesLabel.textColor = UIColor.orangeColor()
         favoritesLabel.textColor = UIColor.orangeColor()
