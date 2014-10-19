@@ -19,6 +19,7 @@ class Campaign: NSObject {
     var score: Int?                 // Engagement Score
     var vtr_target: Int?            // View Through Rate (VTR) target
     var ctr_target: Int?            // Click Through Rate (CTR) target
+    var views_target: Int?          // Views target
     var shares_target: Int?         // Social Shares (LinkedIn, Twitter, Facebook, etc.) target
     var favorites_target: Int?      // YouTube Favorites target
     var likes_target: Int?          // Facebook Likes target
@@ -43,6 +44,7 @@ class Campaign: NSObject {
         score = object["score"] as? Int
         vtr_target = object["vtr_target"] as? Int
         ctr_target = object["ctr_target"] as? Int
+        views_target = object["views_target"] as? Int
         shares_target = object["shares_target"] as? Int
         favorites_target = object["favorites_target"] as? Int
         likes_target = object["likes_target"] as? Int
@@ -77,6 +79,10 @@ class Campaign: NSObject {
         
         if let ctr_target = self.ctr_target? {
             self.pfObject?["ctr_target"] = ctr_target
+        }
+        
+        if let views_target = self.views_target? {
+            self.pfObject?["views_target"] = views_target
         }
         
         if let shares_target = self.shares_target? {
