@@ -10,11 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    var clientID = "404415981542-mm1ttug2evkg2je5bhg5fef2bsddkk9a.apps.googleusercontent.com"
-    var clientSecret = "lQZuQS4OfWGxCIYphaYFFqei"
-    // Keychain item name for saving the user's authentication information.
-    var kKeyChainItemName = "BrandWatch Client: YouTube"
-    
     @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
@@ -60,6 +55,9 @@ class LoginViewController: UIViewController {
         //self.mytoken = finishedWithAuth.accessToken
         println("success oauth")
         
+        service = YouTubeClient.sharedInstance
+        service.authorizer = finishedWithAuth
+        
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             println("dismissed")
         })
@@ -85,7 +83,9 @@ class LoginViewController: UIViewController {
         
         println("OnLogin() pressed")
         
-        var vc = GTMOAuth2ViewControllerTouch(scope: "https://www.googleapis.com/auth/youtube", clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
+        var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
+        
+        var vc = GTMOAuth2ViewControllerTouch(scope: scope, clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
         
         self.presentViewController(vc, animated: true) { () -> Void in
             println("auth done")
