@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
+    @IBOutlet weak var videosLabel: UILabel!
     @IBOutlet weak var metricsTitleLabel: UILabel!
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
@@ -25,6 +26,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var nameData: UITextField!
     @IBOutlet weak var startData: UITextField!
     @IBOutlet weak var endData: UITextField!
+    @IBOutlet weak var videosDataLabel: UILabel!
     @IBOutlet weak var vtrTarget: UITextField!
     @IBOutlet weak var ctrTarget: UITextField!
     @IBOutlet weak var sharesTarget: UITextField!
@@ -49,7 +51,7 @@ class SettingsViewController: UIViewController {
         settingsLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(settingsLineView)
         
-        var metricsLineView = TargetLineView(frame: CGRect(x: 10, y: 262, width: 300, height: 4))
+        var metricsLineView = TargetLineView(frame: CGRect(x: 10, y: 280, width: 300, height: 4))
         metricsLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(metricsLineView)
         
@@ -62,6 +64,14 @@ class SettingsViewController: UIViewController {
         nameLabel.textColor = UIColor.whiteColor()
         startLabel.textColor = UIColor.whiteColor()
         endLabel.textColor = UIColor.whiteColor()
+        videosLabel.textColor = UIColor.whiteColor()
+        
+        // NAJ: video(s) counter text for campaign < 1 red, > 0 green
+        videosDataLabel.layer.borderWidth = 1
+        videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
+        videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
+        videosDataLabel.textColor = UIColor.redColor()
+//        videosDataLabel.textColor = UIColor.greenColor()
         
         metricsTitleLabel.textColor = UIColor.orangeColor()
         vtrLabel.textColor = UIColor.orangeColor()
