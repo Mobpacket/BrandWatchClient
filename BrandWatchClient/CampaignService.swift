@@ -19,6 +19,8 @@ class CampaignService: NSObject {
             (pfCampaign: PFObject!, error: NSError!) -> Void in
             if error == nil {
                 var campaignObj = Campaign(object: pfCampaign)
+                
+                
                 callback(campaign: campaignObj, error: nil)
             } else {
                 callback(campaign: nil, error: error)

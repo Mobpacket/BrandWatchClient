@@ -13,8 +13,8 @@ class Campaign: NSObject {
     var id: String?                 // Campaign ID
     var user_id: String?            // User ID
     var name: String?               // Campaign Name
-    var start: NSDate?              // Start Date
-    var end: NSDate?                // End Date
+    var start: String?              // Start Date
+    var end: String?                // End Date
     
     var score: Int?                 // Engagement Score
     var vtr_target: Int?            // View Through Rate (VTR) target
@@ -37,8 +37,8 @@ class Campaign: NSObject {
         id = object["id"] as? String
         user_id = object["user_id"] as? String
         name = object["name"] as? String
-        start = object["start_date"] as? NSDate
-        end = object["end_date"] as? NSDate
+        start = object["start_date"] as? String
+        end = object["end_date"] as? String
     
         score = object["score"] as? Int
         vtr_target = object["vtr_target"] as? Int

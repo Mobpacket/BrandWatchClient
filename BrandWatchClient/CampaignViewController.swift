@@ -115,12 +115,12 @@ class CampaignViewController: UIViewController {
     
     func loadTestCampaignA() {
             
-        loadCampaign("a8Q44sVMSJ")
+        loadCampaign("Rdg8LBU83t")
     }
     
     func loadTestCampaignB() {
     
-        loadCampaign("1edruSK9m1")
+        loadCampaign("QVmzuT2FcS")
     }
     
     func setCampaignTitles() {
@@ -173,7 +173,7 @@ class CampaignViewController: UIViewController {
     
     private func setCampaignATitle() {
         
-        CampaignService.getCampaignById("a8Q44sVMSJ") { (campaign, error) -> Void in
+        CampaignService.getCampaignById("Rdg8LBU83t") { (campaign, error) -> Void in
             if error == nil {
                 
                 NSLog("%@", campaign)
@@ -191,7 +191,7 @@ class CampaignViewController: UIViewController {
     
     private func setCampaignBTitle() {
         
-        CampaignService.getCampaignById("1edruSK9m1") { (campaign, error) -> Void in
+        CampaignService.getCampaignById("QVmzuT2FcS") { (campaign, error) -> Void in
             if error == nil {
                 
                 NSLog("%@", campaign)
