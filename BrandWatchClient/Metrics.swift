@@ -44,7 +44,7 @@ class Metrics: NSObject {
         favorites = dictionary["favorites_count"] as? Int
         likes = dictionary["likes_count"] as? Int
         comments = dictionary["comments_count"] as? Int
-        dateStr = dictionary["date_string"] as? Int
+        dateStr = dictionary["date_string"] as? String
         date = dictionary["date"] as? NSDate
     }
 }
