@@ -19,10 +19,7 @@ class EngagementScorer: NSObject {
         self.calculateScore(campaign, metrics: campaign.metrics_total!, targetDivisor: 0)
     }
     
-    class func calculateDailyScore(campaign: Campaign, date: NSDate) {
-        self.calculateScore(campaign, metrics: campaign.metrics_daily., targetDivisor: campaign.metrics_daily!.count)
-    }
-    
+
     private class func calculateScore(campaign: Campaign, metrics: Metrics, targetDivisor: Int) -> Float {
         let sharesTarget = campaign.shares_target
         let favoritesTarget = campaign.favorites_target
