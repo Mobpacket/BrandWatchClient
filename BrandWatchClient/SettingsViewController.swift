@@ -231,6 +231,8 @@ class SettingsViewController: UIViewController {
         self.campaign.favorites_target = self.favoritesTarget.text.toInt()
         self.campaign.likes_target = self.likesTarget.text.toInt()
         self.campaign.comments_target = self.commentsTarget.text.toInt()
+        
+        println("CAMPAIGN ASSIGNMENTS: \(self.campaign)")
     }
     
     private func getVideoID(name: String) -> String {

@@ -189,13 +189,13 @@ class CampaignViewController: UIViewController {
         }
         
         // Get the daily metrics to pouplate the graph
-        CampaignService.getCampaignDailyMetricsById(id, callback: { (campaign, error) -> Void in
-            if error == nil {
-                println("Daily Metrics: \(campaign.metrics_daily)")
-                
-                // TODO: Populate the Graph
-            }
-        })
+//        CampaignService.getCampaignDailyMetricsById(id, callback: { (campaign, error) -> Void in
+//            if error == nil {
+//                println("Daily Metrics: \(campaign.metrics_daily)")
+//                
+//                // TODO: Populate the Graph
+//            }
+//        })
     }
     
     func signOut() {
