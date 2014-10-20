@@ -51,12 +51,21 @@ class SettingsViewController: UIViewController {
         settingsView = objects[0] as UIView
         view.addSubview(settingsView)
         
-        // set up UI
+        // Set up UI
         constructUI()
         
-        // Do any additional setup after loading the view.
-        loadCampaignValues()
-        // create function to assign label values from self.campaign.*
+        // Populate data based on the type of settings view (create/edit)
+        var pfObject = self.campaign.getPFObject()
+        
+        if pfObject.objectId != nil {
+            
+            // Edit
+            loadCampaignTargets()
+        } else {
+            
+            // Create
+            loadDefaultCampaignTargets()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,22 +105,102 @@ class SettingsViewController: UIViewController {
         commentsLabel.textColor = UIColor.orangeColor()
     }
     
-    private func loadCampaignValues() {
+    private func loadCampaignTargets() {
         
         // When loading campaign for edit, set the color to black
+        self.nameData.textColor = UIColor.blackColor()
         self.nameData.text = self.campaign.name
+        
         self.startData.textColor = UIColor.blackColor()
         self.startData.text = self.campaign.start
+        
         self.endData.textColor = UIColor.blackColor()
         self.endData.text = self.campaign.end
+
+        // NAJ: Need to add video (read data)
+        self.videosDataLabel.layer.borderWidth = 1
+        self.videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
+        self.videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
+        self.videosDataLabel.textColor = UIColor.greenColor()
+        self.videosDataLabel.text = "1"
         
+        self.vtrTarget.textColor = UIColor.blackColor()
         self.vtrTarget.text = "\(self.campaign.vtr_target!)"
+        
+        self.viewsTarget.textColor = UIColor.blackColor()
         self.viewsTarget.text = "\(self.campaign.views_target!)"
+        
+        self.ctrTarget.textColor = UIColor.blackColor()
         self.ctrTarget.text = "\(self.campaign.ctr_target!)"
+        
+        self.sharesTarget.textColor = UIColor.blackColor()
         self.sharesTarget.text = "\(self.campaign.shares_target!)"
+        
+        self.favoritesTarget.textColor = UIColor.blackColor()
         self.favoritesTarget.text = "\(self.campaign.favorites_target!)"
+        
+        self.likesTarget.textColor = UIColor.blackColor()
         self.likesTarget.text = "\(self.campaign.likes_target!)"
+        
+        self.commentsTarget.textColor = UIColor.blackColor()
         self.commentsTarget.text = "\(self.campaign.comments_target!)"
+    }
+    
+    private func loadDefaultCampaignTargets() {
+        
+        // When loading campaign for create, set the color to lightgray
+        
+        self.nameData.text = ""
+        
+        self.startData.textColor = UIColor.lightGrayColor()
+        self.startData.text = "YYYY-MM-DD"
+        
+        self.endData.textColor = UIColor.lightGrayColor()
+        self.endData.text = "YYYY-MM-DD"
+        
+        self.videosDataLabel.layer.borderWidth = 1
+        self.videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
+        self.videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
+        self.videosDataLabel.textColor = UIColor.redColor()
+        self.videosDataLabel.text = "0"
+        
+        self.vtrTarget.textColor = UIColor.lightGrayColor()
+        self.vtrTarget.text = "70%"
+        
+        self.viewsTarget.textColor = UIColor.lightGrayColor()
+        self.viewsTarget.text = "100"
+        
+        self.ctrTarget.textColor = UIColor.lightGrayColor()
+        self.ctrTarget.text = "0.2%"
+        
+        self.sharesTarget.textColor = UIColor.lightGrayColor()
+        self.sharesTarget.text = "50"
+        
+        self.favoritesTarget.textColor = UIColor.lightGrayColor()
+        self.favoritesTarget.text = "50"
+        
+        self.likesTarget.textColor = UIColor.lightGrayColor()
+        self.likesTarget.text = "50"
+        
+        self.commentsTarget.textColor = UIColor.lightGrayColor()
+        self.commentsTarget.text = "25"
+    }
+    
+    private func assignCampaignTargets() {
+        
+        self.campaign.name = self.nameData.text
+        self.campaign.start = self.startData.text
+        self.campaign.end = self.endData.text
+        // NAJ:Need to assign real video
+//        self.campaign.video_ids = self.videosDataLabel.text
+        
+        self.campaign.vtr_target = self.vtrTarget.text.toInt()
+        self.campaign.ctr_target = self.ctrTarget.text.toInt()
+        self.campaign.views_target = self.viewsTarget.text.toInt()
+        self.campaign.shares_target = self.sharesTarget.text.toInt()
+        self.campaign.favorites_target = self.favoritesTarget.text.toInt()
+        self.campaign.likes_target = self.likesTarget.text.toInt()
+        self.campaign.comments_target = self.commentsTarget.text.toInt()
     }
     
     func cancelSettings() {
@@ -128,9 +217,12 @@ class SettingsViewController: UIViewController {
     
         var styleItems = NSArray(objects:
             RWDropdownMenuItem(text:"Create/Save", image:nil, action:{
+                
                 println("creating campaign")
+                
                 // populate objects from labels (make a private function)
-                self.campaign.ctr_target = self.ctrLabel.text?.toInt()
+                self.assignCampaignTargets()
+                
                 CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
                     
                     println("Succeeded")
@@ -139,23 +231,13 @@ class SettingsViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }),
             RWDropdownMenuItem(text:"Cancel", image:nil, action:{
+                
                 println("cancelling...")
+                
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         )
         
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

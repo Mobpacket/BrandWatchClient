@@ -155,8 +155,6 @@ class CampaignViewController: UIViewController {
                 // Set values
                 self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
 
-                // NAJ: Still need to fix the engagement score (need a real calculation)
-//                let score = pfCampaign["score"] as Int
                 let score = EngagementScorer.calculateTotalScore(campaign)
                 self.scoreValueLabel.text = "\(score)"
                 
@@ -193,6 +191,7 @@ class CampaignViewController: UIViewController {
         
         // kKeyChainItemName will move to the User Model
         var kKeyChainItemName = "BrandWatch Client: YouTube"
+        
         GTMOAuth2ViewControllerTouch.removeAuthFromKeychainForName(kKeyChainItemName)
         YouTubeClient.sharedInstance.authorizer = nil
         
@@ -205,37 +204,44 @@ class CampaignViewController: UIViewController {
     @IBAction func onCampaignMenuDropdownTapped(sender: UIButton) {
         
         var styleItems = [RWDropdownMenuItem]()
+        
         styleItems.append(
             RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
+                
                 println("loading settings view (create)")
+                
                 self.loadSettingsView(false)
             })
         )
         
         styleItems.append(
             RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
+                
                 println("loading settings view (edit)")
+                
                 self.loadSettingsView(true)
             })
         )
         
         for campaign in self.campaigns {
             styleItems.append(
-               RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
-                   println("loading campaign \(campaign.name!)")
-                  self.loadCampaign(campaign.id!)
-                  self.campaignTitleButton.setTitle(campaign.name!, forState: UIControlState.Normal)
+                RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
+                
+                println("loading campaign \(campaign.name!)")
+                    
+                self.loadCampaign(campaign.id!)
+                    
+                self.campaignTitleButton.setTitle(campaign.name!, forState: UIControlState.Normal)
                })
             )
         }
         
         styleItems.append(
             RWDropdownMenuItem(text:"Sign Out", image:nil, action:{
+                
                 self.signOut()
             })
         )
-
-        
        
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
@@ -244,12 +250,13 @@ class CampaignViewController: UIViewController {
         
         var settingsVC = SettingsViewController() as SettingsViewController
         
+        // Check for edit or create to pass correct data model
         if edit == true {
         
             settingsVC.campaign = self.activeCampaign
         } else {
             
-            settingsVC.campaign = Campaign(object: PFObject())
+            settingsVC.campaign = Campaign(object: PFObject(className: "Campaign"))
         }
         
         println("loadSettingsView() pressed")
@@ -259,14 +266,4 @@ class CampaignViewController: UIViewController {
             println("transitioning to settings controller")
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

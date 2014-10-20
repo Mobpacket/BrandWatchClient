@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrandWatchClient/Campaign.swift"
-            timestampString = "435441694.103619"
+            timestampString = "435476463.959415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "getPFObject()"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "init(object:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
