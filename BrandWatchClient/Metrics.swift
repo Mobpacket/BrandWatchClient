@@ -28,6 +28,9 @@ class Metrics: NSObject {
     var likes: Int?                 // Facebook Likes value
     var comments: Int?              // YouTube Comment Count value
     var dictionary: NSDictionary?   // Serialized data model
+    var dateStr: String?            // The Date String of metrics. Only used in daily metrics. Ignore for total metrics
+    var date: NSDate?               // The Date of the Metrics, used for sorting. Only used in daily metrics
+
     
     init(dictionary: NSDictionary) {
         
@@ -41,5 +44,7 @@ class Metrics: NSObject {
         favorites = dictionary["favorites_count"] as? Int
         likes = dictionary["likes_count"] as? Int
         comments = dictionary["comments_count"] as? Int
+        dateStr = dictionary["date_string"] as? Int
+        date = dictionary["date"] as? NSDate
     }
 }

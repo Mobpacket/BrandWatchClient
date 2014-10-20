@@ -99,8 +99,108 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
         })
     }
     
-    func queryDailyVideoMetricsWithParams(video_id: Video?, start_date: String?, end_date: String?, completion: [Metrics]?, errros: NSError?) -> () {
+    func queryDailyVideoMetricsWithParams(video_id: Video?, start_date: String?, end_date: String?, completion: (metrics_daily: [Metrics], error: NSError?) -> () ) {
+        
+        // Check if the end_date is earlier or later than today. If later than today, use today
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let today = NSDate()
+        let endDate = dateFormatter.dateFromString(end_date!)
+        var dateComparisionResult:NSComparisonResult = today.compare(endDate!)
+        if dateComparisionResult == NSComparisonResult.OrderedAscending
+        {
+            // Current date is smaller than end date.
+            //endDateStr = dateFormatter.stringFromDate(today)
+            println("Today: \(end_date)")
+        }
+        
+        var metricsDaily : [Metrics] = []
+        
+        var videoMetrics = Metrics(dictionary: NSDictionary())
+        
+        var newQuery: GTLQueryYouTubeAnalytics = GTLQueryYouTubeAnalytics.queryForReportsQueryWithIds(kChannelID, startDate: start_date, endDate: end_date, metrics: kVideoMetrics) as GTLQueryYouTubeAnalytics
+        
+        newQuery.filters = "video==\(video_id!.video_id!)"
+        newQuery.dimensions = "day"
+        println("Query: \(newQuery)")
+        
+        var ticket = GTLServiceTicket()
+        ticket = self.executeQuery(newQuery, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            
+            if error == nil {
+                
+                println("Analytics: \(object)")
+                
+                var results = object as GTLYouTubeAnalyticsResultTable
+                
+                var columns = results.columnHeaders
+                var rows = results.rows as NSArray
+                var dayStr : String!
+                println("column: \(columns), rows: \(rows)")
+                
+                for row in rows {
+                    
+                    videoMetrics = Metrics(dictionary: NSDictionary())
+                    
+                    for (index, column) in enumerate(columns) {
+                        
+                        var columnHeader = column as GTLYouTubeAnalyticsResultTableColumnHeadersItem
+                        
+                        println("Name: \(columnHeader.name), Index: \(index) Value: \(row.objectAtIndex(index))")
+                        
+                        //var row = rows[0] as NSArray
+                        
+                        switch(columnHeader.name) {
+                        case "views":
+                            videoMetrics.views = row.objectAtIndex(index) as? Int
+                        case "shares":
+                            videoMetrics.shares = row.objectAtIndex(index) as? Int
+                        case "favoritesAdded":
+                            videoMetrics.favorites = row.objectAtIndex(index) as? Int
+                        case "likes":
+                            videoMetrics.likes = row.objectAtIndex(index) as? Int
+                        case "comments":
+                            videoMetrics.comments = row.objectAtIndex(index) as? Int
+                        case "averageViewPercentage":
+                            videoMetrics.vtr = row.objectAtIndex(index) as? String
+                        case "annotationClickThroughRate":
+                            videoMetrics.ctr = row.objectAtIndex(index) as? String
+                        case "day":
+                            //dayStr = row.objectAtIndex(index) as? String
+                            //let index1: String.Index = advance(dayStr.startIndex, 8)
+                            // var strday = dayStr.substringFromIndex(index1)
+                            videoMetrics.dateStr = row.objectAtIndex(index) as? String
+                            videoMetrics.date = dateFormatter.dateFromString(videoMetrics.dateStr!)
+                        default:
+                            println("Do nothing")
+                        }
+                    }
+                    
+                    metricsDaily.insert(videoMetrics, atIndex: 0)
+                    
+                }
+                
+                metricsDaily.sort {
+                    item1, item2 in
+                    let date1 = item1.date! as NSDate
+                    let date2 = item2.date! as NSDate
+                    return date1.compare(date2) == NSComparisonResult.OrderedAscending
+                }
+                
+                println("before completion: \(metricsDaily)")
+                
+                completion(metrics_daily: metricsDaily, error: nil)
+            }
+                
+            else {
+                
+                println("Daily Analytics Error: \(error)")
+                
+                completion(metrics_daily: [], error: error)
+            }
+        })
         
         
-    } 
+        
+    }
 }
