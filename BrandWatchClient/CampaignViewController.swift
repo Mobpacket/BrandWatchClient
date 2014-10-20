@@ -81,6 +81,9 @@ class CampaignViewController: UIViewController {
         engagementLineChartView.layer.borderWidth = 1
         engagementLineChartView.layer.borderColor = UIColor.blackColor().CGColor
         
+//        var chartImage = UIImageView(image: UIImage(contentsOfFile: "sampleDailyGraph.png"))
+//        self.engagementLineChartView.addSubview(chartImage)
+        
         // Setup line breaks according to autolayout values from campaign view
         var titleLineView = CampaignLineView(frame: CGRect(x: 10, y: 64, width: 300, height: 4))
         titleLineView.backgroundColor = UIColor.clearColor()

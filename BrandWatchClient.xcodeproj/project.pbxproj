@@ -31,6 +31,7 @@
 		A8901A4D19F4B9060061581F /* EngagementScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4C19F4B9060061581F /* EngagementScorer.swift */; };
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
+		D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */ = {isa = PBXBuildFile; fileRef = D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */; };
 		D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9726BAD19EE374200B9FF1A /* SettingsView.xib */; };
 		D9726BB019EE375A00B9FF1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */; };
 		D9726BB219EE5B0600B9FF1A /* SettingsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */; };
@@ -90,6 +91,7 @@
 		A8901A4C19F4B9060061581F /* EngagementScorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementScorer.swift; sourceTree = "<group>"; };
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleDailyGraph.png; sourceTree = "<group>"; };
 		D9726BAD19EE374200B9FF1A /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 		D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLineView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		1D9B5C3619E797A20062F44A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */,
 				1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */,
 				D99C83C019EBCEED004DB96A /* brandwatch.png */,
 				1D9B5C3719E797A20062F44A /* Info.plist */,
@@ -380,6 +383,7 @@
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
+				D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */,
 				D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
