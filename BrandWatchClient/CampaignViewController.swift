@@ -159,7 +159,8 @@ class CampaignViewController: UIViewController {
 
                 // NAJ: Still need to fix the engagement score (need a real calculation)
 //                let score = pfCampaign["score"] as Int
-                self.scoreValueLabel.text = "\(self.loadedCampaign.score!)"
+                let score = EngagementScorer.calculateTotalScore(campaign)
+                self.scoreValueLabel.text = "\(score)"
                 
                 let vtr_value = self.loadedCampaign.metrics_total?.vtr
                 self.vtrValueLabel.text = "\(vtr_value!)" + "%"
