@@ -82,6 +82,10 @@ class CampaignService: NSObject {
     class func deleteCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
         ParseClient.deleteCampaign(campaign, callback: callback)
     }
+    
+    class func calculateEngagementScore(campaign: Campaign) {
+        
+    }
 
 
    

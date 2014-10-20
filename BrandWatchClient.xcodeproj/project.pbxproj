@@ -28,6 +28,7 @@
 		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
 		A8901A4519F335850061581F /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4419F335850061581F /* CampaignService.swift */; };
 		A8901A4719F3361B0061581F /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4619F3361B0061581F /* ParseClient.swift */; };
+		A8901A4D19F4B9060061581F /* EngagementScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4C19F4B9060061581F /* EngagementScorer.swift */; };
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
 		D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9726BAD19EE374200B9FF1A /* SettingsView.xib */; };
@@ -86,6 +87,7 @@
 		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A8901A4419F335850061581F /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		A8901A4619F3361B0061581F /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		A8901A4C19F4B9060061581F /* EngagementScorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementScorer.swift; sourceTree = "<group>"; };
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D9726BAD19EE374200B9FF1A /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		1D9B5C3519E797A20062F44A /* BrandWatchClient */ = {
 			isa = PBXGroup;
 			children = (
+				A8901A4B19F4B8350061581F /* Utilities */,
 				A8901A4319F334E10061581F /* Services */,
 				D9E3D3EA19EA09C900101EC6 /* API */,
 				D9E3D3EB19EA09CF00101EC6 /* Model */,
@@ -180,7 +183,6 @@
 				1D9B5C4419E797A20062F44A /* LaunchScreen.xib */,
 				1D9B5C3A19E797A20062F44A /* BrandWatchClient.xcdatamodeld */,
 				1D9B5C3619E797A20062F44A /* Supporting Files */,
-				A86E341A19EBBEEC00745230 /* Helper.swift */,
 			);
 			path = BrandWatchClient;
 			sourceTree = "<group>";
@@ -226,6 +228,15 @@
 				A8901A4419F335850061581F /* CampaignService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		A8901A4B19F4B8350061581F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A86E341A19EBBEEC00745230 /* Helper.swift */,
+				A8901A4C19F4B9060061581F /* EngagementScorer.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		C580DF099754398225EB19F6 /* Pods */ = {
@@ -430,6 +441,7 @@
 				A8901A4719F3361B0061581F /* ParseClient.swift in Sources */,
 				D9726BB419EE5B9800B9FF1A /* TargetLineView.swift in Sources */,
 				D9726BB219EE5B0600B9FF1A /* SettingsLineView.swift in Sources */,
+				A8901A4D19F4B9060061581F /* EngagementScorer.swift in Sources */,
 				1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */,
 				D986C31219F30F5E009EDAE1 /* User.swift in Sources */,
 				D986C31419F30F74009EDAE1 /* Video.swift in Sources */,
