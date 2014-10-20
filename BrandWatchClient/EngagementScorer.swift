@@ -15,8 +15,8 @@ let VIEWS_WEIGHT = 1
 
 class EngagementScorer: NSObject {
     
-    class func calculateTotalScore(campaign: Campaign) {
-        self.calculateScore(campaign, metrics: campaign.metrics_total!, targetDivisor: 0)
+    class func calculateTotalScore(campaign: Campaign) -> Float {
+        return self.calculateScore(campaign, metrics: campaign.metrics_total!, targetDivisor: 0)
     }
     
 
