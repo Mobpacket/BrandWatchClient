@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    var loginView: UIView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -21,11 +23,20 @@ class LoginViewController: UIViewController {
         
         var objects = loginNIB.instantiateWithOwner(self, options: nil)
         
-        var loginView = objects[0] as UIView
+        loginView = objects[0] as UIView
+        
+        view.addSubview(loginView)
+        
+        // Setup the UI
+        constructUI()
+    }
+
+    func constructUI() {
         
         // setup view and button colors
         loginView.backgroundColor = UIColor.clearColor()
         loginView.backgroundColor = UIColor.blackColor()
+        
         loginButton.layer.backgroundColor = UIColor.clearColor().CGColor
         loginButton.layer.borderColor = UIColor.orangeColor().CGColor
         loginButton.layer.cornerRadius = 8
@@ -34,11 +45,7 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Sign In", forState: UIControlState.Normal)
         loginButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
         loginButton.clipsToBounds = true
-        
-        view.addSubview(loginView)
     }
-
-
     
     func authentication(viewController: GTMOAuth2ViewControllerTouch, finishedWithAuth: GTMOAuth2Authentication, error: NSError)
     {
@@ -68,7 +75,6 @@ class LoginViewController: UIViewController {
             
             println("transitioning to campaign controller")
         }
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,15 +107,4 @@ class LoginViewController: UIViewController {
         }
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

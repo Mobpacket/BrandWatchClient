@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var nameData: UITextField!
     @IBOutlet weak var startData: UITextField!
     @IBOutlet weak var endData: UITextField!
-    @IBOutlet weak var videosDataLabel: UILabel!
+    @IBOutlet weak var videoNameMenuButton: UIButton!
     @IBOutlet weak var vtrTarget: UITextField!
     @IBOutlet weak var vtrViewSeperatorLabel: UILabel!
     @IBOutlet weak var viewsTarget: UITextField!
@@ -38,6 +38,27 @@ class SettingsViewController: UIViewController {
     
     var settingsView: UIView!
     var campaign: Campaign!
+    var currentVideoName: String!
+    var currentVideoID: String!
+    
+    // NAJ: Remove when video selection is fixed
+    let kVideoTweedy = "C4ss_bScVTc"
+    let kVideoTweedyLive = "-XY9DbQc_9c"
+    let kVideoApple = "4ar6S_D_keM"
+    let kVideoPepsi = "ImkNOCTs_a8"
+    let kVideoDestiny = "_7pWxOmgVss"
+    let kVideoNandos = "eomKb2UWyP0"
+    let kVideoFantasyFootball = "DOF-CPpQnL0"
+    let kVideoNone = "XXXX-XXXX"
+
+    let sVideoTweedy = "Tweedy Song"
+    let sVideoTweedyLive = "Tweedy Live Performance"
+    let sVideoApple = "Apple Commercial"
+    let sVideoPepsi = "Pepsi vs Coke"
+    let sVideoDestiny = "Destiny Commercial"
+    let sVideoNandos = "Nandos Commercial"
+    let sVideoFantasyFootball = "Fantasy Football Commercial"
+    let sVideoNone = "None"
     
     override func viewDidLoad() {
         
@@ -89,11 +110,11 @@ class SettingsViewController: UIViewController {
         videosLabel.textColor = UIColor.whiteColor()
         
         // NAJ: video(s) counter text for campaign < 1 red, > 0 green
-        videosDataLabel.layer.borderWidth = 1
-        videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
-        videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
-        videosDataLabel.textColor = UIColor.redColor()
-        //        videosDataLabel.textColor = UIColor.greenColor()
+        videoNameMenuButton.layer.borderWidth = 1
+        videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
+        videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
+        videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        videoNameMenuButton.setTitle("None", forState: UIControlState.Normal)
         
         metricsTitleLabel.textColor = UIColor.orangeColor()
         vtrLabel.textColor = UIColor.orangeColor()
@@ -103,6 +124,9 @@ class SettingsViewController: UIViewController {
         favoritesLabel.textColor = UIColor.orangeColor()
         likesLabel.textColor = UIColor.orangeColor()
         commentsLabel.textColor = UIColor.orangeColor()
+        
+        currentVideoID = kVideoNone
+        currentVideoName = sVideoNone
     }
     
     private func loadCampaignTargets() {
@@ -117,12 +141,15 @@ class SettingsViewController: UIViewController {
         self.endData.textColor = UIColor.blackColor()
         self.endData.text = self.campaign.end
 
-        // NAJ: Need to add video (read data)
-        self.videosDataLabel.layer.borderWidth = 1
-        self.videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
-        self.videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
-        self.videosDataLabel.textColor = UIColor.greenColor()
-        self.videosDataLabel.text = "1"
+        // Setting up video title
+        self.videoNameMenuButton.layer.borderWidth = 1
+        self.videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
+        self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+        var videos: [String]!
+        videos = self.campaign.video_ids as [String]
+        var title = getVideoString(videos[0])
+        self.videoNameMenuButton.setTitle(title, forState: UIControlState.Normal)
         
         self.vtrTarget.textColor = UIColor.blackColor()
         self.vtrTarget.text = "\(self.campaign.vtr_target!)"
@@ -158,11 +185,11 @@ class SettingsViewController: UIViewController {
         self.endData.textColor = UIColor.lightGrayColor()
         self.endData.text = "YYYY-MM-DD"
         
-        self.videosDataLabel.layer.borderWidth = 1
-        self.videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
-        self.videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
-        self.videosDataLabel.textColor = UIColor.redColor()
-        self.videosDataLabel.text = "0"
+        self.videoNameMenuButton.layer.borderWidth = 1
+        self.videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
+        self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
+        self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        self.videoNameMenuButton.setTitle("None", forState: UIControlState.Normal)
         
         self.vtrTarget.textColor = UIColor.lightGrayColor()
         self.vtrTarget.text = "70%"
@@ -188,11 +215,14 @@ class SettingsViewController: UIViewController {
     
     private func assignCampaignTargets() {
         
+        // NAJ: Where should we get this value from for creating campaigns?
+        self.campaign.user_id = "brandwatch123@gmail.com"
         self.campaign.name = self.nameData.text
         self.campaign.start = self.startData.text
         self.campaign.end = self.endData.text
-        // NAJ:Need to assign real video
-//        self.campaign.video_ids = self.videosDataLabel.text
+        
+        var videoList: [String] = [self.getVideoID(self.currentVideoName)]
+        self.campaign.video_ids = videoList as NSArray
         
         self.campaign.vtr_target = self.vtrTarget.text.toInt()
         self.campaign.ctr_target = self.ctrTarget.text.toInt()
@@ -201,6 +231,64 @@ class SettingsViewController: UIViewController {
         self.campaign.favorites_target = self.favoritesTarget.text.toInt()
         self.campaign.likes_target = self.likesTarget.text.toInt()
         self.campaign.comments_target = self.commentsTarget.text.toInt()
+    }
+    
+    private func getVideoID(name: String) -> String {
+        
+        if name == sVideoApple {
+            
+            return kVideoApple
+        } else if name == sVideoDestiny {
+            
+            return kVideoDestiny
+        } else if name == sVideoFantasyFootball {
+            
+            return kVideoFantasyFootball
+        } else if name == sVideoNandos {
+        
+            return kVideoNandos
+        } else if name == sVideoPepsi {
+            
+            return kVideoPepsi
+        } else if name == sVideoTweedy {
+            
+            return kVideoTweedy
+        } else if name == sVideoTweedyLive {
+            
+            return kVideoTweedyLive
+        } else {
+            
+            return "None"
+        }
+    }
+    
+    private func getVideoString(id: String) -> String {
+        
+        if id == kVideoApple {
+            
+            return sVideoApple
+        } else if id == kVideoDestiny {
+            
+            return sVideoDestiny
+        } else if id == kVideoFantasyFootball {
+            
+            return sVideoFantasyFootball
+        } else if id == kVideoNandos {
+            
+            return sVideoNandos
+        } else if id == kVideoPepsi {
+            
+            return sVideoPepsi
+        } else if id == kVideoTweedy {
+            
+            return sVideoTweedy
+        } else if id == kVideoTweedyLive {
+            
+            return sVideoTweedyLive
+        } else {
+            
+            return "None"
+        }
     }
     
     func cancelSettings() {
@@ -235,6 +323,94 @@ class SettingsViewController: UIViewController {
                 println("cancelling...")
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        )
+        
+        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+    }
+    
+    @IBAction func videoNameButtonPressed(sender: UIButton) {
+
+        var styleItems = NSArray(objects:
+            RWDropdownMenuItem(text: sVideoApple, image:nil, action:{
+                
+                println("Apple Commercial selected")
+                
+                self.currentVideoName = self.sVideoApple
+                
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoApple, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoDestiny, image:nil, action:{
+                
+                println("Destiny Commercial selected")
+                
+                self.currentVideoName = self.sVideoDestiny
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+            self.videoNameMenuButton.setTitle(self.sVideoDestiny, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoFantasyFootball, image:nil, action:{
+                
+                println("Fantasy Football Commercial selected")
+                
+                self.currentVideoName = self.sVideoFantasyFootball
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoFantasyFootball, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoNandos, image:nil, action:{
+                
+                println("Nandos Commercial selected")
+                
+                self.currentVideoName = self.sVideoNandos
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoNandos, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoPepsi, image:nil, action:{
+                
+                println("Pepsi Commercial selected")
+                
+                self.currentVideoName = self.sVideoPepsi
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoPepsi, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoTweedy, image:nil, action:{
+                
+                println("Tweedy Song selected")
+                
+                self.currentVideoName = self.sVideoTweedy
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoTweedy, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text: sVideoTweedyLive, image:nil, action:{
+                
+                println("Tweedy Live selected")
+                
+                self.currentVideoName = self.sVideoTweedyLive
+
+                self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoTweedyLive, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text:"Cancel", image:nil, action:{
+                
+                println("cancelling...")
+                
+                self.currentVideoName = self.sVideoNone
+                
+                self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoNone, forState: UIControlState.Normal)
             })
         )
         
