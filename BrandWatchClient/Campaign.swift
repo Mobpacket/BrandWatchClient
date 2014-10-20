@@ -27,7 +27,7 @@ class Campaign: NSObject {
 
     var video_ids: NSArray?         // Video IDs part of the campaign
     var metrics_total: Metrics?     // Aggregated campaign metrics values
-    var metrics_daily: Dictionary <NSDate, Metrics>? // Aggregated dictionary of daily metrics
+    var metrics_daily: [Metrics]? // Aggregated dictionary of daily metrics
     
     private var pfObject: PFObject?   // Serialized data model
     

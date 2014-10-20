@@ -17,6 +17,7 @@ class CampaignService: NSObject {
     class func getCampaignById(id: String, callback: (campaign: Campaign!, error: NSError!) -> Void) {
         ParseClient.getCampaignById(id) {
             (pfCampaign: PFObject!, error: NSError!) -> Void in
+            
             if error == nil {
                 
                 var campaignObj = Campaign(object: pfCampaign)
@@ -35,13 +36,51 @@ class CampaignService: NSObject {
                             currentVideo.metrics_total = metrics
                             
                             campaignObj.metrics_total = currentVideo.metrics_total
-                            
+
                             callback(campaign: campaignObj, error: nil)
+                        }
+                        else {
+                            callback(campaign: nil, error: error)
                         }
                     })
                 }
             } else {
                 callback(campaign: nil, error: error)
+            }
+        }
+    }
+    
+    class func getCampaignDailyMetricsById(id: String, callback: (campaign: Campaign!, error: NSError!) -> Void) {
+        ParseClient.getCampaignById(id) {
+            (pfCampaign: PFObject!, error: NSError!) -> Void in
+            
+            if error == nil {
+        
+                var campaignObj = Campaign(object: pfCampaign)
+        
+                var videos = campaignObj.video_ids as NSArray!
+                
+                var currentVideo = Video(dictionary: NSDictionary())
+                
+                for (index, video) in enumerate(videos) {
+                    
+                    currentVideo.video_id = video as? String
+                    
+                    YouTubeClient.sharedInstance.queryDailyVideoMetricsWithParams(currentVideo, start_date: campaignObj.start, end_date: campaignObj.end, completion: { (metrics, error) -> () in
+                        
+                        if error == nil {
+                            currentVideo.metrics_daily = metrics
+                            
+                            campaignObj.metrics_daily = currentVideo.metrics_daily
+                            
+                            callback(campaign: campaignObj, error: nil)
+                            
+                        }
+                        else {
+                            callback(campaign: campaignObj, error: nil)
+                        }
+                    })
+                }
             }
         }
     }
@@ -73,6 +112,7 @@ class CampaignService: NSObject {
             }
         }
     }
+
 
     
     class func saveCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {

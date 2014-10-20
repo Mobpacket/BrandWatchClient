@@ -147,7 +147,8 @@ class CampaignViewController: UIViewController {
         
         var currentVideo: Video!
         
-        CampaignService.getCampaignById(id) { (campaign, error) -> Void in
+
+        CampaignService.getCampaignById(id){ (campaign, error) -> Void in
             if error == nil {
                 
                 self.activeCampaign = campaign
@@ -183,6 +184,15 @@ class CampaignViewController: UIViewController {
                 NSLog("%@", error)
             }
         }
+        
+        // Get the daily metrics to pouplate the graph
+        CampaignService.getCampaignDailyMetricsById(id, callback: { (campaign, error) -> Void in
+            if error == nil {
+                println("Daily Metrics: \(campaign.metrics_daily)")
+                
+                // TODO: Populate the Graph
+            }
+        })
     }
     
     func signOut() {

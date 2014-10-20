@@ -14,7 +14,7 @@ class Video: NSObject {
     var name: String?               // Video Name
     var summary: String?            // Video Description
     var metrics_total: Metrics?     // Aggregated summary of video metrics
-    var metrics_daily: Dictionary <NSDate, Metrics>? // Aggregated dictionary of daily video metrics
+    var metrics_daily: [Metrics]?   // Aggregated array of daily video metrics
     var dictionary: NSDictionary?   // Serialized data model
     
     init(dictionary: NSDictionary) {
@@ -25,6 +25,6 @@ class Video: NSObject {
         name = dictionary["name"] as? String
         summary = dictionary["summary"] as? String
         metrics_total = dictionary["metrics_total"] as? Metrics
-        metrics_daily = dictionary["metrics_daily"] as? Dictionary
+        metrics_daily = dictionary["metrics_daily"] as? [Metrics]
     }
 }

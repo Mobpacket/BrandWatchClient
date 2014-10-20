@@ -104,15 +104,15 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
         // Check if the end_date is earlier or later than today. If later than today, use today
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let today = NSDate()
-        let endDate = dateFormatter.dateFromString(end_date!)
-        var dateComparisionResult:NSComparisonResult = today.compare(endDate!)
-        if dateComparisionResult == NSComparisonResult.OrderedAscending
-        {
-            // Current date is smaller than end date.
-            //endDateStr = dateFormatter.stringFromDate(today)
-            println("Today: \(end_date)")
-        }
+//        let today = NSDate()
+//        let endDate = dateFormatter.dateFromString(end_date!)
+//        var dateComparisionResult:NSComparisonResult = today.compare(endDate!)
+//        if dateComparisionResult == NSComparisonResult.OrderedAscending
+//        {
+//            // Current date is smaller than end date.
+//            //endDateStr = dateFormatter.stringFromDate(today)
+//            println("Today: \(end_date)")
+//        }
         
         var metricsDaily : [Metrics] = []
         
