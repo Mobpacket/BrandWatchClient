@@ -37,6 +37,8 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
         
         newQuery.filters = "video==\(video_id!.video_id!)"
         println("Query: \(newQuery)")
+        println("start: \(start_date)")
+        println("end: \(end_date)")
         
         var ticket = GTLServiceTicket()
         ticket = self.executeQuery(newQuery, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in

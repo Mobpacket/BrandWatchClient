@@ -35,7 +35,6 @@ class CampaignViewController: UIViewController {
     var campaignView: UIView!
     var campaigns: [Campaign]!
     var activeCampaign: Campaign!
-    var loadedCampaign: Campaign!   // Used by YouTube Client population
     
     override func viewDidLoad() {
         
@@ -54,7 +53,6 @@ class CampaignViewController: UIViewController {
         
         // Use our campaign service to load active campaigns for this user
         var user_id = YouTubeClient.sharedInstance.authorizer.userEmail
-        //        println("USER_ID: \(user_id)")
 
         CampaignService.getCampaignsByUserId(user_id) { (campaigns, error) -> Void in
             
@@ -152,7 +150,7 @@ class CampaignViewController: UIViewController {
         CampaignService.getCampaignById(id) { (campaign, error) -> Void in
             if error == nil {
                 
-                self.loadedCampaign = campaign
+                self.activeCampaign = campaign
                 
                 // Set values
                 self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
@@ -162,25 +160,25 @@ class CampaignViewController: UIViewController {
                 let score = EngagementScorer.calculateTotalScore(campaign)
                 self.scoreValueLabel.text = "\(score)"
                 
-                let vtr_value = self.loadedCampaign.metrics_total?.vtr
+                let vtr_value = self.activeCampaign.metrics_total?.vtr
                 self.vtrValueLabel.text = "\(vtr_value!)" + "%"
                 
-                let ctr_value = self.loadedCampaign.metrics_total?.ctr
+                let ctr_value = self.activeCampaign.metrics_total?.ctr
                 self.ctrValueLabel.text = "\(ctr_value!)" + "%"
                 
-                let views_value = self.loadedCampaign.metrics_total?.views
+                let views_value = self.activeCampaign.metrics_total?.views
                 self.viewsValueLabel.text = "\(views_value!)"
 
-                let shares_value = self.loadedCampaign.metrics_total?.shares
+                let shares_value = self.activeCampaign.metrics_total?.shares
                 self.sharesCountLabel.text = "\(shares_value!)"
                 
-                let favorites_value = self.loadedCampaign.metrics_total?.favorites
+                let favorites_value = self.activeCampaign.metrics_total?.favorites
                 self.favoritesCountLabel.text = "\(favorites_value!)"
                 
-                let likes_value = self.loadedCampaign.metrics_total?.likes
+                let likes_value = self.activeCampaign.metrics_total?.likes
                 self.likesCountLabel.text = "\(likes_value!)"
                 
-                let comments_value = self.loadedCampaign.metrics_total?.comments
+                let comments_value = self.activeCampaign.metrics_total?.comments
                 self.commentsCountLabel.text = "\(comments_value!)"
             } else {
                 
@@ -210,17 +208,16 @@ class CampaignViewController: UIViewController {
         styleItems.append(
             RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
                 println("loading settings view (create)")
-                self.loadSettingsView()
+                self.loadSettingsView(false)
             })
         )
         
         styleItems.append(
             RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
                 println("loading settings view (edit)")
-                self.loadSettingsView()
+                self.loadSettingsView(true)
             })
         )
-
         
         for campaign in self.campaigns {
             styleItems.append(
@@ -243,9 +240,17 @@ class CampaignViewController: UIViewController {
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
     
-    func loadSettingsView() {
+    func loadSettingsView(edit: Bool) {
         
-        let settingsVC = SettingsViewController() as SettingsViewController
+        var settingsVC = SettingsViewController() as SettingsViewController
+        
+        if edit == true {
+        
+            settingsVC.campaign = self.activeCampaign
+        } else {
+            
+            settingsVC.campaign = Campaign(object: PFObject())
+        }
         
         println("loadSettingsView() pressed")
         

@@ -36,6 +36,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var likesTarget: UITextField!
     @IBOutlet weak var commentsTarget: UITextField!
     
+    var settingsView: UIView!
+    var campaign: Campaign!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -45,24 +48,32 @@ class SettingsViewController: UIViewController {
         
         var objects = nib.instantiateWithOwner(self, options: nil)
         
-        var settingsView = objects[0] as UIView
+        settingsView = objects[0] as UIView
         view.addSubview(settingsView)
         
-        // Setup line breaks according to autolayout values from campaign view
-        var settingsLineView = SettingsLineView(frame: CGRect(x: 10, y: 64, width: 300, height: 4))
-        settingsLineView.backgroundColor = UIColor.clearColor()
-        view.addSubview(settingsLineView)
+        // set up UI
+        constructUI()
         
-        var metricsLineView = TargetLineView(frame: CGRect(x: 10, y: 280, width: 300, height: 4))
-        metricsLineView.backgroundColor = UIColor.clearColor()
-        view.addSubview(metricsLineView)
+        // Do any additional setup after loading the view.
+        loadCampaignValues()
+        // create function to assign label values from self.campaign.*
+    }
+
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        
+        // Dispose of any resources that can be recreated.
+    }
+
+    private func constructUI() {
         
         // Setup color scheme for view
         settingsMenuButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-
+        
         settingsView.backgroundColor = UIColor.clearColor()
         settingsView.backgroundColor = UIColor.blackColor()
-
+        
         nameLabel.textColor = UIColor.whiteColor()
         startLabel.textColor = UIColor.whiteColor()
         endLabel.textColor = UIColor.whiteColor()
@@ -73,7 +84,7 @@ class SettingsViewController: UIViewController {
         videosDataLabel.layer.borderColor = UIColor.blackColor().CGColor
         videosDataLabel.layer.backgroundColor = UIColor.blackColor().CGColor
         videosDataLabel.textColor = UIColor.redColor()
-//        videosDataLabel.textColor = UIColor.greenColor()
+        //        videosDataLabel.textColor = UIColor.greenColor()
         
         metricsTitleLabel.textColor = UIColor.orangeColor()
         vtrLabel.textColor = UIColor.orangeColor()
@@ -83,17 +94,26 @@ class SettingsViewController: UIViewController {
         favoritesLabel.textColor = UIColor.orangeColor()
         likesLabel.textColor = UIColor.orangeColor()
         commentsLabel.textColor = UIColor.orangeColor()
-        
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
+    
+    private func loadCampaignValues() {
         
-        super.didReceiveMemoryWarning()
+        // When loading campaign for edit, set the color to black
+        self.nameData.text = self.campaign.name
+        self.startData.textColor = UIColor.blackColor()
+        self.startData.text = self.campaign.start
+        self.endData.textColor = UIColor.blackColor()
+        self.endData.text = self.campaign.end
         
-        // Dispose of any resources that can be recreated.
+        self.vtrTarget.text = "\(self.campaign.vtr_target!)"
+        self.viewsTarget.text = "\(self.campaign.views_target!)"
+        self.ctrTarget.text = "\(self.campaign.ctr_target!)"
+        self.sharesTarget.text = "\(self.campaign.shares_target!)"
+        self.favoritesTarget.text = "\(self.campaign.favorites_target!)"
+        self.likesTarget.text = "\(self.campaign.likes_target!)"
+        self.commentsTarget.text = "\(self.campaign.comments_target!)"
     }
-
+    
     func cancelSettings() {
         
         println("Cancelling...")
@@ -109,6 +129,13 @@ class SettingsViewController: UIViewController {
         var styleItems = NSArray(objects:
             RWDropdownMenuItem(text:"Create/Save", image:nil, action:{
                 println("creating campaign")
+                // populate objects from labels (make a private function)
+                self.campaign.ctr_target = self.ctrLabel.text?.toInt()
+                CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
+                    
+                    println("Succeeded")
+                })
+                
                 self.dismissViewControllerAnimated(true, completion: nil)
             }),
             RWDropdownMenuItem(text:"Cancel", image:nil, action:{
