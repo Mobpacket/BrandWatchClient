@@ -186,7 +186,7 @@
                 <constraint firstItem="50r-t3-Ofh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="260" id="xNz-AO-nFO"/>
                 <constraint firstItem="gNN-Br-hPU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="zLO-71-SYH"/>
             </constraints>
-            <point key="canvasLocation" x="494" y="698"/>
+            <point key="canvasLocation" x="509" y="698"/>
         </view>
     </objects>
 </document>

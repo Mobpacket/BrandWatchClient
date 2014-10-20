@@ -18,18 +18,35 @@ class CampaignService: NSObject {
         ParseClient.getCampaignById(id) {
             (pfCampaign: PFObject!, error: NSError!) -> Void in
             if error == nil {
+                
                 var campaignObj = Campaign(object: pfCampaign)
                 
+                var videos = campaignObj.video_ids as NSArray!
                 
-                callback(campaign: campaignObj, error: nil)
+                var currentVideo = Video(dictionary: NSDictionary())
+                
+                for (index, video) in enumerate(videos) {
+                    
+                    currentVideo.video_id = video as? String
+                    
+                    YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaignObj.start, end_date: campaignObj.end, completion: { (metrics, error) -> () in
+                        
+                        if error == nil {
+                            currentVideo.metrics_total = metrics
+                            
+                            campaignObj.metrics_total = currentVideo.metrics_total
+                            
+                            callback(campaign: campaignObj, error: nil)
+                        }
+                    })
+                }
             } else {
                 callback(campaign: nil, error: error)
             }
-        
         }
     }
     
-    class func getCampaignByUserId(userId: String, callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
+    class func getCampaignsByUserId(userId: String, callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
         ParseClient.getCampaignsByUserId(userId) { (pfObjects: [PFObject]!, error: NSError!) -> Void in
             if error == nil {
                 var campaignArr = [Campaign]()

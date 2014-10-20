@@ -32,11 +32,13 @@ class CampaignViewController: UIViewController {
     
     @IBOutlet weak var campaignTitleButton: UIButton!
     
+    var campaignView: UIView!
     var campaigns: [Campaign]!
     var activeCampaign: Campaign!
-    var campaign: Campaign!
+    var loadedCampaign: Campaign!   // Used by YouTube Client population
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Get campaign view nib
@@ -44,8 +46,38 @@ class CampaignViewController: UIViewController {
         
         var objects = nib.instantiateWithOwner(self, options: nil)
         
-        var campaignView = objects[0] as UIView
+        campaignView = objects[0] as UIView
         view.addSubview(campaignView)
+        
+        // setup all the UI before pulling data to view
+        constructUI()
+        
+        // Use our campaign service to load active campaigns for this user
+        var user_id = YouTubeClient.sharedInstance.authorizer.userEmail
+        //        println("USER_ID: \(user_id)")
+
+        CampaignService.getCampaignsByUserId(user_id) { (campaigns, error) -> Void in
+            
+            if error == nil {
+                
+                self.campaigns = campaigns
+                
+                //NAB: Since its loading for the first time, set active campaign to
+                //first campaign returned.  We should store this data in the user
+                self.activeCampaign = self.campaigns[0]
+                
+                self.loadCampaign(self.activeCampaign.id!)
+            }
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    private func constructUI() {
         
         // Setup Line Chart View
         engagementLineChartView.layer.borderWidth = 1
@@ -75,20 +107,20 @@ class CampaignViewController: UIViewController {
         var viewsLineView = SectionLineView(frame: CGRect(x: 10, y: 395, width: 300, height: 2))
         viewsLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(viewsLineView)
-
+        
         var sharesLineView = SectionLineView(frame: CGRect(x: 10, y: 435, width: 300, height: 2))
         sharesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(sharesLineView)
-
+        
         var favoritesLineView = SectionLineView(frame: CGRect(x: 10, y: 475, width: 300, height: 2))
         favoritesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(favoritesLineView)
-   
+        
         var likesLineView = SectionLineView(frame: CGRect(x: 10, y: 520, width: 300, height: 2))
         likesLineView.backgroundColor = UIColor.clearColor()
         view.addSubview(likesLineView)
         
-        // setup view and button colors
+        // setup color scheme
         campaignView.backgroundColor = UIColor.clearColor()
         campaignView.backgroundColor = UIColor.orangeColor()
         
@@ -111,78 +143,44 @@ class CampaignViewController: UIViewController {
         favoritesCountLabel.textColor = UIColor.whiteColor()
         likesCountLabel.textColor = UIColor.whiteColor()
         commentsCountLabel.textColor = UIColor.whiteColor()
-        
-        CampaignService.getCampaigns { (campaigns, error) -> Void in
-            if error == nil {
-                self.campaigns = campaigns
-                
-                //NAB: Since its loading for the first time, set active campaign to
-                //first campaign returned.  We should store this data in the user
-                self.activeCampaign = self.campaigns[0]
-                self.loadCampaign(self.activeCampaign.id!)
-            }
-        }
     }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     private func loadCampaign(id: String) {
+        
+        var currentVideo: Video!
         
         CampaignService.getCampaignById(id) { (campaign, error) -> Void in
             if error == nil {
                 
-                self.campaign = campaign
-                
-                var video = Video(dictionary: NSDictionary())
-                video.video_id = "4ar6S_D_keM"
-                
-                NSLog("%@", campaign)
-                println("CAMPAIGN: \(campaign)")
-
-//                for (index, video) in enumerate(videos) {
-//                    
-                    YouTubeClient.sharedInstance.queryVideoMetricsWithParams(video, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
-                        
-                        if error == nil {
-                            video.metrics_total = metrics
-                        }
-                    })
-//                }
-                
-                campaign.metrics_total = video.metrics_total
-                
-                NSLog("%@", video)
+                self.loadedCampaign = campaign
                 
                 // Set values
                 self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
-//                
+
+                // NAJ: Still need to fix the engagement score (need a real calculation)
 //                let score = pfCampaign["score"] as Int
-                self.scoreValueLabel.text = "\(campaign.score!)"
+                self.scoreValueLabel.text = "\(self.loadedCampaign.score!)"
                 
-//                let vtrF = pfCampaign["vtr"] as Float
-//                let vtr = vtrF.format(".1")
-//                self.vtrValueLabel.text = "\(vtr)%"
-//                
-//                let ctrF = pfCampaign["ctr"] as Float
-//                let ctr = ctrF.format(".1")
-//                self.ctrValueLabel.text = "\(ctr)%"
-//                
-//                let shares = pfCampaign["score"] as Int
-//                self.sharesCountLabel.text = "\(shares)"
-//                
-//                // NAJ: Update tweets to favorites in PARSE
-//                let favorites = pfCampaign["tweets"] as Int
-//                self.favoritesCountLabel.text = "\(favorites)"
-//                
-//                let likes = pfCampaign["likes"] as Int
-//                self.likesCountLabel.text = "\(likes)"
-//                
-//                let comments = pfCampaign["comments"] as Int
-//                self.commentsCountLabel.text = "\(comments)"
+                let vtr_value = self.loadedCampaign.metrics_total?.vtr
+                self.vtrValueLabel.text = "\(vtr_value!)" + "%"
+                
+                let ctr_value = self.loadedCampaign.metrics_total?.ctr
+                self.ctrValueLabel.text = "\(ctr_value!)" + "%"
+                
+                let views_value = self.loadedCampaign.metrics_total?.views
+                self.viewsValueLabel.text = "\(views_value!)"
+
+                let shares_value = self.loadedCampaign.metrics_total?.shares
+                self.sharesCountLabel.text = "\(shares_value!)"
+                
+                let favorites_value = self.loadedCampaign.metrics_total?.favorites
+                self.favoritesCountLabel.text = "\(favorites_value!)"
+                
+                let likes_value = self.loadedCampaign.metrics_total?.likes
+                self.likesCountLabel.text = "\(likes_value!)"
+                
+                let comments_value = self.loadedCampaign.metrics_total?.comments
+                self.commentsCountLabel.text = "\(comments_value!)"
             } else {
                 
                 NSLog("%@", error)
@@ -197,6 +195,7 @@ class CampaignViewController: UIViewController {
         // kKeyChainItemName will move to the User Model
         var kKeyChainItemName = "BrandWatch Client: YouTube"
         GTMOAuth2ViewControllerTouch.removeAuthFromKeychainForName(kKeyChainItemName)
+        YouTubeClient.sharedInstance.authorizer = nil
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             

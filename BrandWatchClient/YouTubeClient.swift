@@ -25,9 +25,7 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
     struct Static {
         
         static let instance = YouTubeClient()
-        
-        }
-        
+    }
         return Static.instance
     }
     
@@ -58,7 +56,8 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                     var columnHeader = column as GTLYouTubeAnalyticsResultTableColumnHeadersItem
                     
                     println("Name: \(columnHeader.name), Index: \(index) Value: \(rows[0].objectAtIndex(index))")
-                    
+
+                    // Retrieve single row of data (first row)
                     var row = rows[0] as NSArray
                     
                     switch(columnHeader.name) {
@@ -73,9 +72,13 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                     case "comments":
                         videoMetrics.comments = row[index] as? Int
                     case "averageViewPercentage":
-                        videoMetrics.vtr = row[index] as? String
+                        var vtr_float = row[index] as Float
+                        var vtr_val = vtr_float.format(".1")
+                        videoMetrics.vtr = vtr_val
                     case "annotationClickThroughRate":
-                        videoMetrics.ctr = row[index] as? String
+                        var ctr_float = row[index] as Float
+                        var ctr_val = ctr_float.format(".1")
+                        videoMetrics.ctr = ctr_val
                     default:
                         println("Do nothing")
                     }
