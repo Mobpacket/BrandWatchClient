@@ -69,8 +69,8 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                         println("Playlist: \(object)")
                         
                         var playlistResults = object as? GTLYouTubePlaylistItemListResponse
-                
-                        var playlistResultCount = playlistResults?.pageInfo.totalResults as Int!
+
+                        var playlistResultCount = playlistResults?.pageInfo.totalResults.integerValue as Int!
                         
                         for var index = 0; index < playlistResultCount; ++index {
 
@@ -86,9 +86,11 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                             var thumbnails        = videoResult.snippet.thumbnails as GTLYouTubeThumbnailDetails!
                             var thumbnail         = thumbnails.high as GTLYouTubeThumbnail!
                             video.thumbnailUrl    = thumbnail.url
-                            video.thumbnailWidth  = thumbnail.width as? UInt
-                            video.thumbnailHeight = thumbnail.height as? UInt
+                            video.thumbnailWidth  = thumbnail.width.integerValue as Int
+                            video.thumbnailHeight = thumbnail.height.integerValue as Int
 
+                            var x = 5 as NSNumber!
+                            
                             videos.append(video)
                         }
                     
