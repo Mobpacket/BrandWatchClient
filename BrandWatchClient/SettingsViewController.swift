@@ -40,6 +40,7 @@ class SettingsViewController: UIViewController {
     var campaign: Campaign!
     var currentVideoName: String!
     var currentVideoID: String!
+    var videos: [Video] = []
     
     // NAJ: Remove when video selection is fixed
     let kVideoTweedy = "C4ss_bScVTc"
@@ -332,6 +333,13 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func videoNameButtonPressed(sender: UIButton) {
+        
+        // Retrieve a list of uploaded videos for the User's channel
+//        CampaignService.getVideos(){ (videos, error) -> Void in
+//            if error == nil {
+//                self.videos = videos
+//            }
+//        }
 
         var styleItems = NSArray(objects:
             RWDropdownMenuItem(text: sVideoApple, image:nil, action:{

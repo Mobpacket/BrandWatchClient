@@ -13,6 +13,11 @@ class Video: NSObject {
     var video_id: String?           // Video ID
     var name: String?               // Video Name
     var summary: String?            // Video Description
+    var thumbnailUrl: String?       // Video Thumbnail URL
+    var thumbnailWidth: UInt?       // Video Thumbnail Width
+    var thumbnailHeight: UInt?      // Video Thumbnail Height
+    var channel_id: String?         // Channel ID of the channel this video is published on
+    
     var metrics_total: Metrics?     // Aggregated summary of video metrics
     var metrics_daily: [Metrics]?   // Aggregated array of daily video metrics
     var dictionary: NSDictionary?   // Serialized data model

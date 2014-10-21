@@ -123,5 +123,16 @@ class CampaignService: NSObject {
         ParseClient.deleteCampaign(campaign, callback: callback)
     }
 
+    class func getVideos(callback: (videos: [Video]!, error: NSError!) -> Void) {
+        
+        YouTubeClient.sharedInstance.queryVideoList { (videos, error) -> () in
+            if error == nil {
+                callback(videos: videos, error: error)
+            }
+            else {
+                callback(videos: nil, error: error)
+            }
+        }
+    }
    
 }

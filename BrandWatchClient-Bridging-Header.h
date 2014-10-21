@@ -13,4 +13,5 @@
 #import "GTLService.h"
 #import "GTLQueryYouTube.h"
 #import "GTLQueryYouTubeAnalytics.h"
+#import "GTLYouTube.h"
 #import "GTLYouTubeAnalytics.h"

@@ -32,6 +32,83 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
         return Static.instance
     }
     
+    func queryVideoList(completion: (videos: [Video]?, error: NSError?) -> ()) {
+        
+        var dataService = GTLServiceYouTube()
+        dataService.authorizer = self.authorizer
+        
+        //var videoQuery = GTLQueryYouTube.queryForVideosListWithPart("id,snippet") as GTLQueryYouTube
+        
+        
+        var channelQuery = GTLQueryYouTube.queryForChannelsListWithPart("contentDetails") as GTLQueryYouTube!
+        channelQuery.mine = true
+        channelQuery.maxResults = 50
+        
+        var videos = [Video]()
+        
+        var ticket = GTLServiceTicket()
+        ticket = dataService.executeQuery(channelQuery, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            
+            if error == nil {
+                println("Channel: \(object)")
+                
+                var channelResults = object as? GTLYouTubeChannelListResponse!
+                
+                var channelResult = channelResults?.items()[0] as GTLYouTubeChannel!
+                
+                var playlistID = channelResult.contentDetails.relatedPlaylists.uploads
+                
+                var playlistQuery = GTLQueryYouTube.queryForPlaylistItemsListWithPart("snippet") as GTLQueryYouTube
+                playlistQuery.playlistId = playlistID
+                playlistQuery.maxResults = 50
+                
+                var ticket = GTLServiceTicket()
+                ticket = dataService.executeQuery(playlistQuery, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+                    
+                    if error == nil {
+                        println("Playlist: \(object)")
+                        
+                        var playlistResults = object as? GTLYouTubePlaylistItemListResponse
+                
+                        var playlistResultCount = playlistResults?.pageInfo.totalResults as Int!
+                        
+                        for var index = 0; index < playlistResultCount; ++index {
+
+                            var videoResult = playlistResults?.items()[index] as GTLYouTubePlaylistItem
+                        
+                            var video = Video(dictionary: NSDictionary())
+                            
+                            video.video_id        = videoResult.identifier
+                            video.name            = videoResult.snippet.title
+                            video.summary         = videoResult.snippet.description
+                            video.channel_id      = videoResult.snippet.channelId
+                            
+                            var thumbnails        = videoResult.snippet.thumbnails as GTLYouTubeThumbnailDetails!
+                            var thumbnail         = thumbnails.high as GTLYouTubeThumbnail!
+                            video.thumbnailUrl    = thumbnail.url
+                            video.thumbnailWidth  = thumbnail.width as? UInt
+                            video.thumbnailHeight = thumbnail.height as? UInt
+
+                            videos.append(video)
+                        }
+                    
+
+                
+                        completion(videos: videos, error: error)
+                    }
+                    else {
+                        println("VideoList Error: \(error)")
+                        
+                        completion(videos: nil, error: error)
+                    }
+            
+                })
+            }
+            
+        })
+
+    }
+    
     func queryVideoMetricsWithParams(video_id: Video?, start_date: String?, end_date: String?, completion: (metrics: Metrics?, error: NSError?) -> ()) {
         
         var videoMetrics = Metrics(dictionary: NSDictionary())
