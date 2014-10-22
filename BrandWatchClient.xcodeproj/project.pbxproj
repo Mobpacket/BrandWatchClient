@@ -40,6 +40,8 @@
 		D986C31419F30F74009EDAE1 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31319F30F74009EDAE1 /* Video.swift */; };
 		D986C31619F30F97009EDAE1 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31519F30F97009EDAE1 /* Metrics.swift */; };
 		D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = D99C83C019EBCEED004DB96A /* brandwatch.png */; };
+		D9B749CD19F727C800DFA7FC /* VideoSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9B749CC19F727C800DFA7FC /* VideoSelectionView.xib */; };
+		D9B749D119F72A8900DFA7FC /* VideoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B749D019F72A8900DFA7FC /* VideoSelectionViewController.swift */; };
 		D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */; };
 		D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */; };
 		D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */; };
@@ -100,6 +102,8 @@
 		D986C31319F30F74009EDAE1 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		D986C31519F30F97009EDAE1 /* Metrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
 		D99C83C019EBCEED004DB96A /* brandwatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brandwatch.png; sourceTree = "<group>"; };
+		D9B749CC19F727C800DFA7FC /* VideoSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoSelectionView.xib; sourceTree = "<group>"; };
+		D9B749D019F72A8900DFA7FC /* VideoSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSelectionViewController.swift; sourceTree = "<group>"; };
 		D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampaignView.xib; sourceTree = "<group>"; };
 		D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignLineView.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */,
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
 				D9726BAD19EE374200B9FF1A /* SettingsView.xib */,
+				D9B749CC19F727C800DFA7FC /* VideoSelectionView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */,
 				D92AF6D019EB57540060D832 /* LoginViewController.swift */,
 				D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */,
+				D9B749D019F72A8900DFA7FC /* VideoSelectionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
 				D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */,
 				D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */,
+				D9B749CD19F727C800DFA7FC /* VideoSelectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +446,7 @@
 				D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */,
 				D9E3D3F519EA7AE100101EC6 /* Campaign.swift in Sources */,
 				D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */,
+				D9B749D119F72A8900DFA7FC /* VideoSelectionViewController.swift in Sources */,
 				A8901A4519F335850061581F /* CampaignService.swift in Sources */,
 				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				849BE80D19F43499003DE850 /* YouTubeClient.swift in Sources */,

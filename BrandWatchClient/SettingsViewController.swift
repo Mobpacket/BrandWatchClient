@@ -421,9 +421,33 @@ class SettingsViewController: UIViewController {
                 self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
                 
                 self.videoNameMenuButton.setTitle(self.sVideoNone, forState: UIControlState.Normal)
+            }),
+            RWDropdownMenuItem(text:"Video Selection", image:nil, action:{
+                
+                println("moving to video selection view...")
+                
+                self.currentVideoName = self.sVideoNone
+                
+                self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+                
+                self.videoNameMenuButton.setTitle(self.sVideoNone, forState: UIControlState.Normal)
+                
+                self.loadVideoSelectionView()
             })
         )
         
         RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+    }
+    
+    func loadVideoSelectionView() {
+        
+        var videoSelectionVC = VideoSelectionViewController() as VideoSelectionViewController
+        
+        println("videoSelectionView() pressed")
+        
+        self.presentViewController(videoSelectionVC, animated: true) { () -> Void in
+            
+            println("transitioning to video selection controller")
+        }
     }
 }
