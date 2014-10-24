@@ -324,7 +324,13 @@ class SettingsViewController: UIViewController {
                 CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
                     
                     self.campaignVC.reloadCampaigns()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    var id = self.campaign.getPFObject().objectId!
+                    CampaignService.getCampaignById(id, callback: { (campaign, error) -> Void in
+                        self.campaignVC.activeCampaign = campaign
+                        self.campaignVC.viewDidLoad()
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                    
                 })
                 
             }),
@@ -333,7 +339,13 @@ class SettingsViewController: UIViewController {
                 
                 println("cancelling...")
                 self.campaignVC.reloadCampaigns()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                var id = self.campaign.getPFObject().objectId!
+                CampaignService.getCampaignById(id, callback: { (campaign, error) -> Void in
+                    self.campaignVC.activeCampaign = campaign
+                    self.campaignVC.viewDidLoad()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+        
             })
         )
         

@@ -67,7 +67,9 @@ class CampaignViewController: UIViewController {
                 
                 //NAB: Since its loading for the first time, set active campaign to
                 //first campaign returned.  We should store this data in the user
-                self.activeCampaign = self.campaigns[0]
+                if(self.activeCampaign == nil) {
+                    self.activeCampaign = self.campaigns[0]
+                }
                 
                 self.loadCampaign(self.activeCampaign.id!)
             }
