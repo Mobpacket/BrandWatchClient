@@ -17,15 +17,15 @@ class Campaign: NSObject {
     var end: String?                // End Date
     
     var score: Int?                 // Engagement Score
-    var vtr_target: Int?            // View Through Rate (VTR) target
-    var ctr_target: Int?            // Click Through Rate (CTR) target
+    var vtr_target: Float?          // View Through Rate (VTR) target
+    var ctr_target: Float?          // Click Through Rate (CTR) target
     var views_target: Int?          // Views target
     var shares_target: Int?         // Social Shares (LinkedIn, Twitter, Facebook, etc.) target
     var favorites_target: Int?      // YouTube Favorites target
     var likes_target: Int?          // Facebook Likes target
     var comments_target: Int?       // YouTube Comment Count target
 
-    var video_ids: NSArray?         // Video IDs part of the campaign
+    var video_ids: [String]?         // Video IDs part of the campaign
     var metrics_total: Metrics?     // Aggregated campaign metrics values
     var metrics_daily: [Metrics]? // Aggregated dictionary of daily metrics
     
@@ -42,15 +42,15 @@ class Campaign: NSObject {
         end = object["end"] as? String
     
         score = object["score"] as? Int
-        vtr_target = object["vtr_target"] as? Int
-        ctr_target = object["ctr_target"] as? Int
+        vtr_target = object["vtr_target"] as? Float
+        ctr_target = object["ctr_target"] as? Float
         views_target = object["views_target"] as? Int
         shares_target = object["shares_target"] as? Int
         favorites_target = object["favorites_target"] as? Int
         likes_target = object["likes_target"] as? Int
         comments_target = object["comments_target"] as? Int
 
-        video_ids = object["video_ids"] as? NSArray
+        video_ids = object["video_ids"] as? [String]
     }
     
     func getPFObject() -> PFObject {

@@ -41,6 +41,8 @@ class SettingsViewController: UIViewController {
     var currentVideoName: String!
     var currentVideoID: String!
     var videos: [Video] = []
+    var campaignVC: CampaignViewController!
+    
     
     // NAJ: Remove when video selection is fixed
     let kVideoTweedy = "C4ss_bScVTc"
@@ -148,9 +150,13 @@ class SettingsViewController: UIViewController {
         self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
         self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         var videos: [String]!
-        videos = self.campaign.video_ids as [String]
-        var title = getVideoString(videos[0])
-        self.videoNameMenuButton.setTitle(title, forState: UIControlState.Normal)
+        videos = self.campaign.video_ids
+        var currVideoID = videos[0] as String
+        var currVideoName = getVideoString(currVideoID)
+        self.currentVideoID = currVideoID
+        self.currentVideoName = currVideoName
+        
+        self.videoNameMenuButton.setTitle(currVideoName, forState: UIControlState.Normal)
         
         self.vtrTarget.textColor = UIColor.blackColor()
         self.vtrTarget.text = "\(self.campaign.vtr_target!)"
@@ -193,13 +199,13 @@ class SettingsViewController: UIViewController {
         self.videoNameMenuButton.setTitle("None", forState: UIControlState.Normal)
         
         self.vtrTarget.textColor = UIColor.lightGrayColor()
-        self.vtrTarget.text = "70%"
+        self.vtrTarget.text = "70"
         
         self.viewsTarget.textColor = UIColor.lightGrayColor()
         self.viewsTarget.text = "100"
         
         self.ctrTarget.textColor = UIColor.lightGrayColor()
-        self.ctrTarget.text = "0.2%"
+        self.ctrTarget.text = "0.2"
         
         self.sharesTarget.textColor = UIColor.lightGrayColor()
         self.sharesTarget.text = "50"
@@ -222,11 +228,12 @@ class SettingsViewController: UIViewController {
         self.campaign.start = self.startData.text
         self.campaign.end = self.endData.text
         
-        var videoList: [String] = [self.getVideoID(self.currentVideoName)]
-        self.campaign.video_ids = videoList as NSArray
+        var videoList: [String] = [String]()
+        videoList.append(self.getVideoID(self.currentVideoName))
+        self.campaign.video_ids = videoList
         
-        self.campaign.vtr_target = self.vtrTarget.text.toInt()
-        self.campaign.ctr_target = self.ctrTarget.text.toInt()
+        self.campaign.vtr_target = (self.vtrTarget.text as NSString).floatValue
+        self.campaign.ctr_target = (self.ctrTarget.text as NSString).floatValue
         self.campaign.views_target = self.viewsTarget.text.toInt()
         self.campaign.shares_target = self.sharesTarget.text.toInt()
         self.campaign.favorites_target = self.favoritesTarget.text.toInt()
@@ -316,15 +323,16 @@ class SettingsViewController: UIViewController {
                 
                 CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
                     
-                    println("Succeeded")
+                    self.campaignVC.reloadCampaigns()
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 })
                 
-                self.dismissViewControllerAnimated(true, completion: nil)
             }),
+            
             RWDropdownMenuItem(text:"Cancel", image:nil, action:{
                 
                 println("cancelling...")
-                
+                self.campaignVC.reloadCampaigns()
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         )

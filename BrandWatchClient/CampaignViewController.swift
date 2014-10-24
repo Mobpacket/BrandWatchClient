@@ -51,6 +51,11 @@ class CampaignViewController: UIViewController {
         // setup all the UI before pulling data to view
         constructUI()
         
+        
+        reloadCampaigns()
+    }
+    
+    func reloadCampaigns() {
         // Use our campaign service to load active campaigns for this user
         var user_id = YouTubeClient.sharedInstance.authorizer.userEmail
 
@@ -262,6 +267,7 @@ class CampaignViewController: UIViewController {
     func loadSettingsView(edit: Bool) {
         
         var settingsVC = SettingsViewController() as SettingsViewController
+        settingsVC.campaignVC = self
         
         // Check for edit or create to pass correct data model
         if edit == true {
@@ -278,5 +284,14 @@ class CampaignViewController: UIViewController {
             
             println("transitioning to settings controller")
         }
+    }
+    
+    func topViewController(rootViewController: UIViewController) -> UIViewController {
+       
+        if (rootViewController.presentedViewController == nil) {
+            return rootViewController;
+        }
+            
+        return rootViewController.presentedViewController!
     }
 }
