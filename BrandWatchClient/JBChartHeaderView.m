@@ -9,8 +9,8 @@
 #import "JBChartHeaderView.h"
 
 // Constants
-#define kJBFontHeaderTitle [UIFont fontWithName:@"HelveticaNeue-Bold" size:24]
-#define kJBFontHeaderSubtitle [UIFont fontWithName:@"HelveticaNeue-Light" size:14]
+#define kJBFontHeaderTitle [UIFont fontWithName:@"HelveticaNeue-Bold" size:20]
+#define kJBFontHeaderSubtitle [UIFont fontWithName:@"HelveticaNeue-Light" size:12]
 
 
 // Numerics

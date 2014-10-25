@@ -48,6 +48,7 @@
 		D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */; };
 		D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */; };
 		D9E3D3F519EA7AE100101EC6 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E3D3F419EA7AE100101EC6 /* Campaign.swift */; };
+		D9F2ECFC19FBA76100577E9C /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F2ECFB19FBA76100577E9C /* JBLineChartFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignLineView.swift; sourceTree = "<group>"; };
 		D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionLineView.swift; sourceTree = "<group>"; };
 		D9E3D3F419EA7AE100101EC6 /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
+		D9F2ECFA19FBA76100577E9C /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
+		D9F2ECFB19FBA76100577E9C /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		EBA6880E8B51DEE88CD049FC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -205,6 +208,8 @@
 				1D9B5C3719E797A20062F44A /* Info.plist */,
 				D95FD0F319FB9A3300D35DFC /* JBChartHeaderView.h */,
 				D95FD0F419FB9A3300D35DFC /* JBChartHeaderView.m */,
+				D9F2ECFA19FBA76100577E9C /* JBLineChartFooterView.h */,
+				D9F2ECFB19FBA76100577E9C /* JBLineChartFooterView.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				A8901A4519F335850061581F /* CampaignService.swift in Sources */,
 				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				849BE80D19F43499003DE850 /* YouTubeClient.swift in Sources */,
+				D9F2ECFC19FBA76100577E9C /* JBLineChartFooterView.m in Sources */,
 				D95FD0F519FB9A3300D35DFC /* JBChartHeaderView.m in Sources */,
 				A8901A4719F3361B0061581F /* ParseClient.swift in Sources */,
 				D9726BB419EE5B9800B9FF1A /* TargetLineView.swift in Sources */,

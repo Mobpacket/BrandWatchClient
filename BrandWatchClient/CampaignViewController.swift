@@ -71,7 +71,6 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         self.view.addSubview(engagementLineChartView)
         
         var headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
-//        JBChartHeaderView *headerView = [[JBChartHeaderView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartHeaderHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeaderHeight)];
         headerView.titleLabel.text = "Daily Metrics"
         headerView.titleLabel.textColor = UIColor.orangeColor()
         headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
@@ -82,6 +81,15 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
         headerView.separatorColor = UIColor.orangeColor()
         self.engagementLineChartView.headerView = headerView;
+        
+        var footerView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
+        footerView.backgroundColor = UIColor.clearColor()
+        footerView.leftLabel.text = "Sunday"
+        footerView.leftLabel.textColor = UIColor.whiteColor()
+        footerView.rightLabel.text = "Saturday"
+        footerView.rightLabel.textColor = UIColor.whiteColor()
+        footerView.sectionCount = 10
+        self.engagementLineChartView.footerView = footerView;
         
         // setup all the UI before pulling data to view
         constructUI()
