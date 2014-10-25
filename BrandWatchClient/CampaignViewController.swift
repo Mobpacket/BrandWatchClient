@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate {
+class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate, JBBarChartViewDataSource, JBBarChartViewDelegate {
     
     @IBOutlet weak var chartAreaView: UIView!
     
@@ -36,23 +36,25 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     var campaigns: [Campaign]!
     var activeCampaign: Campaign!
     var engagementLineChartView = JBLineChartView()
+    var engagementBarChartView = JBBarChartView()
     
     // NAJ: Test Data for Graph
     var testArray1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     var testArray2 = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     var testArray3 = [6, 4, 15, 2, 0, 13, 12, 11, 7, 12]
     var testArray4 = [0, 8, 1, 21, 11, 16, 4, 7, 0, 9]
+    var barChartData = [23, 30, 28, 24]
     
-    var chartData = [AnyObject]()
+    var lineChartData = [AnyObject]()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.chartData.append(testArray1)
-        self.chartData.append(testArray2)
-        self.chartData.append(testArray3)
-        self.chartData.append(testArray4)
+        self.lineChartData.append(testArray1)
+        self.lineChartData.append(testArray2)
+        self.lineChartData.append(testArray3)
+        self.lineChartData.append(testArray4)
         
         // Get campaign view nib
         var nib = UINib(nibName: "CampaignView", bundle: nil)
@@ -63,12 +65,13 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         view.addSubview(campaignView)
         
         // Setup the charts with the correct graphs
-        engagementLineChartView = JBLineChartView(frame: CGRect(x: 15, y: 72, width: 290, height: 150))
-        engagementLineChartView.dataSource = self
-        engagementLineChartView.delegate = self
-        engagementLineChartView.backgroundColor = UIColor.blackColor()
-        engagementLineChartView.showsVerticalSelection = false
-        self.view.addSubview(engagementLineChartView)
+        // Line Graph
+//        engagementLineChartView = JBLineChartView(frame: CGRect(x: 15, y: 72, width: 290, height: 150))
+//        engagementLineChartView.dataSource = self
+//        engagementLineChartView.delegate = self
+//        engagementLineChartView.backgroundColor = UIColor.blackColor()
+//        engagementLineChartView.showsVerticalSelection = false
+//        self.view.addSubview(engagementLineChartView)
         
         var headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
         headerView.titleLabel.text = "Daily Metrics"
@@ -80,16 +83,36 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
         headerView.separatorColor = UIColor.orangeColor()
-        self.engagementLineChartView.headerView = headerView;
+//        self.engagementLineChartView.headerView = headerView;
         
-        var footerView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
-        footerView.backgroundColor = UIColor.clearColor()
-        footerView.leftLabel.text = "Sunday"
-        footerView.leftLabel.textColor = UIColor.whiteColor()
-        footerView.rightLabel.text = "Saturday"
-        footerView.rightLabel.textColor = UIColor.whiteColor()
-        footerView.sectionCount = 10
-        self.engagementLineChartView.footerView = footerView;
+//        var lineChartfooterView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
+//        lineChartfooterView.backgroundColor = UIColor.clearColor()
+//        lineChartfooterView.leftLabel.text = "Sunday"
+//        lineChartfooterView.leftLabel.textColor = UIColor.whiteColor()
+//        lineChartfooterView.rightLabel.text = "Saturday"
+//        lineChartfooterView.rightLabel.textColor = UIColor.whiteColor()
+//        lineChartfooterView.sectionCount = 10
+//        self.engagementLineChartView.footerView = lineChartfooterView;
+        
+        // Bar Graph
+        engagementBarChartView = JBBarChartView(frame: CGRect(x: 15, y: 72, width: 290, height: 150))
+        engagementBarChartView.dataSource = self
+        engagementBarChartView.delegate = self
+        engagementBarChartView.headerPadding = 20.0
+        engagementBarChartView.minimumValue = 0.0
+        engagementBarChartView.inverted = false
+        engagementBarChartView.backgroundColor = UIColor.blackColor()
+        engagementBarChartView.showsVerticalSelection = true
+        self.view.addSubview(engagementBarChartView)
+        self.engagementBarChartView.headerView = headerView;
+        
+        var barChartfooterView = JBBarChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementBarChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 20.0))
+        barChartfooterView.padding = 10.0
+        barChartfooterView.leftLabel.text = "Views"
+        barChartfooterView.leftLabel.textColor = UIColor.whiteColor()
+        barChartfooterView.rightLabel.text = "favorites"
+        barChartfooterView.rightLabel.textColor = UIColor.whiteColor()
+        self.engagementBarChartView.footerView = barChartfooterView;
         
         // setup all the UI before pulling data to view
         constructUI()
@@ -97,7 +120,8 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         // pull data
         reloadCampaigns()
         
-        engagementLineChartView.reloadData()
+//        engagementLineChartView.reloadData()
+        engagementBarChartView.reloadData()
     }
     
     func reloadCampaigns() {
@@ -197,20 +221,17 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
         
-        // NAJ: Need to implement
-        return UInt(self.chartData.count)
+        return UInt(self.lineChartData.count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         
-        // NAJ: Need to implement
-        return UInt(self.chartData[Int(lineIndex)].count)
+        return UInt(self.lineChartData[Int(lineIndex)].count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
-        // NAJ: Need to implement
-        var line = self.chartData[Int(lineIndex)] as [Int]
+        var line = self.lineChartData[Int(lineIndex)] as [Int]
         var value = line[Int(horizontalIndex)]
         return CGFloat(value)
     }
@@ -271,6 +292,40 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     func lineChartView(lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
         
         return JBLineChartViewLineStyle.Solid
+    }
+    
+    func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
+        
+        return UInt(self.barChartData.count)
+    }
+    
+    func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
+        
+        return CGFloat(self.barChartData[Int(index)])
+    }
+    
+    func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
+        
+        if index == 0 {
+            
+            return UIColor.redColor()
+        } else if index == 1 {
+            
+            return UIColor.whiteColor()
+        } else if index == 2 {
+            
+            return UIColor.yellowColor()
+        } else if index == 3 {
+            
+            return UIColor.greenColor()
+        }
+        
+        return UIColor.whiteColor()
+    }
+    
+    func barPaddingForBarChartView(barChartView: JBBarChartView!) -> CGFloat {
+        
+        return 0.5
     }
     
     private func loadCampaign(id: String) {

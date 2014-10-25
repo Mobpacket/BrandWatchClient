@@ -6,6 +6,7 @@
 #import "RWDropdownMenu.h"
 #import "JBChartHeaderView.h"
 #import "JBLineChartFooterView.h"
+#import "JBBarChartFooterView.h"
 #import "JBChartView/JBChartView.h"
 #import "JBChartView/JBBarChartView.h"
 #import "JBChartView/JBLineChartView.h"
