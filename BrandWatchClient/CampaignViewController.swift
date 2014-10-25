@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CampaignViewController: UIViewController {
-
-    @IBOutlet weak var engagementLineChartView: UIView!
+class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLineChartViewDelegate {
+    
+    @IBOutlet weak var chartAreaView: UIView!
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var vtrLabel: UILabel!
@@ -35,10 +35,24 @@ class CampaignViewController: UIViewController {
     var campaignView: UIView!
     var campaigns: [Campaign]!
     var activeCampaign: Campaign!
+    var engagementLineChartView = JBLineChartView()
+    
+    // NAJ: Test Data for Graph
+    var testArray1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    var testArray2 = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    var testArray3 = [6, 4, 15, 2, 0, 13, 12, 11, 7, 12]
+    var testArray4 = [0, 8, 1, 21, 11, 16, 4, 7, 0, 9]
+    
+    var chartData = [AnyObject]()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.chartData.append(testArray1)
+        self.chartData.append(testArray2)
+        self.chartData.append(testArray3)
+        self.chartData.append(testArray4)
         
         // Get campaign view nib
         var nib = UINib(nibName: "CampaignView", bundle: nil)
@@ -48,11 +62,34 @@ class CampaignViewController: UIViewController {
         campaignView = objects[0] as UIView
         view.addSubview(campaignView)
         
+        // Setup the charts with the correct graphs
+        engagementLineChartView = JBLineChartView(frame: CGRect(x: 15, y: 72, width: 290, height: 150))
+        engagementLineChartView.dataSource = self
+        engagementLineChartView.delegate = self
+        engagementLineChartView.backgroundColor = UIColor.blackColor()
+        engagementLineChartView.showsVerticalSelection = false
+        self.view.addSubview(engagementLineChartView)
+        
+        var headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
+//        JBChartHeaderView *headerView = [[JBChartHeaderView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartHeaderHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeaderHeight)];
+        headerView.titleLabel.text = "Daily Metrics"
+        headerView.titleLabel.textColor = UIColor.orangeColor()
+        headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
+        headerView.titleLabel.shadowOffset = CGSizeMake(0, 1);
+        headerView.subtitleLabel.text = "Oct 20 - Oct 30"
+        headerView.subtitleLabel.textColor = UIColor.whiteColor()
+        headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
+        headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+        headerView.separatorColor = UIColor.orangeColor()
+        self.engagementLineChartView.headerView = headerView;
+        
         // setup all the UI before pulling data to view
         constructUI()
         
-        
+        // pull data
         reloadCampaigns()
+        
+        engagementLineChartView.reloadData()
     }
     
     func reloadCampaigns() {
@@ -85,11 +122,8 @@ class CampaignViewController: UIViewController {
     private func constructUI() {
         
         // Setup Line Chart View
-        engagementLineChartView.layer.borderWidth = 1
-        engagementLineChartView.layer.borderColor = UIColor.blackColor().CGColor
-        
-//        var chartImage = UIImageView(image: UIImage(contentsOfFile: "sampleDailyGraph.png"))
-//        self.engagementLineChartView.addSubview(chartImage)
+        chartAreaView.layer.borderWidth = 1
+        chartAreaView.layer.borderColor = UIColor.blackColor().CGColor
         
         // Setup line breaks according to autolayout values from campaign view
         var titleLineView = CampaignLineView(frame: CGRect(x: 10, y: 64, width: 300, height: 4))
@@ -153,11 +187,88 @@ class CampaignViewController: UIViewController {
         commentsCountLabel.textColor = UIColor.whiteColor()
     }
 
+    func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
+        
+        // NAJ: Need to implement
+        return UInt(self.chartData.count)
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
+        
+        // NAJ: Need to implement
+        return UInt(self.chartData[Int(lineIndex)].count)
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        
+        // NAJ: Need to implement
+        var line = self.chartData[Int(lineIndex)] as [Int]
+        var value = line[Int(horizontalIndex)]
+        return CGFloat(value)
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
+        
+        return true
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+        
+        return true
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        
+        if lineIndex == 0 {
+            
+            return UIColor.redColor()
+        } else if lineIndex == 1 {
+            
+            return UIColor.whiteColor()
+        } else if lineIndex == 2 {
+            
+            return UIColor.yellowColor()
+        } else if lineIndex == 3 {
+            
+            return UIColor.greenColor()
+        }
+        
+        return UIColor.blackColor()
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, colorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
+        
+        if lineIndex == 0 {
+            
+            return UIColor.redColor()
+        } else if lineIndex == 1 {
+            
+            return UIColor.whiteColor()
+        } else if lineIndex == 2 {
+            
+            return UIColor.yellowColor()
+        } else if lineIndex == 3 {
+            
+            return UIColor.greenColor()
+        }
+        
+        return UIColor.blackColor()
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
+        
+        return 1.0
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
+        
+        return JBLineChartViewLineStyle.Solid
+    }
+    
     private func loadCampaign(id: String) {
         
         var currentVideo: Video!
         
-
         CampaignService.getCampaignById(id){ (campaign, error) -> Void in
             if error == nil {
                 

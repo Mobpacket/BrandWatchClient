@@ -27,6 +27,9 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         view.addSubview(videoSelectionView)
         
         // Do any additional setup after loading the view.
+        videoSelectionTableView.dataSource = self
+        videoSelectionTableView.delegate = self
+        videoSelectionTableView.reloadData()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

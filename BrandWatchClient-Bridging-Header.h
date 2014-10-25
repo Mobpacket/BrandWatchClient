@@ -4,6 +4,7 @@
 
 #import "Parse.h"
 #import "RWDropdownMenu.h"
+#import "JBChartHeaderView.h"
 #import "JBChartView/JBChartView.h"
 #import "JBChartView/JBBarChartView.h"
 #import "JBChartView/JBLineChartView.h"

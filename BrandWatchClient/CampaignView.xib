@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CampaignViewController" customModule="BrandWatchClient" customModuleProvider="target">
             <connections>
                 <outlet property="campaignTitleButton" destination="nON-Tn-mxI" id="BYh-pq-mKx"/>
+                <outlet property="chartAreaView" destination="gNN-Br-hPU" id="q65-TA-AEq"/>
                 <outlet property="commentsCountLabel" destination="AOw-XT-tUf" id="Ofk-I9-Ugc"/>
                 <outlet property="commentsLabel" destination="nvh-K5-oh5" id="12P-eV-q4Q"/>
                 <outlet property="ctrLabel" destination="QsK-Ll-RHz" id="xJp-Pe-rjS"/>
@@ -121,11 +122,6 @@
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNN-Br-hPU" userLabel="Chart">
                     <rect key="frame" x="15" y="72" width="290" height="150"/>
-                    <subviews>
-                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sampleDailyGraph.png" translatesAutoresizingMaskIntoConstraints="NO" id="kZf-mK-tQO">
-                            <rect key="frame" x="0.0" y="0.0" width="290" height="150"/>
-                        </imageView>
-                    </subviews>
                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="LsW-Op-S0M"/>
@@ -191,10 +187,7 @@
                 <constraint firstItem="50r-t3-Ofh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="260" id="xNz-AO-nFO"/>
                 <constraint firstItem="gNN-Br-hPU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="zLO-71-SYH"/>
             </constraints>
-            <point key="canvasLocation" x="509" y="698"/>
+            <point key="canvasLocation" x="440" y="510"/>
         </view>
     </objects>
-    <resources>
-        <image name="sampleDailyGraph.png" width="886" height="608"/>
-    </resources>
 </document>
