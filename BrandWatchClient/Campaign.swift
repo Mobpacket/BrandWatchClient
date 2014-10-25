@@ -53,6 +53,10 @@ class Campaign: NSObject {
         video_ids = object["video_ids"] as? [String]
     }
     
+    func isNewRecord() -> Bool {
+        return (self.getPFObject().objectId == nil) ? true : false
+    }
+    
     func getPFObject() -> PFObject {
         if(self.pfObject == nil) {
             self.pfObject = PFObject()
@@ -112,4 +116,5 @@ class Campaign: NSObject {
         
         return self.pfObject!
     }
+    
 }

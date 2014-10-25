@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ALPValidator (0.0.5)
   - Bolts (1.1.3)
   - Google-API-Client (0.1.1):
     - Google-API-Client/AdSense
@@ -178,6 +179,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - ALPValidator
   - Google-API-Client
   - JBChartView (~> 2.8.9)
   - Parse (~> 1.4)
@@ -185,6 +187,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  ALPValidator: 597b28ed21e532811702248320eea6f0bb3b2cd6
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Google-API-Client: 69cd2a04c649abe9f3fa6695bc4bb8965373f204
   gtm-oauth2: 64f2d404a50676ab63b5437a02a7567da8f8b7fa
@@ -193,4 +196,4 @@ SPEC CHECKSUMS:
   Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
   RWDropdownMenu: 74ad34e54804b33acac90cf54653a0cf9b59a689
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.34.2

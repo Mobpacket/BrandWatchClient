@@ -77,18 +77,13 @@ class SettingsViewController: UIViewController {
         
         // Set up UI
         constructUI()
-        
-        // Populate data based on the type of settings view (create/edit)
-        var pfObject = self.campaign.getPFObject()
-        
-        if pfObject.objectId != nil {
             
-            // Edit
-            loadCampaignTargets()
-        } else {
-            
+        if self.campaign.isNewRecord() {
             // Create
             loadDefaultCampaignTargets()
+        } else {
+            // Edit
+            loadCampaignTargets()
         }
     }
 
