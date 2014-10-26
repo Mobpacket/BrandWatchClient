@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5EB6437300F8E8C25411FA1"
+               BlueprintIdentifier = "8B67B5133FD50D8BC3357003"
                BuildableName = "libPods-GTMHTTPFetcher.a"
                BlueprintName = "Pods-GTMHTTPFetcher"
                ReferencedContainer = "container:Pods.xcodeproj">

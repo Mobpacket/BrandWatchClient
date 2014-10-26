@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E512D145FBA3304AE76A1A4B"
+               BlueprintIdentifier = "C7EBBFC76A49BAB06912798D"
                BuildableName = "libPods-gtm-oauth2.a"
                BlueprintName = "Pods-gtm-oauth2"
                ReferencedContainer = "container:Pods.xcodeproj">
