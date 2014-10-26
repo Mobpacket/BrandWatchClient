@@ -39,6 +39,7 @@
 		D9726BB019EE375A00B9FF1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */; };
 		D9726BB219EE5B0600B9FF1A /* SettingsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */; };
 		D9726BB419EE5B9800B9FF1A /* TargetLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BB319EE5B9800B9FF1A /* TargetLineView.swift */; };
+		D981E51219FCE85D009F3669 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981E51119FCE85D009F3669 /* Constants.swift */; };
 		D986C31219F30F5E009EDAE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31119F30F5E009EDAE1 /* User.swift */; };
 		D986C31419F30F74009EDAE1 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31319F30F74009EDAE1 /* Video.swift */; };
 		D986C31619F30F97009EDAE1 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31519F30F97009EDAE1 /* Metrics.swift */; };
@@ -107,6 +108,7 @@
 		D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLineView.swift; sourceTree = "<group>"; };
 		D9726BB319EE5B9800B9FF1A /* TargetLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetLineView.swift; sourceTree = "<group>"; };
+		D981E51119FCE85D009F3669 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D986C31119F30F5E009EDAE1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D986C31319F30F74009EDAE1 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		D986C31519F30F97009EDAE1 /* Metrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		A8901A4B19F4B8350061581F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D981E51119FCE85D009F3669 /* Constants.swift */,
 				A86E341A19EBBEEC00745230 /* Helper.swift */,
 				A8901A4C19F4B9060061581F /* EngagementScorer.swift */,
 				D94AFF2619FC5EDF00F93F0E /* DataProcessor.swift */,
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D981E51219FCE85D009F3669 /* Constants.swift in Sources */,
 				D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */,
 				D9E3D3F319EA6BF900101EC6 /* SectionLineView.swift in Sources */,
 				D9E3D3F519EA7AE100101EC6 /* Campaign.swift in Sources */,

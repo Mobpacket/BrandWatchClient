@@ -10,6 +10,10 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var watchLabel: UILabel!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
     var loginView: UIView!
     
     var loginCircleButton: DKCircleButton!
@@ -58,16 +62,27 @@ class LoginViewController: UIViewController {
         
         // setup view and button colors
         loginView.backgroundColor = UIColor.clearColor()
-        loginView.backgroundColor = UIColor.blackColor()
+        loginView.backgroundColor = UIColor.BWDarkBlue()
+        
+//        logoImageView.hidden = true
+        logoImageView.animationDuration = 1.0
+        logoImageView.layer.borderColor = UIColor.BWOffWhite().CGColor
+        logoImageView.layer.borderWidth = 1
+//        [UIImage animatedImageNamed:@"spinner-" duration:1.0f];
+        
+        brandLabel.textColor = UIColor.BWRed()
+        brandLabel.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        watchLabel.textColor = UIColor.BWOffWhite()
+        watchLabel.layer.backgroundColor = UIColor.BWRed().CGColor
 
         loginCircleButton = DKCircleButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         loginCircleButton.center = CGPointMake(160, 380)
         loginCircleButton.titleLabel?.font = UIFont.systemFontOfSize(22)
-        loginCircleButton.backgroundColor = UIColor.whiteColor()
-        loginCircleButton.borderColor = UIColor.orangeColor()
+        loginCircleButton.backgroundColor = UIColor.BWRed()
+        loginCircleButton.borderColor = UIColor.BWOffWhite()
         loginCircleButton.borderSize = 3
         loginCircleButton.setTitle("Sign In", forState: UIControlState.Normal)
-        loginCircleButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+        loginCircleButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         loginCircleButton.addTarget(self, action: "loginCircleButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginCircleButton)
     }
