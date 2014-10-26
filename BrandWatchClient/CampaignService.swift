@@ -125,13 +125,20 @@ class CampaignService: NSObject {
 
     class func getVideos(callback: (videos: [Video]!, error: NSError!) -> Void) {
         
-        YouTubeClient.sharedInstance.queryVideoList { (videos, error) -> () in
-            if error == nil {
-                callback(videos: videos, error: error)
+        var videos = TTLCache.sharedInstance.get("videos") as? [Video]
+        if(videos == nil) {
+            YouTubeClient.sharedInstance.queryVideoList { (videos, error) -> () in
+                if error == nil {
+                
+                    TTLCache.sharedInstance.put(videos, forKey: "videos")
+                    callback(videos: videos, error: nil)
+                }
+                else {
+                    callback(videos: nil, error: error)
+                }
             }
-            else {
-                callback(videos: nil, error: error)
-            }
+        } else {
+            callback(videos: videos, error: nil)
         }
     }
    

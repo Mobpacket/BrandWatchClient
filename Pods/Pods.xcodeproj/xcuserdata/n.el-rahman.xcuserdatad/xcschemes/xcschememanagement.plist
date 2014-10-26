@@ -8,61 +8,116 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-ALPValidator.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Pods-DKCircleButton.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>Pods-GTMHTTPFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-Google-API-Client.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-JBChartView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-RWDropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Pods-gtm-oauth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>06F5EA6DE96F03A2E4221D04</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1406AD6264711E0A5FE943CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F5008A18AFC5EEE435785AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>336E0EF8AB45C1B38AF10D8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>43336BAFBCA96FA0488AD114</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4A427EE7362038EDB79B3CD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62BB7EF055B91DAC20524C87</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66D55487F93BD26EFCA225D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +132,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>851275593AFCB92F08E34BB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>87DAC35520696ABC1B379BAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B67B5133FD50D8BC3357003</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>919CCAB264A1563FAB489741</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBE275EBEE48717DFBACCEB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7EBBFC76A49BAB06912798D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
