@@ -38,7 +38,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     var engagementLineChartView = JBLineChartView()
     var engagementBarChartView = JBBarChartView()
     
-    enum graphType {
+    enum GraphTypeEnum {
         
         case Line, Bar
     }
@@ -52,9 +52,9 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     
     var lineChartData = [AnyObject]()
     
-    // NJA: Used for switching between graphs (testing)
-//    var type = graphType.Line
-    var type = graphType.Bar
+    // NAJ: Used for switching between graphs (testing)
+    var type = GraphTypeEnum.Line
+//    var type = GraphTypeEnum.Bar
     
     override func viewDidLoad() {
         
@@ -188,7 +188,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         commentsCountLabel.textColor = UIColor.whiteColor()
     }
     
-    func constructGraphHeader(type: graphType) {
+    func constructGraphHeader(type: GraphTypeEnum) {
         
         var headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
         headerView.titleLabel.text = "Daily Metrics"
@@ -218,7 +218,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         engagementLineChartView.showsVerticalSelection = false
         self.view.addSubview(engagementLineChartView)
 
-        constructGraphHeader(CampaignViewController.graphType.Line)
+        constructGraphHeader(CampaignViewController.GraphTypeEnum.Line)
         
         var lineChartfooterView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
         lineChartfooterView.backgroundColor = UIColor.clearColor()
@@ -242,13 +242,13 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         engagementBarChartView.showsVerticalSelection = true
         self.view.addSubview(engagementBarChartView)
         
-        constructGraphHeader(CampaignViewController.graphType.Bar)
+        constructGraphHeader(CampaignViewController.GraphTypeEnum.Bar)
         
         var barChartfooterView = JBBarChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementBarChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 20.0))
         barChartfooterView.padding = 10.0
         barChartfooterView.leftLabel.text = "Views"
         barChartfooterView.leftLabel.textColor = UIColor.whiteColor()
-        barChartfooterView.rightLabel.text = "favorites"
+        barChartfooterView.rightLabel.text = "Comments"
         barChartfooterView.rightLabel.textColor = UIColor.whiteColor()
         self.engagementBarChartView.footerView = barChartfooterView;
     }
@@ -291,16 +291,19 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         if lineIndex == 0 {
             
-            return UIColor.redColor()
+            return UIColor.greenColor()
         } else if lineIndex == 1 {
             
-            return UIColor.whiteColor()
+            return UIColor.redColor()
         } else if lineIndex == 2 {
             
             return UIColor.yellowColor()
         } else if lineIndex == 3 {
             
-            return UIColor.greenColor()
+            return UIColor.whiteColor()
+        } else if lineIndex == 4 {
+            
+            return UIColor.cyanColor()
         }
         
         return UIColor.blackColor()
@@ -310,16 +313,19 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         if lineIndex == 0 {
             
-            return UIColor.redColor()
+            return UIColor.greenColor()
         } else if lineIndex == 1 {
             
-            return UIColor.whiteColor()
+            return UIColor.redColor()
         } else if lineIndex == 2 {
             
             return UIColor.yellowColor()
         } else if lineIndex == 3 {
             
-            return UIColor.greenColor()
+            return UIColor.whiteColor()
+        } else if lineIndex == 4 {
+            
+            return UIColor.cyanColor()
         }
         
         return UIColor.blackColor()
@@ -349,16 +355,19 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         if index == 0 {
             
-            return UIColor.redColor()
+            return UIColor.greenColor()
         } else if index == 1 {
             
-            return UIColor.whiteColor()
+            return UIColor.redColor()
         } else if index == 2 {
             
             return UIColor.yellowColor()
         } else if index == 3 {
             
-            return UIColor.greenColor()
+            return UIColor.whiteColor()
+        } else if index == 4 {
+            
+            return UIColor.cyanColor()
         }
         
         return UIColor.whiteColor()
@@ -419,6 +428,9 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                             var views = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Views)
                             self.lineChartData.append(views)
                             
+                            var shares = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Shares)
+                            self.lineChartData.append(views)
+                            
                             var likes = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Likes)
                             self.lineChartData.append(likes)
                             
@@ -432,6 +444,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                         } else if self.type == .Bar {
                             
                             var views = campaign.metrics_total?.views! as Int!
+                            var shares = campaign.metrics_total?.views! as Int!
                             var likes = campaign.metrics_total?.likes! as Int!
                             var favorites = campaign.metrics_total?.favorites! as Int!
                             var comments = campaign.metrics_total?.comments! as Int!
