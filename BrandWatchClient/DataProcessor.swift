@@ -13,8 +13,8 @@ enum MetricTypeEnum {
 }
 
 class DataProcessor: NSObject {
-   
-    class func getMetricData(campaign: Campaign, type: MetricTypeEnum) -> [Int] {
+    
+    class func getMetricDailyData(campaign: Campaign, type: MetricTypeEnum) -> [Int] {
         
         var data = [Int]()
         

@@ -23,8 +23,6 @@
 		1D9B5C7319E79CE80062F44A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7219E79CE80062F44A /* Security.framework */; };
 		1D9B5C7519E79CF30062F44A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7419E79CF30062F44A /* StoreKit.framework */; };
 		1D9B5C7719E79CFE0062F44A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */; };
-		8481D1B919FC60E10041DF2F /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481D1B719FC60E10041DF2F /* checked.png */; };
-		8481D1BC19FC76AD0041DF2F /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481D1BB19FC76AD0041DF2F /* unchecked.png */; };
 		849BE80D19F43499003DE850 /* YouTubeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BE80C19F43499003DE850 /* YouTubeClient.swift */; };
 		8BA9DCC9E0ADF39993228C01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA6880E8B51DEE88CD049FC /* libPods.a */; };
 		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
@@ -92,8 +90,6 @@
 		1D9B5C7A19E79D3A0062F44A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		5A159AEC92D45D9F0171BA06 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6148789C5F3BE6E1391F9043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8481D1B719FC60E10041DF2F /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checked.png; path = ../../../../Downloads/checked.png; sourceTree = "<group>"; };
-		8481D1BB19FC76AD0041DF2F /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unchecked.png; path = ../../../../Downloads/unchecked.png; sourceTree = "<group>"; };
 		849BE80C19F43499003DE850 /* YouTubeClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeClient.swift; sourceTree = "<group>"; };
 		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A8901A4419F335850061581F /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
@@ -211,8 +207,6 @@
 		1D9B5C3619E797A20062F44A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8481D1BB19FC76AD0041DF2F /* unchecked.png */,
-				8481D1B719FC60E10041DF2F /* checked.png */,
 				D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */,
 				1D9B5C6119E798AF0062F44A /* BrandWatchClient-Bridging-Header.h */,
 				D99C83C019EBCEED004DB96A /* brandwatch.png */,
@@ -408,7 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */,
-				8481D1B919FC60E10041DF2F /* checked.png in Resources */,
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
@@ -416,7 +409,6 @@
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
 				D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */,
 				D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */,
-				8481D1BC19FC76AD0041DF2F /* unchecked.png in Resources */,
 				D9B749CD19F727C800DFA7FC /* VideoSelectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

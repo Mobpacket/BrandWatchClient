@@ -53,8 +53,8 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     var lineChartData = [AnyObject]()
     
     // NJA: Used for switching between graphs (testing)
-    var type = graphType.Line
-//    var type = graphType.Bar
+//    var type = graphType.Line
+    var type = graphType.Bar
     
     override func viewDidLoad() {
         
@@ -85,8 +85,6 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         // pull data
         reloadCampaigns()
-        
-        
         
         if type == .Line {
             engagementLineChartView.reloadData()
@@ -257,14 +255,14 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
         
-        println("LINE CHART: number of lines = \(self.lineChartData.count)")
+//        println("LINE CHART: number of lines = \(self.lineChartData.count)")
         
         return UInt(self.lineChartData.count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         
-        println("LINE CHART: number of values = \(self.lineChartData[Int(lineIndex)].count)")
+//        println("LINE CHART: number of values = \(self.lineChartData[Int(lineIndex)].count)")
 
         return UInt(self.lineChartData[Int(lineIndex)].count)
     }
@@ -274,7 +272,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         var line = self.lineChartData[Int(lineIndex)] as [Int]
         var value = line[Int(horizontalIndex)]
         
-        println("LINE CHART: value = \(value)")
+//        println("LINE CHART: value = \(value)")
         
         return CGFloat(value)
     }
@@ -410,31 +408,36 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                 // Get the daily metrics to pouplate the graph
                 CampaignService.getCampaignDailyMetrics(campaign, callback: { (campaign, error) -> Void in
                     if error == nil {
+                        
                         println("Daily Metrics: \(campaign.metrics_daily)")
                         
-                        // TODO: Populate the Graph
-                        
-                        // NAJ: REMOVE after hooking up real data
+                        // Populate Graphs
                         if self.type == .Line {
                             
                             self.lineChartData = [Int]()
                             
-                            var views = DataProcessor.getMetricData(self.activeCampaign, type: .Views)
+                            var views = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Views)
                             self.lineChartData.append(views)
                             
-                            var likes = DataProcessor.getMetricData(self.activeCampaign, type: .Likes)
+                            var likes = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Likes)
                             self.lineChartData.append(likes)
                             
-                            var favorites = DataProcessor.getMetricData(self.activeCampaign, type: .Favorites)
+                            var favorites = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Favorites)
                             self.lineChartData.append(favorites)
                             
-                            var comments = DataProcessor.getMetricData(self.activeCampaign, type: .Comments)
+                            var comments = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Comments)
                             self.lineChartData.append(comments)
-                        }
-                        
-                        if self.type == .Line {
+                            
                             self.engagementLineChartView.reloadData()
                         } else if self.type == .Bar {
+                            
+                            var views = campaign.metrics_total?.views! as Int!
+                            var likes = campaign.metrics_total?.likes! as Int!
+                            var favorites = campaign.metrics_total?.favorites! as Int!
+                            var comments = campaign.metrics_total?.comments! as Int!
+                            
+                            self.barChartData = [views, likes, favorites, comments]
+                            
                             self.engagementBarChartView.reloadData()
                         }
                     } else {
