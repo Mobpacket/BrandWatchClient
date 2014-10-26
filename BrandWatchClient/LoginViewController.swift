@@ -64,11 +64,10 @@ class LoginViewController: UIViewController {
         loginView.backgroundColor = UIColor.clearColor()
         loginView.backgroundColor = UIColor.BWDarkBlue()
         
-//        logoImageView.hidden = true
+        logoImageView.hidden = true
         logoImageView.animationDuration = 1.0
         logoImageView.layer.borderColor = UIColor.BWOffWhite().CGColor
         logoImageView.layer.borderWidth = 1
-//        [UIImage animatedImageNamed:@"spinner-" duration:1.0f];
         
         brandLabel.textColor = UIColor.BWRed()
         brandLabel.layer.backgroundColor = UIColor.BWOffWhite().CGColor

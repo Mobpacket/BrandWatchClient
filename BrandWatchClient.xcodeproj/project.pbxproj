@@ -33,6 +33,7 @@
 		D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92AF6CE19EB51FE0060D832 /* LoginView.xib */; };
 		D92AF6D119EB57540060D832 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92AF6D019EB57540060D832 /* LoginViewController.swift */; };
 		D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */ = {isa = PBXBuildFile; fileRef = D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */; };
+		D946055019FDA1830071C8BF /* blue_anim_graph.gif in Resources */ = {isa = PBXBuildFile; fileRef = D946054F19FDA1830071C8BF /* blue_anim_graph.gif */; };
 		D94AFF2719FC5EDF00F93F0E /* DataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AFF2619FC5EDF00F93F0E /* DataProcessor.swift */; };
 		D95FD0F519FB9A3300D35DFC /* JBChartHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FD0F419FB9A3300D35DFC /* JBChartHeaderView.m */; };
 		D9726BAE19EE374200B9FF1A /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9726BAD19EE374200B9FF1A /* SettingsView.xib */; };
@@ -101,6 +102,7 @@
 		D92AF6CE19EB51FE0060D832 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		D92AF6D019EB57540060D832 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D92F0E2219F5AB4000E8E798 /* sampleDailyGraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleDailyGraph.png; sourceTree = "<group>"; };
+		D946054F19FDA1830071C8BF /* blue_anim_graph.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = blue_anim_graph.gif; sourceTree = "<group>"; };
 		D94AFF2619FC5EDF00F93F0E /* DataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProcessor.swift; sourceTree = "<group>"; };
 		D95FD0F319FB9A3300D35DFC /* JBChartHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartHeaderView.h; sourceTree = "<group>"; };
 		D95FD0F419FB9A3300D35DFC /* JBChartHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartHeaderView.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				1D9B5C3819E797A20062F44A /* AppDelegate.swift */,
 				1D9B5C3F19E797A20062F44A /* Main.storyboard */,
 				1D9B5C4219E797A20062F44A /* Images.xcassets */,
+				D946054E19FDA1830071C8BF /* Images */,
 				1D9B5C4419E797A20062F44A /* LaunchScreen.xib */,
 				1D9B5C3A19E797A20062F44A /* BrandWatchClient.xcdatamodeld */,
 				1D9B5C3619E797A20062F44A /* Supporting Files */,
@@ -278,6 +281,14 @@
 			);
 			name = Pods;
 			sourceTree = "<group>";
+		};
+		D946054E19FDA1830071C8BF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D946054F19FDA1830071C8BF /* blue_anim_graph.gif */,
+			);
+			path = Images;
+			sourceTree = SOURCE_ROOT;
 		};
 		D9E3D3E819EA099D00101EC6 /* Views */ = {
 			isa = PBXGroup;
@@ -411,6 +422,7 @@
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
+				D946055019FDA1830071C8BF /* blue_anim_graph.gif in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
 				D92F0E2319F5AB4000E8E798 /* sampleDailyGraph.png in Resources */,
