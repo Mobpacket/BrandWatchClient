@@ -10,9 +10,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var loginButton: UIButton!
-    
     var loginView: UIView!
+    
+    var loginCircleButton: DKCircleButton!
     
     override func viewDidLoad() {
         
@@ -30,21 +30,46 @@ class LoginViewController: UIViewController {
         // Setup the UI
         constructUI()
     }
+    
+    func loginCircleButtonTapped() {
+        
+        let campaignVC = CampaignViewController() as CampaignViewController
+        
+        println("OnLoginCircleButton() pressed")
+        
+        var auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeyChainItemName, clientID: clientID, clientSecret: clientSecret) as GTMOAuth2Authentication
+        
+        if !auth.canAuthorize {
+            
+            var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
+            
+            var vc = GTMOAuth2ViewControllerTouch(scope: scope, clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
+            
+            self.presentViewController(vc, animated: true) { () -> Void in
+                println("auth done")
+            }
+        } else {
+            
+            authentication(GTMOAuth2ViewControllerTouch(), finishedWithAuth: auth, error: NSError())
+        }
+    }
 
     func constructUI() {
         
         // setup view and button colors
         loginView.backgroundColor = UIColor.clearColor()
         loginView.backgroundColor = UIColor.blackColor()
-        
-        loginButton.layer.backgroundColor = UIColor.clearColor().CGColor
-        loginButton.layer.borderColor = UIColor.orangeColor().CGColor
-        loginButton.layer.cornerRadius = 8
-        loginButton.layer.borderWidth = 2
-        loginButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-        loginButton.setTitle("Sign In", forState: UIControlState.Normal)
-        loginButton.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-        loginButton.clipsToBounds = true
+
+        loginCircleButton = DKCircleButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        loginCircleButton.center = CGPointMake(160, 380)
+        loginCircleButton.titleLabel?.font = UIFont.systemFontOfSize(22)
+        loginCircleButton.backgroundColor = UIColor.whiteColor()
+        loginCircleButton.borderColor = UIColor.orangeColor()
+        loginCircleButton.borderSize = 3
+        loginCircleButton.setTitle("Sign In", forState: UIControlState.Normal)
+        loginCircleButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+        loginCircleButton.addTarget(self, action: "loginCircleButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(loginCircleButton)
     }
     
     func authentication(viewController: GTMOAuth2ViewControllerTouch, finishedWithAuth: GTMOAuth2Authentication, error: NSError)
@@ -81,30 +106,5 @@ class LoginViewController: UIViewController {
         
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func onLogin(sender: UIButton) {
-        
-        let campaignVC = CampaignViewController() as CampaignViewController
-        
-        println("OnLogin() pressed")
-        
-        var auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeyChainItemName, clientID: clientID, clientSecret: clientSecret) as GTMOAuth2Authentication
-        
-        if !auth.canAuthorize {
-            
-            var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
-            
-            var vc = GTMOAuth2ViewControllerTouch(scope: scope, clientID: clientID, clientSecret: clientSecret, keychainItemName: kKeyChainItemName, delegate: self, finishedSelector:Selector("authentication:finishedWithAuth:error:"))
-            
-            self.presentViewController(vc, animated: true) { () -> Void in
-                println("auth done")
-            }
-        }
-        else
-        {
-            authentication(GTMOAuth2ViewControllerTouch(), finishedWithAuth: auth, error: NSError())
-        }
-
     }
 }
