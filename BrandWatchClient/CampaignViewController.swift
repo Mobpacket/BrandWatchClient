@@ -44,29 +44,21 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     }
     
     // NAJ: Test Data for Graph
-    var testArray1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    var testArray2 = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    var testArray3 = [6, 4, 15, 2, 0, 13, 12, 11, 7, 12]
-    var testArray4 = [0, 8, 1, 21, 11, 16, 4, 7, 0, 9]
+//    var testArray1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+//    var testArray2 = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+//    var testArray3 = [6, 4, 15, 2, 0, 13, 12, 11, 7, 12]
+//    var testArray4 = [0, 8, 1, 21, 11, 16, 4, 7, 0, 9]
     var barChartData = [23, 30, 28, 24]
     
     var lineChartData = [AnyObject]()
     
     // NJA: Used for switching between graphs (testing)
-//    var type = graphType.Line
-    var type = graphType.Bar
+    var type = graphType.Line
+//    var type = graphType.Bar
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // NAJ: REMOVE after hooking up real data
-        if type == .Line {
-            self.lineChartData.append(testArray1)
-            self.lineChartData.append(testArray2)
-            self.lineChartData.append(testArray3)
-            self.lineChartData.append(testArray4)
-        }
         
         // Get campaign view nib
         var nib = UINib(nibName: "CampaignView", bundle: nil)
@@ -93,6 +85,8 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         // pull data
         reloadCampaigns()
+        
+        
         
         if type == .Line {
             engagementLineChartView.reloadData()
@@ -263,18 +257,25 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
 
     func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
         
+        println("LINE CHART: number of lines = \(self.lineChartData.count)")
+        
         return UInt(self.lineChartData.count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         
+        println("LINE CHART: number of values = \(self.lineChartData[Int(lineIndex)].count)")
+
         return UInt(self.lineChartData[Int(lineIndex)].count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        
+
         var line = self.lineChartData[Int(lineIndex)] as [Int]
         var value = line[Int(horizontalIndex)]
+        
+        println("LINE CHART: value = \(value)")
+        
         return CGFloat(value)
     }
     
@@ -405,20 +406,47 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                 
                 let comments_value = self.activeCampaign.metrics_total?.comments
                 self.commentsCountLabel.text = "\(comments_value!)"
+                
+                // Get the daily metrics to pouplate the graph
+                CampaignService.getCampaignDailyMetrics(campaign, callback: { (campaign, error) -> Void in
+                    if error == nil {
+                        println("Daily Metrics: \(campaign.metrics_daily)")
+                        
+                        // TODO: Populate the Graph
+                        
+                        // NAJ: REMOVE after hooking up real data
+                        if self.type == .Line {
+                            
+                            self.lineChartData = [Int]()
+                            
+                            var views = DataProcessor.getMetricData(self.activeCampaign, type: .Views)
+                            self.lineChartData.append(views)
+                            
+                            var likes = DataProcessor.getMetricData(self.activeCampaign, type: .Likes)
+                            self.lineChartData.append(likes)
+                            
+                            var favorites = DataProcessor.getMetricData(self.activeCampaign, type: .Favorites)
+                            self.lineChartData.append(favorites)
+                            
+                            var comments = DataProcessor.getMetricData(self.activeCampaign, type: .Comments)
+                            self.lineChartData.append(comments)
+                        }
+                        
+                        if self.type == .Line {
+                            self.engagementLineChartView.reloadData()
+                        } else if self.type == .Bar {
+                            self.engagementBarChartView.reloadData()
+                        }
+                    } else {
+                        
+                        println("<DAILY METRICS> Error: \(error)")
+                    }
+                })
             } else {
                 
                 NSLog("%@", error)
             }
         }
-        
-        // Get the daily metrics to pouplate the graph
-//        CampaignService.getCampaignDailyMetricsById(id, callback: { (campaign, error) -> Void in
-//            if error == nil {
-//                println("Daily Metrics: \(campaign.metrics_daily)")
-//                
-//                // TODO: Populate the Graph
-//            }
-//        })
     }
     
     func signOut() {
