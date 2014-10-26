@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var settingsMenuButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -75,6 +75,18 @@ class SettingsViewController: UIViewController {
         settingsView = objects[0] as UIView
         view.addSubview(settingsView)
         
+        self.nameData.delegate  = self
+        self.startData.delegate = self
+        self.endData.delegate   = self
+        self.vtrTarget.delegate = self
+        self.ctrTarget.delegate = self
+        
+        self.viewsTarget.delegate     = self
+        self.sharesTarget.delegate    = self
+        self.commentsTarget.delegate  = self
+        self.likesTarget.delegate     = self
+        self.favoritesTarget.delegate = self
+        
         // Set up UI
         constructUI()
             
@@ -130,6 +142,7 @@ class SettingsViewController: UIViewController {
     private func loadCampaignTargets() {
         
         // When loading campaign for edit, set the color to black
+        
         self.nameData.textColor = UIColor.blackColor()
         self.nameData.text = self.campaign.name
         
@@ -216,9 +229,8 @@ class SettingsViewController: UIViewController {
     }
     
     private func assignCampaignTargets() {
-        
-        // NAJ: Where should we get this value from for creating campaigns?
-        self.campaign.user_id = "brandwatch123@gmail.com"
+        YouTubeClient.sharedInstance.authorizer.userEmail
+        self.campaign.user_id = YouTubeClient.sharedInstance.authorizer.userEmail
         self.campaign.name = self.nameData.text
         self.campaign.start = self.startData.text
         self.campaign.end = self.endData.text
@@ -305,6 +317,71 @@ class SettingsViewController: UIViewController {
             println("going to campaign screen")
         })
     }
+    
+    func validateInputs() -> String {
+        
+        var errorMessage: String = String()
+        
+        // Name Validation: Cannot be empty
+        if self.nameData.text == "" {
+            errorMessage = errorMessage + "- The Name of the Campaign cannot be empty.\n"
+        }
+        
+        // Date Validation for the format YYYY-MM-DD
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        let startDate = dateFormatter.dateFromString(self.startData.text)
+        if startDate == nil {
+            errorMessage = errorMessage + "- The Start Date must be a valid date in the format YYYY-MM-DD.\n"
+        }
+        let endDate = dateFormatter.dateFromString(self.endData.text)
+        if endDate == nil {
+            errorMessage = errorMessage + "- The End Date must be a valid date in the format YYYY-MM-DD.\n"
+        }
+        
+        return errorMessage
+    }
+    
+    func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+        
+        var ret = true
+
+        let newLength = countElements(textField.text!) + countElements(string!) - range.length
+        switch(textField)
+        {
+            case self.nameData:
+                ret = newLength <= 20
+            
+            case self.startData, self.endData:
+                ret = newLength <= 10
+
+            case self.vtrTarget, self.ctrTarget:
+                ret = newLength <= 5
+
+            case self.viewsTarget, self.sharesTarget, self.likesTarget, self.commentsTarget, self.favoritesTarget:
+                ret = newLength <= 4
+
+            default:
+                ret = true
+        }
+        
+        return ret
+        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        switch(textField)
+        {
+            
+            case self.startData, self.endData, self.vtrTarget, self.ctrTarget, self.viewsTarget, self.sharesTarget, self.likesTarget, self.commentsTarget, self.favoritesTarget:
+                textField.textColor = UIColor.blackColor()
+            
+            default:
+                println("")
+        }
+        
+    }
 
     @IBAction func settingsMenuButtonTapped(sender: UIButton) {
     
@@ -313,20 +390,33 @@ class SettingsViewController: UIViewController {
                 
                 println("creating campaign")
                 
-                // populate objects from labels (make a private function)
-                self.assignCampaignTargets()
+                var message: String = self.validateInputs()
                 
-                CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
+                if message != "" {
+                    var alertView:UIAlertView = UIAlertView()
+                    alertView.title = "Alert!"
+                    alertView.message = message
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
                     
-                    self.campaignVC.reloadCampaigns()
-                    var id = self.campaign.getPFObject().objectId!
-                    CampaignService.getCampaignById(id, callback: { (campaign, error) -> Void in
-                        self.campaignVC.activeCampaign = campaign
-                        self.campaignVC.viewDidLoad()
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                    alertView.show()
+                } else {
+                
+                    // populate objects from labels (make a private function)
+                    self.assignCampaignTargets()
+                    
+                    CampaignService.saveCampaign(self.campaign, callback: { (succeeded, error) -> Void in
+                        
+                        self.campaignVC.reloadCampaigns()
+                        var id = self.campaign.getPFObject().objectId!
+                        CampaignService.getCampaignById(id, callback: { (campaign, error) -> Void in
+                            self.campaignVC.activeCampaign = campaign
+                            self.campaignVC.viewDidLoad()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                        
                     })
-                    
-                })
+                }
                 
             }),
             

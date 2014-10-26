@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Pods-DKCircleButton.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>Pods-GTMHTTPFetcher.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -62,12 +67,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>06F5EA6DE96F03A2E4221D04</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0B16CC71C7E9FBD0522EAB70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>135680BD772E370CCE8A78DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1406AD6264711E0A5FE943CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F5008A18AFC5EEE435785AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +102,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4A427EE7362038EDB79B3CD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5CB10FFBF69FCD81ABDED953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62BB7EF055B91DAC20524C87</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66D55487F93BD26EFCA225D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +132,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>851275593AFCB92F08E34BB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>87DAC35520696ABC1B379BAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8B67B5133FD50D8BC3357003</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8CB2DA3E85587F16A34916A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>919CCAB264A1563FAB489741</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,6 +163,16 @@
 			<true/>
 		</dict>
 		<key>B5EB6437300F8E8C25411FA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBE275EBEE48717DFBACCEB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7EBBFC76A49BAB06912798D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
