@@ -82,26 +82,29 @@ class CampaignService: NSObject {
             for (index, video) in enumerate(videos) {
             
                 currentVideo.video_id = video as? String
-            
+                
+                if currentVideo.video_id != nil {
                 YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
                 
                     if error == nil {
-                        currentVideo.metrics_total = metrics
+                            currentVideo.metrics_total = metrics
                     
                         if campaign.metrics_total == nil {
                             campaign.metrics_total = metrics
                         } else {
                             campaign.metrics_total?.addMetrics(metrics!)
                         }
-                    
                         //populate cache
                         TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
-                        callback(campaign: campaign, error: nil)
+                        if index >= videos.count - 1 {
+                            callback(campaign: campaign, error: nil)
+                        }
                     }
                     else {
                         callback(campaign: nil, error: error)
                     }
                 })
+            }
             }
         } else {
             campaign.metrics_total = metricsTotal
@@ -157,7 +160,9 @@ class CampaignService: NSObject {
                         
                         TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
                     
-                        callback(campaign: campaign, error: nil)
+                        if index >= videos.count - 1 {
+                            callback(campaign: campaign, error: nil)
+                        }
                     } else {
                     
                         callback(campaign: nil, error: error)

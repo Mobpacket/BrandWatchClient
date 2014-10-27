@@ -276,8 +276,8 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         var value = line[Int(horizontalIndex)]
         
 //        println("LINE CHART: value = \(value)")
-        
-        return CGFloat(value)
+        //For plotting don't plot valid negative values. Youtube can return negative metrics based on date range. 
+        return CGFloat(value < 0 ? 0 : value)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {

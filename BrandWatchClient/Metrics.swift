@@ -56,18 +56,6 @@ class Metrics: NSObject {
             self.score = metrics.score
         }
 
-        if self.vtr != nil {
-            self.vtr! += metrics.vtr!
-        } else {
-            self.vtr = metrics.vtr
-        }
-
-        if self.ctr != nil {
-            self.ctr! += metrics.ctr!
-        } else {
-            self.ctr = metrics.ctr
-        }
-
         if self.views != nil {
             self.views! += metrics.views!
         } else {
@@ -90,6 +78,10 @@ class Metrics: NSObject {
             self.likes! += metrics.likes!
         } else {
             self.likes = metrics.likes
+        }
+        
+        if self.likes < 0 {
+            println("likes is negative")
         }
 
         if self.comments != nil {
