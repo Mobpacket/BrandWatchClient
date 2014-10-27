@@ -25,10 +25,10 @@
                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue_anim_graph.gif" translatesAutoresizingMaskIntoConstraints="NO" id="SHW-mz-NhX">
-                    <rect key="frame" x="85" y="70" width="150" height="120"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bw_logo_nobackground_offwhite_120x120" translatesAutoresizingMaskIntoConstraints="NO" id="SHW-mz-NhX">
+                    <rect key="frame" x="85" y="70" width="120" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="0fP-4d-UIh"/>
+                        <constraint firstAttribute="width" constant="120" id="0fP-4d-UIh"/>
                         <constraint firstAttribute="height" constant="120" id="5Af-il-29a"/>
                     </constraints>
                 </imageView>
@@ -55,6 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="blue_anim_graph.gif" width="500" height="400"/>
+        <image name="bw_logo_nobackground_offwhite_120x120" width="120" height="120"/>
     </resources>
 </document>

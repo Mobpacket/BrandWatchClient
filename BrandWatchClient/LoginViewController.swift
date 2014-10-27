@@ -37,8 +37,6 @@ class LoginViewController: UIViewController {
     
     func loginCircleButtonTapped() {
         
-        let campaignVC = CampaignViewController() as CampaignViewController
-        
         println("OnLoginCircleButton() pressed")
         
         var auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeyChainItemName, clientID: clientID, clientSecret: clientSecret) as GTMOAuth2Authentication
@@ -64,10 +62,10 @@ class LoginViewController: UIViewController {
         loginView.backgroundColor = UIColor.clearColor()
         loginView.backgroundColor = UIColor.BWDarkBlue()
         
-        logoImageView.hidden = true
+//        logoImageView.hidden = true
         logoImageView.animationDuration = 1.0
         logoImageView.layer.borderColor = UIColor.BWOffWhite().CGColor
-        logoImageView.layer.borderWidth = 1
+        logoImageView.layer.borderWidth = 0
         
         brandLabel.textColor = UIColor.BWRed()
         brandLabel.layer.backgroundColor = UIColor.BWOffWhite().CGColor
@@ -110,9 +108,12 @@ class LoginViewController: UIViewController {
             println("dismissed")
         })
         
+//        let dashboardVC = DashboardViewController() as DashboardViewController
         let campaignVC = CampaignViewController() as CampaignViewController
         
+//        self.presentViewController(dashboardVC, animated: true) { () -> Void in
         self.presentViewController(campaignVC, animated: true) { () -> Void in
+
             
             println("transitioning to campaign controller")
         }

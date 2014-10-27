@@ -40,6 +40,8 @@
 		D9726BB019EE375A00B9FF1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */; };
 		D9726BB219EE5B0600B9FF1A /* SettingsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */; };
 		D9726BB419EE5B9800B9FF1A /* TargetLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9726BB319EE5B9800B9FF1A /* TargetLineView.swift */; };
+		D9808FC819FDD1A100D6ECF0 /* DashboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9808FC719FDD1A100D6ECF0 /* DashboardView.xib */; };
+		D9808FCA19FDD1B000D6ECF0 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9808FC919FDD1B000D6ECF0 /* DashboardViewController.swift */; };
 		D981E51219FCE85D009F3669 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981E51119FCE85D009F3669 /* Constants.swift */; };
 		D986C31219F30F5E009EDAE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31119F30F5E009EDAE1 /* User.swift */; };
 		D986C31419F30F74009EDAE1 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C31319F30F74009EDAE1 /* Video.swift */; };
@@ -110,6 +112,8 @@
 		D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLineView.swift; sourceTree = "<group>"; };
 		D9726BB319EE5B9800B9FF1A /* TargetLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetLineView.swift; sourceTree = "<group>"; };
+		D9808FC719FDD1A100D6ECF0 /* DashboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardView.xib; sourceTree = "<group>"; };
+		D9808FC919FDD1B000D6ECF0 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		D981E51119FCE85D009F3669 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D986C31119F30F5E009EDAE1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D986C31319F30F74009EDAE1 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 		D9E3D3E819EA099D00101EC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9808FC719FDD1A100D6ECF0 /* DashboardView.xib */,
 				D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */,
 				D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */,
 				D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */,
@@ -308,6 +313,7 @@
 		D9E3D3E919EA09A500101EC6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9808FC919FDD1B000D6ECF0 /* DashboardViewController.swift */,
 				D9E3D3EC19EA19D800101EC6 /* CampaignViewController.swift */,
 				D92AF6D019EB57540060D832 /* LoginViewController.swift */,
 				D9726BAF19EE375A00B9FF1A /* SettingsViewController.swift */,
@@ -422,6 +428,7 @@
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
+				D9808FC819FDD1A100D6ECF0 /* DashboardView.xib in Resources */,
 				D946055019FDA1830071C8BF /* blue_anim_graph.gif in Resources */,
 				1D9B5C4319E797A20062F44A /* Images.xcassets in Resources */,
 				D99C83C119EBCEED004DB96A /* brandwatch.png in Resources */,
@@ -485,6 +492,7 @@
 				D9E3D3F119EA54E800101EC6 /* CampaignLineView.swift in Sources */,
 				D94AFF2719FC5EDF00F93F0E /* DataProcessor.swift in Sources */,
 				D9B749D119F72A8900DFA7FC /* VideoSelectionViewController.swift in Sources */,
+				D9808FCA19FDD1B000D6ECF0 /* DashboardViewController.swift in Sources */,
 				A8901A4519F335850061581F /* CampaignService.swift in Sources */,
 				D9E3D3ED19EA19D800101EC6 /* CampaignViewController.swift in Sources */,
 				849BE80D19F43499003DE850 /* YouTubeClient.swift in Sources */,
