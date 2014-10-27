@@ -26,6 +26,7 @@ class Metrics: NSObject {
     var shares: Int?                // Social Shares (LinkedIn, Twitter, Facebook, etc.) value
     var favorites: Int?             // YouTube Favorites value
     var likes: Int?                 // Facebook Likes value
+    var dislikes: Int?              // Facebook DisLikes value
     var comments: Int?              // YouTube Comment Count value
     var dictionary: NSDictionary?   // Serialized data model
     var dateStr: String?            // The Date String of metrics. Only used in daily metrics. Ignore for total metrics
@@ -43,6 +44,7 @@ class Metrics: NSObject {
         shares = dictionary["shares_count"] as? Int
         favorites = dictionary["favorites_count"] as? Int
         likes = dictionary["likes_count"] as? Int
+        dislikes = dictionary["dislikes_count"] as? Int
         comments = dictionary["comments_count"] as? Int
         dateStr = dictionary["date_string"] as? String
         date = dictionary["date"] as? NSDate
@@ -80,10 +82,12 @@ class Metrics: NSObject {
             self.likes = metrics.likes
         }
         
-        if self.likes < 0 {
-            println("likes is negative")
+        if self.dislikes != nil {
+            self.dislikes! += metrics.dislikes!
+        } else {
+            self.dislikes = metrics.dislikes
         }
-
+        
         if self.comments != nil {
             self.comments! += metrics.comments!
         } else {

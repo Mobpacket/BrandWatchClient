@@ -25,6 +25,8 @@
 		1D9B5C7719E79CFE0062F44A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9B5C7619E79CFE0062F44A /* SystemConfiguration.framework */; };
 		849BE80D19F43499003DE850 /* YouTubeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BE80C19F43499003DE850 /* YouTubeClient.swift */; };
 		8BA9DCC9E0ADF39993228C01 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA6880E8B51DEE88CD049FC /* libPods.a */; };
+		A8027CF219FE01E100D9D92F /* SentimentScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8027CF119FE01E100D9D92F /* SentimentScorer.swift */; };
+		A8027CF419FE03F700D9D92F /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8027CF319FE03F700D9D92F /* Consts.swift */; };
 		A840109F19FCDFBA00BD30A9 /* TTLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A840109E19FCDFBA00BD30A9 /* TTLCache.swift */; };
 		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
 		A8901A4519F335850061581F /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4419F335850061581F /* CampaignService.swift */; };
@@ -96,6 +98,8 @@
 		5A159AEC92D45D9F0171BA06 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6148789C5F3BE6E1391F9043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		849BE80C19F43499003DE850 /* YouTubeClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeClient.swift; sourceTree = "<group>"; };
+		A8027CF119FE01E100D9D92F /* SentimentScorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentimentScorer.swift; sourceTree = "<group>"; };
+		A8027CF319FE03F700D9D92F /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		A840109E19FCDFBA00BD30A9 /* TTLCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTLCache.swift; sourceTree = "<group>"; };
 		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A8901A4419F335850061581F /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 				A8901A4C19F4B9060061581F /* EngagementScorer.swift */,
 				D94AFF2619FC5EDF00F93F0E /* DataProcessor.swift */,
 				A840109E19FCDFBA00BD30A9 /* TTLCache.swift */,
+				A8027CF119FE01E100D9D92F /* SentimentScorer.swift */,
+				A8027CF319FE03F700D9D92F /* Consts.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -507,8 +513,10 @@
 				1D9B5C3C19E797A20062F44A /* BrandWatchClient.xcdatamodeld in Sources */,
 				D986C31219F30F5E009EDAE1 /* User.swift in Sources */,
 				D986C31419F30F74009EDAE1 /* Video.swift in Sources */,
+				A8027CF219FE01E100D9D92F /* SentimentScorer.swift in Sources */,
 				1D9B5C3919E797A20062F44A /* AppDelegate.swift in Sources */,
 				D986C31619F30F97009EDAE1 /* Metrics.swift in Sources */,
+				A8027CF419FE03F700D9D92F /* Consts.swift in Sources */,
 				A86E341B19EBBEEC00745230 /* Helper.swift in Sources */,
 				D9726BB019EE375A00B9FF1A /* SettingsViewController.swift in Sources */,
 			);

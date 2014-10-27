@@ -1,20 +1,19 @@
 //
-//  EngagementScorer.swift
+//  SentimentScorer.swift
 //  BrandWatchClient
 //
-//  Created by Nabib El-RAHMAN on 10/20/14.
+//  Created by Nabib El-RAHMAN on 10/26/14.
 //  Copyright (c) 2014 BrandWatch. All rights reserved.
 //
 
 
-class EngagementScorer: NSObject {
-    
+class SentimentScorer: NSObject {
     
     class func calculateTotalScore(campaign: Campaign) -> Int {
         return Int(self.calculateScore(campaign, metrics: campaign.metrics_total!))
     }
     
-
+    
     private class func calculateScore(campaign: Campaign, metrics: Metrics) -> Float {
         let sharesTarget = campaign.shares_target
         let favoritesTarget = campaign.favorites_target
@@ -37,6 +36,7 @@ class EngagementScorer: NSObject {
         let shares = metrics.shares
         let favorites = metrics.favorites
         let likes = metrics.likes
+        let dislikes = metrics.likes
         let comments = metrics.comments
         let views = metrics.views
         
@@ -45,13 +45,15 @@ class EngagementScorer: NSObject {
         let favoritesScore = calcuateWeightScore(FAVORITES_WEIGHT, achieved: favorites!)
         
         let likesScore = calcuateWeightScore(LIKES_WEIGHT, achieved: likes!)
-
+        
         let commentsScore = calcuateWeightScore(LIKES_WEIGHT, achieved: comments!)
         
         let viewsScore = calcuateWeightScore(LIKES_WEIGHT, achieved: views!)
+      
+        let dislikesScore = calcuateWeightScore(DISLIKES_WEIGHT, achieved: dislikes!)
         
         //now acheivedScore
-        let acheivedScore = sharesScore + favoritesScore + likesScore + commentsScore + viewsScore
+        let acheivedScore = (sharesScore + favoritesScore + likesScore + commentsScore + viewsScore) - dislikesScore
         
         //not lets come up with a percentage
         let rawPercentage = Float(acheivedScore) / Float(maxScore)
@@ -59,7 +61,7 @@ class EngagementScorer: NSObject {
         //normalize
         
         return rawPercentage * 100
-
+        
     }
     
     private class func calcuateWeightScore(weight: Int, achieved: Int) -> Int {

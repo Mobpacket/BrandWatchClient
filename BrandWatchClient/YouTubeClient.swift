@@ -17,7 +17,7 @@ var service: GTLServiceYouTubeAnalytics!
 var scope = "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/yt-analytics.readonly"
 var kChannelBrandWatchID = "channel==UC7xk1Zi1q1MnmK-7fXkSzSw"
 var kChannelID = "channel==MINE"
-var kVideoMetrics = "views,shares,favoritesAdded,likes,comments,averageViewPercentage,annotationClickThroughRate"
+var kVideoMetrics = "views,shares,favoritesAdded,likes,dislikes,comments,averageViewPercentage,annotationClickThroughRate"
 
 
 class YouTubeClient: GTLServiceYouTubeAnalytics {
@@ -150,9 +150,11 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                         case "favoritesAdded":
                             videoMetrics.favorites = row.objectAtIndex(index) as? Int
                         case "likes":
-                            videoMetrics.likes = row[index] as? Int
+                            videoMetrics.likes = row.objectAtIndex(index) as? Int
+                        case "dislikes":
+                            videoMetrics.dislikes = row.objectAtIndex(index) as? Int
                         case "comments":
-                            videoMetrics.comments = row[index] as? Int
+                            videoMetrics.comments = row.objectAtIndex(index) as? Int
                         case "averageViewPercentage":
                             var vtr_float = row[index] as Float
                             videoMetrics.vtr = vtr_float
@@ -236,6 +238,8 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                             videoMetrics.favorites = row.objectAtIndex(index) as? Int
                         case "likes":
                             videoMetrics.likes = row.objectAtIndex(index) as? Int
+                        case "dislikes":
+                            videoMetrics.dislikes = row.objectAtIndex(index) as? Int
                         case "comments":
                             videoMetrics.comments = row.objectAtIndex(index) as? Int
                         case "averageViewPercentage":

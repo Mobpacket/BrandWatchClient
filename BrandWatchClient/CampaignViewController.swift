@@ -398,6 +398,10 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                         self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
                         
                         let score = EngagementScorer.calculateTotalScore(campaign)
+                      
+                        let sentiment = SentimentScorer.calculateTotalScore(campaign)
+                        println("Sentiment Score: \(sentiment)")
+                        
                         self.scoreValueLabel.text = "\(score)"
                         
                         let vtr_value = campaign.metrics_total?.vtr
