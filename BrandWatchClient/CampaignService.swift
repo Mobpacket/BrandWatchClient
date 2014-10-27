@@ -292,6 +292,8 @@ class CampaignService: NSObject {
         
         var totalMetrics : Metrics = Metrics(dictionary: NSDictionary())
         
+        totalMetrics.vtr       = 80.50
+        totalMetrics.ctr       = 0.01
         totalMetrics.views     = 667
         totalMetrics.shares    = 45
         totalMetrics.likes     = 144
@@ -352,15 +354,23 @@ class CampaignService: NSObject {
         if index == 9 {
             value = total
         } else {
-        
-            var half: Int = total / 2
             
-            var randValue : Int = Int(rand())
             
-            value = randValue % half
+            
+            var half: Int = total / (10 - index)
+            
+            if index % 2 == 0 {
+                value = half
+            } else {
+                
+                var randValue : Int = Int(rand())
+                
+                value = randValue % half
+            }
         }
         
         return value
+
         
     }
     
