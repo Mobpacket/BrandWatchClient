@@ -258,6 +258,12 @@
 #define COCOAPODS_VERSION_MINOR_JBChartView 8
 #define COCOAPODS_VERSION_PATCH_JBChartView 10
 
+// KAProgressLabel
+#define COCOAPODS_POD_AVAILABLE_KAProgressLabel
+#define COCOAPODS_VERSION_MAJOR_KAProgressLabel 1
+#define COCOAPODS_VERSION_MINOR_KAProgressLabel 2
+#define COCOAPODS_VERSION_PATCH_KAProgressLabel 0
+
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1

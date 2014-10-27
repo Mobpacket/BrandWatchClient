@@ -21,3 +21,4 @@
 #import "ALPValidator.h"
 #import "DKCircleButton.h"
 #import "TOMSMorphingLabel.h"
+#import "KAProgressLabel.h"
