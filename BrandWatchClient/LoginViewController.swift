@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     var loginCircleButton: DKCircleButton!
     
     // NAJ: Temporary for testing, remove
-    var useDashboardView = true
+    var useDashboardView = false
     
     override func viewDidLoad() {
         
