@@ -251,6 +251,73 @@ class CampaignService: NSObject {
         }
     }
 
+    func fillDummyCampaignTotalMetrics(campaign: Campaign) {
+        
+        var totalMetrics : Metrics = Metrics(dictionary: NSDictionary())
+        
+        totalMetrics.views     = 667
+        totalMetrics.shares    = 45
+        totalMetrics.likes     = 144
+        totalMetrics.favorites = 28
+        totalMetrics.comments  = 412
+        
+        campaign.metrics_total = totalMetrics
+    }
+    
+    func fillDummyCampaignDailyMetrics(campaign: Campaign) {
+        
+        var dailyMetrics: [Metrics] = []
+        
+        var metrics: Metrics = Metrics(dictionary: NSDictionary())
+        
+        var newViewsTotal     = campaign.metrics_total?.views
+        var newLikesTotal     = campaign.metrics_total?.likes
+        var newSharesTotal    = campaign.metrics_total?.shares
+        var newCommentsTotal  = campaign.metrics_total?.comments
+        var newFavoritesTotal = campaign.metrics_total?.favorites
+        var dateStr           = campaign.start
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        var date              = dateFormatter.dateFromString(dateStr!)
+        
+        for var i = 0; i < 10; i++ {
+            
+            metrics = Metrics(dictionary: NSDictionary())
+            
+            metrics.date      = date?.dateByAddingTimeInterval((NSTimeInterval)(i *  86400))
+            metrics.dateStr   = dateFormatter.stringFromDate(metrics.date!)
+            
+            metrics.views     = getValue(newViewsTotal!, index: i)
+            newViewsTotal     = newViewsTotal! - metrics.views!
+            
+            metrics.likes     = getValue(newLikesTotal!, index: i)
+            newLikesTotal     = newLikesTotal! - metrics.likes!
+            
+            metrics.shares    = getValue(newSharesTotal!, index: i)
+            newSharesTotal    = newSharesTotal! - metrics.shares!
+            
+            metrics.comments  = getValue(newCommentsTotal!, index: i)
+            newCommentsTotal  = newCommentsTotal! - metrics.comments!
+            
+            metrics.favorites = getValue(newFavoritesTotal!, index: i)
+            newFavoritesTotal = newFavoritesTotal! - metrics.favorites!
+            
+            dailyMetrics[i] = metrics
+        }
+        
+    }
+    
+    func getValue(total: Int, index: Int) -> Int {
+        
+        var half: Int = total / 2
+        
+        var randValue : Int = Int(rand())
+        
+        var value = randValue % half
+        
+        return value
+        
+    }
     
     private func invalidateCampaignEntry(campaign: Campaign) {
         if campaign.id != nil {
