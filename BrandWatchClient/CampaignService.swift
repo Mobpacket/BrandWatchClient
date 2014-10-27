@@ -305,15 +305,23 @@ class CampaignService: NSObject {
             dailyMetrics[i] = metrics
         }
         
+        campaign.metrics_daily = dailyMetrics
     }
     
     func getValue(total: Int, index: Int) -> Int {
         
-        var half: Int = total / 2
+        var value: Int
         
-        var randValue : Int = Int(rand())
+        if index == 9 {
+            value = total
+        } else {
         
-        var value = randValue % half
+            var half: Int = total / 2
+            
+            var randValue : Int = Int(rand())
+            
+            value = randValue % half
+        }
         
         return value
         
