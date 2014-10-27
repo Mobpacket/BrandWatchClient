@@ -549,23 +549,31 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     
     func loadSettingsView(edit: Bool) {
         
+        var load = true
+        
         var settingsVC = SettingsViewController() as SettingsViewController
         settingsVC.campaignVC = self
         
         // Check for edit or create to pass correct data model
         if edit == true {
             var activeCampaign = CampaignService.sharedInstance.getActiveCampaign()
+            if activeCampaign?.name == "ACME" {
+                load = false
+            }
             CampaignService.sharedInstance.setActiveWriteCampaign(activeCampaign!)
         } else {
             var newCampaign = Campaign(object: PFObject(className: "Campaign"))
             CampaignService.sharedInstance.setActiveWriteCampaign(newCampaign)
         }
         
-        println("loadSettingsView() pressed")
+        if load == true {
         
-        self.presentViewController(settingsVC, animated: true) { () -> Void in
+            println("loadSettingsView() pressed")
             
-            println("transitioning to settings controller")
+            self.presentViewController(settingsVC, animated: true) { () -> Void in
+                
+                println("transitioning to settings controller")
+            }
         }
     }
     
