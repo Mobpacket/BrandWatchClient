@@ -113,7 +113,6 @@ class LoginViewController: UIViewController {
         
 //        self.presentViewController(dashboardVC, animated: true) { () -> Void in
         self.presentViewController(campaignVC, animated: true) { () -> Void in
-
             
             println("transitioning to campaign controller")
         }

@@ -177,6 +177,7 @@ PODS:
   - Parse (1.4.2):
     - Bolts (~> 1.1.3)
   - RWDropdownMenu (1.0.1)
+  - TOMSMorphingLabel (0.2.3)
 
 DEPENDENCIES:
   - AFNetworking
@@ -186,6 +187,7 @@ DEPENDENCIES:
   - JBChartView (~> 2.8.9)
   - Parse (~> 1.4)
   - RWDropdownMenu (~> 1.0.0)
+  - TOMSMorphingLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
@@ -198,5 +200,6 @@ SPEC CHECKSUMS:
   JBChartView: 50b221ef68d0934f5aea417a369a5b02167848a9
   Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
   RWDropdownMenu: 74ad34e54804b33acac90cf54653a0cf9b59a689
+  TOMSMorphingLabel: f2443dbb4be2137847ed910ae2dd6adf3289c71c
 
 COCOAPODS: 0.34.4

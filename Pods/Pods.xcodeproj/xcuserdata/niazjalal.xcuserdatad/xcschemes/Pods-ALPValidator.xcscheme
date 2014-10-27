@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BBE275EBEE48717DFBACCEB6"
+               BlueprintIdentifier = "E08783686CEB221F40A213ED"
                BuildableName = "libPods-ALPValidator.a"
                BlueprintName = "Pods-ALPValidator"
                ReferencedContainer = "container:Pods.xcodeproj">

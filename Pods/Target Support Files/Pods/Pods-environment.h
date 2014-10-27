@@ -270,6 +270,12 @@
 #define COCOAPODS_VERSION_MINOR_RWDropdownMenu 0
 #define COCOAPODS_VERSION_PATCH_RWDropdownMenu 1
 
+// TOMSMorphingLabel
+#define COCOAPODS_POD_AVAILABLE_TOMSMorphingLabel
+#define COCOAPODS_VERSION_MAJOR_TOMSMorphingLabel 0
+#define COCOAPODS_VERSION_MINOR_TOMSMorphingLabel 2
+#define COCOAPODS_VERSION_PATCH_TOMSMorphingLabel 3
+
 // gtm-oauth2
 #define COCOAPODS_POD_AVAILABLE_gtm_oauth2
 #define COCOAPODS_VERSION_MAJOR_gtm_oauth2 0

@@ -20,3 +20,4 @@
 #import "GTLYouTubeAnalytics.h"
 #import "ALPValidator.h"
 #import "DKCircleButton.h"
+#import "TOMSMorphingLabel.h"

@@ -52,6 +52,7 @@
                 <constraint firstItem="pJg-cm-HL7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="240" id="y8u-LW-apM"/>
                 <constraint firstItem="Wdn-vd-jEt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="240" id="yd0-SW-pJz"/>
             </constraints>
+            <point key="canvasLocation" x="447" y="578"/>
         </view>
     </objects>
     <resources>

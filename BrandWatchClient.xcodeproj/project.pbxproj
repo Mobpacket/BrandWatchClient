@@ -637,7 +637,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nabib/Downloads/parse-library-1.4.1",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BrandWatchClient/Info.plist;
@@ -656,7 +655,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nabib/Downloads/parse-library-1.4.1",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BrandWatchClient/Info.plist;
