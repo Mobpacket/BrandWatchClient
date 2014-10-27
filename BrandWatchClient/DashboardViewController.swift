@@ -24,6 +24,15 @@ class DashboardViewController: UIViewController {
     var engagementLabelData: [String]!
     var sentimentLabelData: [String]!
     
+    @IBOutlet weak var vtrProgressLabel: UILabel!
+    @IBOutlet weak var ctrProgressLabel: UILabel!
+    @IBOutlet weak var viewsProgressLabel: UILabel!
+    @IBOutlet weak var sharesProgressLabel: UILabel!
+    @IBOutlet weak var likesProgressLabel: UILabel!
+    @IBOutlet weak var favoritesProgressLabel: UILabel!
+    @IBOutlet weak var CommentsProgressLabel: UILabel!
+    @IBOutlet weak var dislikesProgressLabel: UILabel!
+    
 //    var engagementCircleButton: DKCircleButton!
 //    var sentimentCircleButton: DKCircleButton!
 //    var viewsCircleButton: DKCircleButton!
