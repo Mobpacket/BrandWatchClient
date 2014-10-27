@@ -302,7 +302,7 @@ class CampaignService: NSObject {
             metrics.favorites = getValue(newFavoritesTotal!, index: i)
             newFavoritesTotal = newFavoritesTotal! - metrics.favorites!
             
-            dailyMetrics[i] = metrics
+            dailyMetrics.append(metrics)
         }
         
         campaign.metrics_daily = dailyMetrics
