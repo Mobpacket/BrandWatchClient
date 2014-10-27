@@ -49,6 +49,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>Pods-TOMSMorphingLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Pods-gtm-oauth2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -87,6 +92,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>22C95CE11EAE479EB965CBC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A3E493A534BF4EC86F2773D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F5008A18AFC5EEE435785AD</key>
 		<dict>
 			<key>primary</key>
@@ -97,7 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3889E2E7133CB6553F78B187</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>43336BAFBCA96FA0488AD114</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48B669A31A88D4AA7924E77A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -108,6 +133,21 @@
 			<true/>
 		</dict>
 		<key>5CB10FFBF69FCD81ABDED953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E8736DE2FD881AAEBEB5338</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>604E1010992928C2C6618A09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>628016CBB4E4BFC54BC5D826</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,6 +212,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BE590611CAF2C6C33A569C30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5E3FC58FBCABC2ED6341FE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C7EBBFC76A49BAB06912798D</key>
 		<dict>
 			<key>primary</key>
@@ -183,6 +233,21 @@
 			<true/>
 		</dict>
 		<key>CD3313647B43EDE9FA1A74B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFDB3BA5F2437AAA279EEB17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D40A6E3D20AB518121D0D77C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E08783686CEB221F40A213ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
