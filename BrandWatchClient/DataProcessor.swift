@@ -9,6 +9,7 @@
 import UIKit
 
 enum MetricTypeEnum {
+    
     case Views, Shares, Likes, Favorites, Comments
 }
 
@@ -22,21 +23,25 @@ class DataProcessor: NSObject {
             
             switch type {
                 
-            case .Views:
-                var viewCount = metrics.views == nil ? 0 : metrics.views
-                data.append(viewCount!)
-            case .Shares:
-                var shareCount = metrics.shares == nil ? 0 : metrics.shares
-                data.append(shareCount!)
-            case .Likes:
-                var likeCount = metrics.likes == nil ? 0 : metrics.likes
-                data.append(likeCount!)
-            case .Favorites:
-                var favoriteCount = metrics.favorites == nil ? 0 : metrics.favorites
-                data.append(favoriteCount!)
-            case .Comments:
-                var commentCount = metrics.comments == nil ? 0 : metrics.comments
-                data.append(commentCount!)
+                case .Views:
+                    var viewCount = metrics.views == nil ? 0 : metrics.views
+                    data.append(viewCount!)
+                
+                case .Shares:
+                    var shareCount = metrics.shares == nil ? 0 : metrics.shares
+                    data.append(shareCount!)
+                
+                case .Likes:
+                    var likeCount = metrics.likes == nil ? 0 : metrics.likes
+                    data.append(likeCount!)
+                
+                case .Favorites:
+                    var favoriteCount = metrics.favorites == nil ? 0 : metrics.favorites
+                    data.append(favoriteCount!)
+                
+                case .Comments:
+                    var commentCount = metrics.comments == nil ? 0 : metrics.comments
+                    data.append(commentCount!)
             }
         }
         

@@ -24,14 +24,14 @@ class DashboardViewController: UIViewController {
     var engagementLabelData: [String]!
     var sentimentLabelData: [String]!
     
-    var engagementCircleButton: DKCircleButton!
-    var sentimentCircleButton: DKCircleButton!
-    var viewsCircleButton: DKCircleButton!
-    var sharesCircleButton: DKCircleButton!
-    var likesCircleButton: DKCircleButton!
-    var favoritesCircleButton: DKCircleButton!
-    var commentsCircleButton: DKCircleButton!
-    var dislikesCircleButton: DKCircleButton!
+//    var engagementCircleButton: DKCircleButton!
+//    var sentimentCircleButton: DKCircleButton!
+//    var viewsCircleButton: DKCircleButton!
+//    var sharesCircleButton: DKCircleButton!
+//    var likesCircleButton: DKCircleButton!
+//    var favoritesCircleButton: DKCircleButton!
+//    var commentsCircleButton: DKCircleButton!
+//    var dislikesCircleButton: DKCircleButton!
     
     override func viewDidLoad() {
         
@@ -77,6 +77,9 @@ class DashboardViewController: UIViewController {
 //        engagementCircleButton.addTarget(self, action: "engagementCircleButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 //        view.addSubview(engagementCircleButton)
         
+        self.engagementLabelIndex = 0
+        // NAJ: Update with real data
+        self.engagementLabelData = ["Engagement Score", "90"]
         engagementMagicLabel = TOMSMorphingLabel(frame: CGRect(x: 10, y: 265, width: 140, height: 25))
         engagementMagicLabel.font = UIFont.systemFontOfSize(14)
         engagementMagicLabel.layer.borderColor = UIColor.BWRed().CGColor
@@ -84,10 +87,13 @@ class DashboardViewController: UIViewController {
         engagementMagicLabel.backgroundColor = UIColor.BWDarkBlue()
         engagementMagicLabel.textAlignment = NSTextAlignment.Center
         engagementMagicLabel.textColor = UIColor.BWOffWhite()
-        engagementMagicLabel.text = "Enagegement Score"
+        engagementMagicLabel.text = self.engagementLabelData[self.engagementLabelIndex]
         view.addSubview(engagementMagicLabel)
-//        self.toggleTextForLabel(engagementMagicLabel)
+        self.toggleEngagementTextForLabel(engagementMagicLabel)
         
+        self.sentimentLabelIndex = 0
+        // NAJ: Update with real data
+        self.sentimentLabelData = ["Sentiment Score", "30"]
         sentimentMagicLabel = TOMSMorphingLabel(frame: CGRect(x: 170, y: 265, width: 140, height: 25))
         sentimentMagicLabel.font = UIFont.systemFontOfSize(14)
         sentimentMagicLabel.layer.borderColor = UIColor.BWRed().CGColor
@@ -97,6 +103,7 @@ class DashboardViewController: UIViewController {
         sentimentMagicLabel.textColor = UIColor.BWOffWhite()
         sentimentMagicLabel.text = "Sentiment Score"
         view.addSubview(sentimentMagicLabel)
+        self.toggleSentimentTextForLabel(sentimentMagicLabel)
     }
     
 //    func engagementLabelValues() -> [String] {
@@ -113,17 +120,38 @@ class DashboardViewController: UIViewController {
 //        
 //        engagementLabelIndex = max(0, min(index, index % [self.engagementLabelData.count]))
 //    }
-//    
-//    func toggleTextForLabel(label: TOMSMorphingLabel) {
-//        
-//        var self.engagementLabelValues()
-//        label.setTextWithoutMorphing("\(self.engagementLabelValues(self.engagementLabelIndex))")
-//    }
-//    
-//    func engagementCircleButtonTapped() {
-//        
-//
-//    }
+    
+    func toggleEngagementTextForLabel(label: TOMSMorphingLabel) {
+        
+        if self.engagementLabelIndex == 0 {
+            self.engagementLabelIndex = 1
+            self.engagementMagicLabel.text = self.engagementLabelData[self.engagementLabelIndex]
+        } else {
+            self.engagementLabelIndex = 0
+            self.engagementMagicLabel.text = self.engagementLabelData[self.engagementLabelIndex]
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+            
+            self.toggleEngagementTextForLabel(self.engagementMagicLabel)
+        }
+    }
+    
+    func toggleSentimentTextForLabel(label: TOMSMorphingLabel) {
+        
+        if self.sentimentLabelIndex == 0 {
+            self.sentimentLabelIndex = 1
+            self.sentimentMagicLabel.text = self.sentimentLabelData[self.sentimentLabelIndex]
+        } else {
+            self.sentimentLabelIndex = 0
+            self.sentimentMagicLabel.text = self.sentimentLabelData[self.sentimentLabelIndex]
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+            
+            self.toggleSentimentTextForLabel(self.engagementMagicLabel)
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         

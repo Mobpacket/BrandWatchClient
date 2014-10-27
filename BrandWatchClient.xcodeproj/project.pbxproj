@@ -303,11 +303,11 @@
 		D9E3D3E819EA099D00101EC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D9808FC719FDD1A100D6ECF0 /* DashboardView.xib */,
 				D9E3D3F019EA54E800101EC6 /* CampaignLineView.swift */,
 				D9E3D3F219EA6BF900101EC6 /* SectionLineView.swift */,
 				D9726BB119EE5B0600B9FF1A /* SettingsLineView.swift */,
 				D9726BB319EE5B9800B9FF1A /* TargetLineView.swift */,
+				D9808FC719FDD1A100D6ECF0 /* DashboardView.xib */,
 				D9E3D3EE19EA1A4600101EC6 /* CampaignView.xib */,
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
 				D9726BAD19EE374200B9FF1A /* SettingsView.xib */,

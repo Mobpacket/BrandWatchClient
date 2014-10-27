@@ -18,6 +18,9 @@ class LoginViewController: UIViewController {
     
     var loginCircleButton: DKCircleButton!
     
+    // NAJ: Temporary for testing, remove
+    var useDashboardView = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -107,14 +110,24 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             println("dismissed")
         })
-        
-//        let dashboardVC = DashboardViewController() as DashboardViewController
-        let campaignVC = CampaignViewController() as CampaignViewController
-        
-//        self.presentViewController(dashboardVC, animated: true) { () -> Void in
-        self.presentViewController(campaignVC, animated: true) { () -> Void in
+
+        // NAJ: Remove, for testing while moving to dashboard
+        if useDashboardView == true {
             
-            println("transitioning to campaign controller")
+            let dashboardVC = DashboardViewController() as DashboardViewController
+
+            self.presentViewController(dashboardVC, animated: true) { () -> Void in
+                
+                println("transitioning to dashboard controller")
+            }
+        } else {
+            
+            let campaignVC = CampaignViewController() as CampaignViewController
+            
+            self.presentViewController(campaignVC, animated: true) { () -> Void in
+                
+                println("transitioning to campaign controller")
+            }
         }
     }
     

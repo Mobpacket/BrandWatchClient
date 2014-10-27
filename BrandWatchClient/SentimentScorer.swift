@@ -10,11 +10,12 @@
 class SentimentScorer: NSObject {
     
     class func calculateTotalScore(campaign: Campaign) -> Int {
+        
         return Int(self.calculateScore(campaign, metrics: campaign.metrics_total!))
     }
     
-    
     private class func calculateScore(campaign: Campaign, metrics: Metrics) -> Float {
+        
         let sharesTarget = campaign.shares_target
         let favoritesTarget = campaign.favorites_target
         let likesTarget = campaign.likes_target
@@ -27,11 +28,10 @@ class SentimentScorer: NSObject {
         let maxComments = COMMENTS_WEIGHT * (commentsTarget!)
         let maxViews = VIEWS_WEIGHT * (viewsTarget!)
         
-        //Now the maxScore
+        // Now the maxScore
         let maxScore = maxShares + maxFavorites + maxLikes + maxComments + maxViews
         
         println("maxScore: \(maxScore)" )
-        
         
         let shares = metrics.shares
         let favorites = metrics.favorites
@@ -52,19 +52,19 @@ class SentimentScorer: NSObject {
       
         let dislikesScore = calcuateWeightScore(DISLIKES_WEIGHT, achieved: dislikes!)
         
-        //now acheivedScore
+        // Now acheivedScore
         let acheivedScore = (sharesScore + favoritesScore + likesScore + commentsScore + viewsScore) - dislikesScore
         
-        //not lets come up with a percentage
+        // Not lets come up with a percentage
         let rawPercentage = Float(acheivedScore) / Float(maxScore)
         
         //normalize
-        
         return rawPercentage * 100
-        
     }
     
     private class func calcuateWeightScore(weight: Int, achieved: Int) -> Int {
+        
         return achieved * weight
     }
 }
+

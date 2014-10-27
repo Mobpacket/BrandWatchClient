@@ -14,8 +14,7 @@ extension Float {
     }
 }
 
-
 class Helper: NSObject {
 
-   
+    
 }

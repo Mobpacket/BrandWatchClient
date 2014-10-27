@@ -12,10 +12,10 @@ import Foundation
 
 extension UIColor {
 
-    //#7D1935
-    //#4A96AD
-    //#F5F3EE
-    //#FFFFFF
+    //#7D1935 BWRed
+    //#4A96AD BWDarkBlue
+    //#F5F3EE BWOffWhite
+    //#FFFFFF BWWhite
     
     class func BWRed() -> UIColor {
     
