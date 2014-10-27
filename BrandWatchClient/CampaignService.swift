@@ -24,6 +24,8 @@ class CampaignService: NSObject {
     var activeCampaign: Campaign?
     var activeWriteCampaign: Campaign?
     
+    var dummyCampaignName: String = "ACME"
+    
     func newCampaignInstance() -> Campaign {
         return Campaign(object: PFObject())
     }
@@ -94,108 +96,119 @@ class CampaignService: NSObject {
     
     func getCampaignTotalMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
         
-        var id = campaign.id
-        var metricsTotal = TTLCache.sharedInstance.get("\(id).metricsTotal") as? Metrics
-        
-        if metricsTotal == nil {
-        
-            var videos = campaign.video_ids as NSArray!
-        
-            var currentVideo = Video(dictionary: NSDictionary())
-        
-            for (index, video) in enumerate(videos) {
-            
-                currentVideo.video_id = video as? String
-                
-                if currentVideo.video_id != nil {
-                YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
-                
-                    if error == nil {
-                            currentVideo.metrics_total = metrics
-                    
-                        if campaign.metrics_total == nil {
-                            campaign.metrics_total = metrics
-                        } else {
-                            campaign.metrics_total?.addMetrics(metrics!)
-                        }
-                        //populate cache
-                        TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
-                        if index >= videos.count - 1 {
-                            callback(campaign: campaign, error: nil)
-                        }
-                    }
-                    else {
-                        callback(campaign: nil, error: error)
-                    }
-                })
-            }
-            }
-        } else {
-            campaign.metrics_total = metricsTotal
+        if campaign.name == dummyCampaignName {
+            fillDummyCampaignTotalMetrics(campaign)
             callback(campaign: campaign, error: nil)
-            
         }
-        
+        else {
+            var id = campaign.id
+            var metricsTotal = TTLCache.sharedInstance.get("\(id).metricsTotal") as? Metrics
+            
+            if metricsTotal == nil {
+            
+                var videos = campaign.video_ids as NSArray!
+            
+                var currentVideo = Video(dictionary: NSDictionary())
+            
+                for (index, video) in enumerate(videos) {
+                
+                    currentVideo.video_id = video as? String
+                    
+                    if currentVideo.video_id != nil {
+                    YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
+                    
+                        if error == nil {
+                                currentVideo.metrics_total = metrics
+                        
+                            if campaign.metrics_total == nil {
+                                campaign.metrics_total = metrics
+                            } else {
+                                campaign.metrics_total?.addMetrics(metrics!)
+                            }
+                            //populate cache
+                            TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
+                            if index >= videos.count - 1 {
+                                callback(campaign: campaign, error: nil)
+                            }
+                        }
+                        else {
+                            callback(campaign: nil, error: error)
+                        }
+                    })
+                }
+                }
+            } else {
+                campaign.metrics_total = metricsTotal
+                callback(campaign: campaign, error: nil)
+                
+            }
+        }
     }
     
     func getCampaignDailyMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
         
-        var id = campaign.id
-        var metricsDaily = TTLCache.sharedInstance.get("\(id).metricsDaily") as? [Metrics]
-        
-        if metricsDaily == nil {
-            var videos = campaign.video_ids as NSArray!
-        
-            var currentVideo = Video(dictionary: NSDictionary())
-        
-            for (index, video) in enumerate(videos) {
+        if campaign.name == dummyCampaignName {
+            fillDummyCampaignDailyMetrics(campaign)
+            callback(campaign: campaign, error: nil)
+        }
+        else {
+            var id = campaign.id
+            var metricsDaily = TTLCache.sharedInstance.get("\(id).metricsDaily") as? [Metrics]
             
-                currentVideo.video_id = video as? String
+            if metricsDaily == nil {
+                var videos = campaign.video_ids as NSArray!
             
-                YouTubeClient.sharedInstance.queryDailyVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
+                var currentVideo = Video(dictionary: NSDictionary())
+            
+                for (index, video) in enumerate(videos) {
                 
-                    if error == nil {
+                    currentVideo.video_id = video as? String
+                
+                    YouTubeClient.sharedInstance.queryDailyVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
                     
-                        currentVideo.metrics_daily = metrics
+                        if error == nil {
                         
-                        if campaign.metrics_daily == nil {
-                            campaign.metrics_daily = metrics
-                        } else {
-                            for metric in metrics {
-                                var newMetric = true
-                                for currentMetric in campaign.metrics_daily! {
-                                    if metric.dateStr! == currentMetric.dateStr! {
-                                        currentMetric.addMetrics(metric)
-                                        newMetric = false
+                            currentVideo.metrics_daily = metrics
+                            
+                            if campaign.metrics_daily == nil {
+                                campaign.metrics_daily = metrics
+                            } else {
+                                for metric in metrics {
+                                    var newMetric = true
+                                    for currentMetric in campaign.metrics_daily! {
+                                        if metric.dateStr! == currentMetric.dateStr! {
+                                            currentMetric.addMetrics(metric)
+                                            newMetric = false
+                                        }
+                                    }
+                                    if newMetric == true {
+                                        campaign.metrics_daily!.append(metric)
                                     }
                                 }
-                                if newMetric == true {
-                                    campaign.metrics_daily!.append(metric)
+                                campaign.metrics_daily!.sort {
+                                    item1, item2 in
+                                    let date1 = item1.date! as NSDate
+                                    let date2 = item2.date! as NSDate
+                                    return date1.compare(date2) == NSComparisonResult.OrderedAscending
                                 }
-                            }
-                            campaign.metrics_daily!.sort {
-                                item1, item2 in
-                                let date1 = item1.date! as NSDate
-                                let date2 = item2.date! as NSDate
-                                return date1.compare(date2) == NSComparisonResult.OrderedAscending
-                            }
 
-                        }
+                            }
+                            
+                            TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
                         
-                        TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
-                    
-                        if index >= videos.count - 1 {
-                            callback(campaign: campaign, error: nil)
+                            if index >= videos.count - 1 {
+                                callback(campaign: campaign, error: nil)
+                            }
+                        } else {
+                        
+                            callback(campaign: nil, error: error)
                         }
-                    } else {
-                    
-                        callback(campaign: nil, error: error)
-                    }
-                })
+                    })
+                }
+            } else {
+                campaign.metrics_daily = metricsDaily!
+                callback(campaign: campaign, error: nil)
             }
-        } else {
-            campaign.metrics_daily = metricsDaily!
-            callback(campaign: campaign, error: nil)
         }
     }
     
