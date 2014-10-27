@@ -77,8 +77,8 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                             var videoResult = playlistResults?.items()[index] as GTLYouTubePlaylistItem
                         
                             var video = Video(dictionary: NSDictionary())
-                            
-                            video.video_id        = videoResult.identifier
+                            var resourceId        = videoResult.snippet.resourceId as GTLYouTubeResourceId
+                            video.video_id        = resourceId.JSONValueForKey("videoId") as? String
                             video.name            = videoResult.snippet.title
                             video.summary         = videoResult.snippet.description
                             video.channel_id      = videoResult.snippet.channelId

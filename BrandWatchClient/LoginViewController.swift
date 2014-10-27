@@ -104,9 +104,7 @@ class LoginViewController: UIViewController {
         service = YouTubeClient.sharedInstance
         service.authorizer = finishedWithAuth
         
-        CampaignService.getVideos { (videos, error) -> Void in
-            println("warm-up video cache")
-        }
+        CampaignService.sharedInstance.warmupCache()
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             println("dismissed")

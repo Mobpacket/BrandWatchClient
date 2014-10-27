@@ -15,9 +15,14 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
     
     var videoSelectionView: UIView!
     
+    var campaign: Campaign!
+    
     var videos: [Video]! = [Video]()
     
     var selectedRowsArray: NSMutableArray = []
+    
+    var settingsVC: SettingsViewController!
+    
     
     override func viewDidLoad() {
         
@@ -25,13 +30,24 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         
         
         // Retrieve a list of uploaded videos for the User's channel
-        CampaignService.getVideos(){ (videos, error) -> Void in
+        CampaignService.sharedInstance.getVideos(){ (videos, error) -> Void in
             if error == nil {
                 self.videos = videos
                 
                 //println("Videos1: \(videos)")
             }
         }
+        
+        var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()!
+        
+        self.selectedRowsArray = []
+        
+        if let videoIds = campaign.video_ids? {
+            for videoId in videoIds {
+                self.selectedRowsArray.addObject(videoId)
+            }
+        }
+        
         
         NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: "reloadVideos", userInfo: nil, repeats: false)
 
@@ -78,8 +94,10 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         var myFont: UIFont = UIFont(name: "Arial", size: 14.0)!
         cell.textLabel.font  = myFont;
         cell.textLabel.text = videos[indexPath.row].name!
+        
+        var videoId = videos[indexPath.row].video_id!
 
-        if selectedRowsArray.containsObject(indexPath.row) {
+        if selectedRowsArray.containsObject(videoId) {
             cell.imageView.image = UIImage(named: "checked.png")
             
         } else {
@@ -104,11 +122,13 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         
         var tappedIndexPath: NSIndexPath = videoSelectionTableView.indexPathForRowAtPoint(taplocation)!
         
-        if selectedRowsArray.containsObject(tappedIndexPath.row) {
-            selectedRowsArray.removeObject(tappedIndexPath.row)
+        var videoId = videos[tappedIndexPath.row].video_id!
+        
+        if selectedRowsArray.containsObject(videoId) {
+            selectedRowsArray.removeObject(videoId)
             
         } else {
-            selectedRowsArray.addObject(tappedIndexPath.row)
+            selectedRowsArray.addObject(videoId)
         }
         
         videoSelectionTableView.reloadData()
@@ -135,5 +155,39 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func videoListMenuTapped(sender: UIButton) {
+        var styleItems = [RWDropdownMenuItem]()
+        
+        
+        styleItems.append(
+            RWDropdownMenuItem(text:"Select", image:nil, action:{
+                
+                println("loading settings view (edit)")
+                //selected videos
+                var selectedVideos = [String]()
+                for videoId in self.selectedRowsArray {
+                    selectedVideos.append(videoId as String)
+                }
+                var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+                campaign?.video_ids = selectedVideos
+
+                //Make all the changes in CampaignService
+                self.settingsVC.loadCampaignTargets()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        )
+        
+        styleItems.append(
+            RWDropdownMenuItem(text:"Cancel", image:nil, action:{
+                println("cancelling...")
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        )
+        
+        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
 }

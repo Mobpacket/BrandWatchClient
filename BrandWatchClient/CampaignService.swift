@@ -8,122 +8,199 @@
 
 import UIKit
 
+
 class CampaignService: NSObject {
     
-    class func newCampaignInstance() -> Campaign {
+    class var sharedInstance: CampaignService {
+        
+        struct Static {
+            
+            static let instance = CampaignService()
+        }
+        
+        return Static.instance
+    }
+    
+    var activeCampaign: Campaign?
+    var activeWriteCampaign: Campaign?
+    
+    func newCampaignInstance() -> Campaign {
         return Campaign(object: PFObject())
     }
     
-    class func getCampaignById(id: String, callback: (campaign: Campaign!, error: NSError!) -> Void) {
-        ParseClient.getCampaignById(id) {
-            (pfCampaign: PFObject!, error: NSError!) -> Void in
-            
-            if error == nil {
-                
-                var campaignObj = Campaign(object: pfCampaign)
-                
-                var videos = campaignObj.video_ids as NSArray!
-                
-                var currentVideo = Video(dictionary: NSDictionary())
-                
-                for (index, video) in enumerate(videos) {
-                    
-                    currentVideo.video_id = video as? String
-                    
-                    YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaignObj.start, end_date: campaignObj.end, completion: { (metrics, error) -> () in
-                        
-                        if error == nil {
-                            currentVideo.metrics_total = metrics
-                            
-                            campaignObj.metrics_total = currentVideo.metrics_total
-
-                            callback(campaign: campaignObj, error: nil)
-                        }
-                        else {
-                            callback(campaign: nil, error: error)
-                        }
-                    })
-                }
-            } else {
-                
-                callback(campaign: nil, error: error)
-            }
-        }
+    func setActiveCampaign(campaign: Campaign) {
+        self.activeCampaign = campaign
     }
     
-    class func getCampaignDailyMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
+    func getActiveCampaign() -> Campaign? {
+        return self.activeCampaign
+    }
+
+    func setActiveWriteCampaign(campaign: Campaign) {
+        self.activeWriteCampaign = campaign
+    }
+    
+    func getActiveWriteCampaign() -> Campaign? {
+        return self.activeWriteCampaign
+    }
+
+    func getCampaignById(id: String, callback: (campaign: Campaign!, error: NSError!) -> Void) {
+        //check the cache
         
-        var videos = campaign.video_ids as NSArray!
+        var campaign = TTLCache.sharedInstance.get(id) as? Campaign
         
-        var currentVideo = Video(dictionary: NSDictionary())
-        
-        for (index, video) in enumerate(videos) {
-            
-            currentVideo.video_id = video as? String
-            
-            YouTubeClient.sharedInstance.queryDailyVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
-                
+        if(campaign == nil) {
+            ParseClient.getCampaignById(id) {
+                (pfCampaign: PFObject!, error: NSError!) -> Void in
                 if error == nil {
+                    var campaignObj = Campaign(object: pfCampaign)
                     
-                    campaign.metrics_daily = metrics
-                    
-                    currentVideo.metrics_daily = metrics
-                    
-                    callback(campaign: campaign, error: nil)
-                }
-                else {
-                    
+                    TTLCache.sharedInstance.put(campaignObj, forKey: id)
+                    callback(campaign: campaignObj, error: nil)
+                } else {
+                
                     callback(campaign: nil, error: error)
                 }
-            })
+            }
+        } else {
+            callback(campaign: campaign, error: nil)
         }
     }
     
-    class func getCampaignsByUserId(userId: String, callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
+    
+    func getCampaignTotalMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
         
-        ParseClient.getCampaignsByUserId(userId) { (pfObjects: [PFObject]!, error: NSError!) -> Void in
-            if error == nil {
+        var id = campaign.id
+        var metricsTotal = TTLCache.sharedInstance.get("\(id).metricsTotal") as? Metrics
+        
+        if metricsTotal == nil {
+        
+            var videos = campaign.video_ids as NSArray!
+        
+            var currentVideo = Video(dictionary: NSDictionary())
+        
+            for (index, video) in enumerate(videos) {
+            
+                currentVideo.video_id = video as? String
+            
+                YouTubeClient.sharedInstance.queryVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
                 
-                var campaignArr = [Campaign]()
-                
-                for pfObject in pfObjects {
+                    if error == nil {
+                        currentVideo.metrics_total = metrics
                     
-                    campaignArr.append(Campaign(object: pfObject))
+                        campaign.metrics_total = metrics
+                    
+                        //populate cache
+                        TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
+                        callback(campaign: campaign, error: nil)
+                    }
+                    else {
+                        callback(campaign: nil, error: error)
+                    }
+                })
+            }
+        } else {
+            campaign.metrics_total = metricsTotal
+            callback(campaign: campaign, error: nil)
+            
+        }
+        
+    }
+    
+    func getCampaignDailyMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
+        
+        var id = campaign.id
+        var metricsDaily = TTLCache.sharedInstance.get("\(id).metricsDaily") as? [Metrics]
+        
+        if metricsDaily == nil {
+            var videos = campaign.video_ids as NSArray!
+        
+            var currentVideo = Video(dictionary: NSDictionary())
+        
+            for (index, video) in enumerate(videos) {
+            
+                currentVideo.video_id = video as? String
+            
+                YouTubeClient.sharedInstance.queryDailyVideoMetricsWithParams(currentVideo, start_date: campaign.start, end_date: campaign.end, completion: { (metrics, error) -> () in
+                
+                    if error == nil {
+                    
+                        campaign.metrics_daily = metrics
+                    
+                        currentVideo.metrics_daily = metrics
+                        
+                         TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
+                    
+                        callback(campaign: campaign, error: nil)
+                    } else {
+                    
+                        callback(campaign: nil, error: error)
+                    }
+                })
+            }
+        } else {
+            campaign.metrics_daily = metricsDaily!
+            callback(campaign: campaign, error: nil)
+        }
+    }
+    
+    func getCampaigns(callback: (campaigns: [Campaign]!, error: NSError!) -> Void)  {
+        
+        YouTubeClient.sharedInstance.authorizer.userEmail
+        var userId = YouTubeClient.sharedInstance.authorizer.userEmail
+        getCampaignsByUserId(userId, callback: callback)
+    }
+    
+    func getCampaignsByUserId(userId: String, callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
+        
+        var campaigns = TTLCache.sharedInstance.get("campaigns") as? [Campaign]
+        
+        if campaigns == nil {
+            ParseClient.getCampaignsByUserId(userId) { (pfObjects: [PFObject]!, error: NSError!) -> Void in
+                if error == nil {
+                
+                    var campaignArr = [Campaign]()
+                
+                    for pfObject in pfObjects {
+                    
+                        campaignArr.append(Campaign(object: pfObject))
+                    }
+                    TTLCache.sharedInstance.put(campaignArr, forKey: "campaigns")
+                    callback(campaigns: campaignArr, error: nil)
+                } else {
+                
+                    callback(campaigns: nil, error: error)
                 }
-                
-                callback(campaigns: campaignArr, error: nil)
+            }
+        } else {
+            callback(campaigns: campaigns, error: nil)
+            
+        }
+    }
+    
+    func saveCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
+        ParseClient.saveCampaign( campaign) { (succeeded, error) -> Void in
+            if(error == nil) {
+                self.invalidateCampaignEntry(campaign)
+                callback(succeeded: true, error: nil)
             } else {
-                
-                callback(campaigns: nil, error: error)
+                callback(succeeded: false, error: error)
             }
         }
     }
     
-    class func getCampaigns(callback: (campaigns: [Campaign]!, error: NSError!) -> Void) {
-        ParseClient.getCampaigns() { (pfObjects: [PFObject]!, error: NSError!) -> Void in
-            if error == nil {
-                var campaignArr = [Campaign]()
-                for pfObject in pfObjects {
-                    campaignArr.append(Campaign(object: pfObject))
-                }
-                callback(campaigns: campaignArr, error: nil)
+    func deleteCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
+        ParseClient.deleteCampaign(campaign) { (succeeded, error) -> Void in
+            if(error == nil) {
+                self.invalidateCampaignEntry(campaign)
+                callback(succeeded: true, error: nil)
             } else {
-                callback(campaigns: nil, error: error)
+                callback(succeeded: false, error: error)
             }
         }
     }
 
-
-    
-    class func saveCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
-        ParseClient.saveCampaign(campaign, callback: callback)
-    }
-    
-    class func deleteCampaign(campaign: Campaign, callback: (succeeded: Bool, error: NSError!) -> Void) {
-        ParseClient.deleteCampaign(campaign, callback: callback)
-    }
-
-    class func getVideos(callback: (videos: [Video]!, error: NSError!) -> Void) {
+    func getVideos(callback: (videos: [Video]!, error: NSError!) -> Void) {
         
         var videos = TTLCache.sharedInstance.get("videos") as? [Video]
         if(videos == nil) {
@@ -140,6 +217,23 @@ class CampaignService: NSObject {
         } else {
             callback(videos: videos, error: nil)
         }
+    }
+    
+    func warmupCache() {
+        getVideos { (videos, error) -> Void in
+            println("warmup cache")
+        }
+    }
+
+    
+    private func invalidateCampaignEntry(campaign: Campaign) {
+        var id = campaign.id!
+        TTLCache.sharedInstance.remove(id)
+        TTLCache.sharedInstance.remove("\(id).metricsTotal")
+        TTLCache.sharedInstance.remove("\(id).metricsDaily")
+        TTLCache.sharedInstance.remove("campaigns")
+
+        
     }
    
 }

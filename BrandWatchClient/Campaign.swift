@@ -53,6 +53,10 @@ class Campaign: NSObject {
         video_ids = object["video_ids"] as? [String]
     }
     
+    func getVideoIDsCount() -> Int {
+        return video_ids?.count ?? 0
+    }
+    
     func isNewRecord() -> Bool {
         return (self.getPFObject().objectId == nil) ? true : false
     }

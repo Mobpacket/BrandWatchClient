@@ -33,10 +33,10 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     @IBOutlet weak var campaignTitleButton: UIButton!
     
     var campaignView: UIView!
-    var campaigns: [Campaign]!
-    var activeCampaign: Campaign!
     var engagementLineChartView = JBLineChartView()
     var engagementBarChartView = JBBarChartView()
+    
+   // var campaigns: [Campaign]!
     
     enum GraphTypeEnum {
         
@@ -83,7 +83,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         // setup all the UI before pulling data to view
         constructUI()
         
-        // pull data
+//         pull data
         reloadCampaigns()
         
         if type == .Line {
@@ -95,21 +95,24 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     
     func reloadCampaigns() {
         // Use our campaign service to load active campaigns for this user
-        var user_id = YouTubeClient.sharedInstance.authorizer.userEmail
+        var userId = YouTubeClient.sharedInstance.authorizer.userEmail
 
-        CampaignService.getCampaignsByUserId(user_id) { (campaigns, error) -> Void in
+        CampaignService.sharedInstance.getCampaignsByUserId(userId) { (campaigns, error) -> Void in
             
             if error == nil {
                 
-                self.campaigns = campaigns
+
+                var activeCampaign = CampaignService.sharedInstance.getActiveCampaign()
                 
                 //NAB: Since its loading for the first time, set active campaign to
                 //first campaign returned.  We should store this data in the user
-                if(self.activeCampaign == nil) {
-                    self.activeCampaign = self.campaigns[0]
+                if(activeCampaign == nil) {
+                    CampaignService.sharedInstance.setActiveCampaign(campaigns[0])
                 }
                 
-                self.loadCampaign(self.activeCampaign.id!)
+                activeCampaign = CampaignService.sharedInstance.getActiveCampaign()
+                var id = activeCampaign?.id
+                self.loadCampaign(id!)
             }
         }
     }
@@ -382,40 +385,50 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         var currentVideo: Video!
         
-        CampaignService.getCampaignById(id){ (campaign, error) -> Void in
+        CampaignService.sharedInstance.getCampaignById(id){ (campaign, error) -> Void in
             if error == nil {
                 
-                self.activeCampaign = campaign
-                
-                // Set values
-                self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
-
-                let score = EngagementScorer.calculateTotalScore(campaign)
-                self.scoreValueLabel.text = "\(score)"
-                
-                let vtr_value = self.activeCampaign.metrics_total?.vtr
-                self.vtrValueLabel.text = "\(vtr_value!)" + "%"
-                
-                let ctr_value = self.activeCampaign.metrics_total?.ctr
-                self.ctrValueLabel.text = "\(ctr_value!)" + "%"
-                
-                let views_value = self.activeCampaign.metrics_total?.views
-                self.viewsValueLabel.text = "\(views_value!)"
-
-                let shares_value = self.activeCampaign.metrics_total?.shares
-                self.sharesCountLabel.text = "\(shares_value!)"
-                
-                let favorites_value = self.activeCampaign.metrics_total?.favorites
-                self.favoritesCountLabel.text = "\(favorites_value!)"
-                
-                let likes_value = self.activeCampaign.metrics_total?.likes
-                self.likesCountLabel.text = "\(likes_value!)"
-                
-                let comments_value = self.activeCampaign.metrics_total?.comments
-                self.commentsCountLabel.text = "\(comments_value!)"
+                CampaignService.sharedInstance.setActiveCampaign(campaign)
                 
                 // Get the daily metrics to pouplate the graph
-                CampaignService.getCampaignDailyMetrics(campaign, callback: { (campaign, error) -> Void in
+                CampaignService.sharedInstance.getCampaignTotalMetrics(campaign, callback: { (campaign, error) -> Void in
+                    if error == nil {
+                        
+                        // Set values
+                        self.campaignTitleButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
+                        
+                        let score = EngagementScorer.calculateTotalScore(campaign)
+                        self.scoreValueLabel.text = "\(score)"
+                        
+                        let vtr_value = campaign.metrics_total?.vtr
+                        self.vtrValueLabel.text = "\(vtr_value!)" + "%"
+                        
+                        let ctr_value = campaign.metrics_total?.ctr
+                        self.ctrValueLabel.text = "\(ctr_value!)" + "%"
+                        
+                        let views_value = campaign.metrics_total?.views
+                        self.viewsValueLabel.text = "\(views_value!)"
+                        
+                        let shares_value = campaign.metrics_total?.shares
+                        self.sharesCountLabel.text = "\(shares_value!)"
+                        
+                        let favorites_value = campaign.metrics_total?.favorites
+                        self.favoritesCountLabel.text = "\(favorites_value!)"
+                        
+                        let likes_value = campaign.metrics_total?.likes
+                        self.likesCountLabel.text = "\(likes_value!)"
+                        
+                        let comments_value = campaign.metrics_total?.comments
+                        self.commentsCountLabel.text = "\(comments_value!)"
+                    } else {
+                        println("<TOTAL METRICS> Error: \(error)")
+                    }
+
+                })
+
+                
+                // Get the daily metrics to pouplate the graph
+                CampaignService.sharedInstance.getCampaignDailyMetrics(campaign, callback: { (campaign, error) -> Void in
                     if error == nil {
                         
                         println("Daily Metrics: \(campaign.metrics_daily)")
@@ -425,19 +438,19 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                             
                             self.lineChartData = [Int]()
                             
-                            var views = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Views)
+                            var views = DataProcessor.getMetricDailyData(campaign, type: .Views)
                             self.lineChartData.append(views)
                             
-                            var shares = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Shares)
+                            var shares = DataProcessor.getMetricDailyData(campaign, type: .Shares)
                             self.lineChartData.append(views)
                             
-                            var likes = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Likes)
+                            var likes = DataProcessor.getMetricDailyData(campaign, type: .Likes)
                             self.lineChartData.append(likes)
                             
-                            var favorites = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Favorites)
+                            var favorites = DataProcessor.getMetricDailyData(campaign, type: .Favorites)
                             self.lineChartData.append(favorites)
                             
-                            var comments = DataProcessor.getMetricDailyData(self.activeCampaign, type: .Comments)
+                            var comments = DataProcessor.getMetricDailyData(campaign, type: .Comments)
                             self.lineChartData.append(comments)
                             
                             self.engagementLineChartView.reloadData()
@@ -485,45 +498,49 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         var styleItems = [RWDropdownMenuItem]()
         
-        styleItems.append(
-            RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
-                
-                println("loading settings view (create)")
-                
-                self.loadSettingsView(false)
-            })
-        )
-        
-        styleItems.append(
-            RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
-                
-                println("loading settings view (edit)")
-                
-                self.loadSettingsView(true)
-            })
-        )
-        
-        for campaign in self.campaigns {
+        CampaignService.sharedInstance.getCampaigns { (campaigns, error) -> Void in
             styleItems.append(
-                RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
-                
-                println("loading campaign \(campaign.name!)")
+                RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
                     
-                self.loadCampaign(campaign.id!)
+                    println("loading settings view (create)")
                     
-                self.campaignTitleButton.setTitle(campaign.name!, forState: UIControlState.Normal)
-               })
+                    self.loadSettingsView(false)
+                })
             )
+            
+            styleItems.append(
+                RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
+                    
+                    println("loading settings view (edit)")
+                    
+                    self.loadSettingsView(true)
+                })
+            )
+            
+            for campaign in campaigns {
+                styleItems.append(
+                    RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
+                        
+                        println("loading campaign \(campaign.name!)")
+                        
+                        self.loadCampaign(campaign.id!)
+                        
+                        self.campaignTitleButton.setTitle(campaign.name!, forState: UIControlState.Normal)
+                    })
+                )
+            }
+            
+            styleItems.append(
+                RWDropdownMenuItem(text:"Sign Out", image:nil, action:{
+                    
+                    self.signOut()
+                })
+            )
+            
+            RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
         }
         
-        styleItems.append(
-            RWDropdownMenuItem(text:"Sign Out", image:nil, action:{
-                
-                self.signOut()
-            })
-        )
        
-        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
     
     func loadSettingsView(edit: Bool) {
@@ -533,11 +550,11 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
         
         // Check for edit or create to pass correct data model
         if edit == true {
-        
-            settingsVC.campaign = self.activeCampaign
+            var activeCampaign = CampaignService.sharedInstance.getActiveCampaign()
+            CampaignService.sharedInstance.setActiveWriteCampaign(activeCampaign!)
         } else {
-            
-            settingsVC.campaign = Campaign(object: PFObject(className: "Campaign"))
+            var newCampaign = Campaign(object: PFObject(className: "Campaign"))
+            CampaignService.sharedInstance.setActiveWriteCampaign(newCampaign)
         }
         
         println("loadSettingsView() pressed")
