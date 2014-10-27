@@ -68,6 +68,30 @@ class CampaignService: NSObject {
     }
     
     
+    func getCampaignByName(name: String, callback: (campaign: Campaign!, error: NSError!) -> Void) {
+        //check the cache
+        
+        var campaign = TTLCache.sharedInstance.get(name) as? Campaign
+        
+        if(campaign == nil) {
+            ParseClient.getCampaignByName(name) {
+                (pfCampaign: PFObject!, error: NSError!) -> Void in
+                if error == nil {
+                    var campaignObj = Campaign(object: pfCampaign)
+                    
+                    TTLCache.sharedInstance.put(campaignObj, forKey: name)
+                    callback(campaign: campaignObj, error: nil)
+                } else {
+                    
+                    callback(campaign: nil, error: error)
+                }
+            }
+        } else {
+            callback(campaign: campaign, error: nil)
+        }
+    }
+
+    
     func getCampaignTotalMetrics(campaign: Campaign, callback: (campaign: Campaign!, error: NSError!) -> Void) {
         
         var id = campaign.id
@@ -213,7 +237,10 @@ class CampaignService: NSObject {
         ParseClient.saveCampaign( campaign) { (succeeded, error) -> Void in
             if(error == nil) {
                 self.invalidateCampaignEntry(campaign)
-                callback(succeeded: true, error: nil)
+                self.getCampaignByName(campaign.name!, callback: { (c, error) -> Void in
+                    self.setActiveCampaign(c)
+                    callback(succeeded: true, error: nil)
+                })
             } else {
                 callback(succeeded: false, error: error)
             }
@@ -224,7 +251,12 @@ class CampaignService: NSObject {
         ParseClient.deleteCampaign(campaign) { (succeeded, error) -> Void in
             if(error == nil) {
                 self.invalidateCampaignEntry(campaign)
-                callback(succeeded: true, error: nil)
+                self.getCampaigns({ (campaigns, error) -> Void in
+                    if campaigns.count > 0 {
+                        self.setActiveCampaign(campaigns[0])
+                    }
+                    callback(succeeded: true, error: nil)
+                })
             } else {
                 callback(succeeded: false, error: error)
             }

@@ -32,6 +32,19 @@ class ParseClient: NSObject {
         query.getObjectInBackgroundWithId(id, callback)
     }
     
+    class func getCampaignByName(name: String, callback: ((pfCampaign: PFObject!, error: NSError!) -> Void)) {
+        
+        var query = PFQuery(className:"Campaign")
+        query.whereKey("name", equalTo: name)
+        query.findObjectsInBackgroundWithBlock { (campaigns: [AnyObject]!, error: NSError!) -> Void in
+            if campaigns.count > 0 {
+                callback(pfCampaign: campaigns[0] as PFObject, error: error)
+            } else {
+                callback(pfCampaign: nil, error: NSError())
+            }
+        }
+    }
+    
     class func getCampaigns(callback: ((pfObjects: [PFObject]!, error: NSError!) -> Void)) {
         var query = PFQuery(className:"Campaign")
         query.findObjectsInBackgroundWithBlock { (results: [AnyObject]!, error: NSError!) -> Void in
