@@ -139,25 +139,25 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
         self.vtrTarget.textColor = UIColor.blackColor()
-        self.vtrTarget.text = "\(campaign!.vtr_target!)"
+        self.vtrTarget.text = "\(campaign!.vtr_target ?? 70)"
         
         self.viewsTarget.textColor = UIColor.blackColor()
-        self.viewsTarget.text = "\(campaign!.views_target!)"
+        self.viewsTarget.text = "\(campaign!.views_target ?? 100)"
         
         self.ctrTarget.textColor = UIColor.blackColor()
-        self.ctrTarget.text = "\(campaign!.ctr_target!)"
+        self.ctrTarget.text = "\(campaign!.ctr_target ?? 0.2)"
         
         self.sharesTarget.textColor = UIColor.blackColor()
-        self.sharesTarget.text = "\(campaign!.shares_target!)"
+        self.sharesTarget.text = "\(campaign!.shares_target ?? 50)"
         
         self.favoritesTarget.textColor = UIColor.blackColor()
-        self.favoritesTarget.text = "\(campaign!.favorites_target!)"
+        self.favoritesTarget.text = "\(campaign!.favorites_target ?? 50)"
         
         self.likesTarget.textColor = UIColor.blackColor()
-        self.likesTarget.text = "\(campaign!.likes_target!)"
+        self.likesTarget.text = "\(campaign!.likes_target ?? 50)"
         
         self.commentsTarget.textColor = UIColor.blackColor()
-        self.commentsTarget.text = "\(campaign!.comments_target!)"
+        self.commentsTarget.text = "\(campaign!.comments_target ?? 25)"
     }
     
     private func loadDefaultCampaignTargets() {
@@ -320,6 +320,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
                     var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
                     
                     CampaignService.sharedInstance.saveCampaign(campaign!, callback: { (succeeded, error) -> Void in
+                        
                         self.campaignVC.reloadCampaigns()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })

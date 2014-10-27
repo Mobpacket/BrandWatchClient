@@ -88,7 +88,11 @@ class CampaignService: NSObject {
                     if error == nil {
                         currentVideo.metrics_total = metrics
                     
-                        campaign.metrics_total = metrics
+                        if campaign.metrics_total == nil {
+                            campaign.metrics_total = metrics
+                        } else {
+                            campaign.metrics_total?.addMetrics(metrics!)
+                        }
                     
                         //populate cache
                         TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
@@ -125,11 +129,33 @@ class CampaignService: NSObject {
                 
                     if error == nil {
                     
-                        campaign.metrics_daily = metrics
-                    
                         currentVideo.metrics_daily = metrics
                         
-                         TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
+                        if campaign.metrics_daily == nil {
+                            campaign.metrics_daily = metrics
+                        } else {
+                            for metric in metrics {
+                                var newMetric = true
+                                for currentMetric in campaign.metrics_daily! {
+                                    if metric.dateStr! == currentMetric.dateStr! {
+                                        currentMetric.addMetrics(metric)
+                                        newMetric = false
+                                    }
+                                }
+                                if newMetric == true {
+                                    campaign.metrics_daily!.append(metric)
+                                }
+                            }
+                            campaign.metrics_daily!.sort {
+                                item1, item2 in
+                                let date1 = item1.date! as NSDate
+                                let date2 = item2.date! as NSDate
+                                return date1.compare(date2) == NSComparisonResult.OrderedAscending
+                            }
+
+                        }
+                        
+                        TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
                     
                         callback(campaign: campaign, error: nil)
                     } else {
@@ -227,11 +253,15 @@ class CampaignService: NSObject {
 
     
     private func invalidateCampaignEntry(campaign: Campaign) {
-        var id = campaign.id!
-        TTLCache.sharedInstance.remove(id)
-        TTLCache.sharedInstance.remove("\(id).metricsTotal")
-        TTLCache.sharedInstance.remove("\(id).metricsDaily")
-        TTLCache.sharedInstance.remove("campaigns")
+        if campaign.id != nil {
+            var id = campaign.id!
+            TTLCache.sharedInstance.remove(id)
+            TTLCache.sharedInstance.remove("\(id).metricsTotal")
+            TTLCache.sharedInstance.remove("\(id).metricsDaily")
+            TTLCache.sharedInstance.remove("campaigns")
+        } else {
+            TTLCache.sharedInstance.remove("campaigns")
+        }
 
         
     }

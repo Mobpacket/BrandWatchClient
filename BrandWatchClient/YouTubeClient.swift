@@ -155,12 +155,10 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                             videoMetrics.comments = row[index] as? Int
                         case "averageViewPercentage":
                             var vtr_float = row[index] as Float
-                            var vtr_val = vtr_float.format(".1")
-                            videoMetrics.vtr = vtr_val
+                            videoMetrics.vtr = vtr_float
                         case "annotationClickThroughRate":
                             var ctr_float = row[index] as Float
-                            var ctr_val = ctr_float.format(".1")
-                            videoMetrics.ctr = ctr_val
+                            videoMetrics.ctr = ctr_float
                         default:
                             println("Do nothing")
                     }
@@ -241,9 +239,9 @@ class YouTubeClient: GTLServiceYouTubeAnalytics {
                         case "comments":
                             videoMetrics.comments = row.objectAtIndex(index) as? Int
                         case "averageViewPercentage":
-                            videoMetrics.vtr = row.objectAtIndex(index) as? String
+                            videoMetrics.vtr = row.objectAtIndex(index) as? Float
                         case "annotationClickThroughRate":
-                            videoMetrics.ctr = row.objectAtIndex(index) as? String
+                            videoMetrics.ctr = row.objectAtIndex(index) as? Float
                         case "day":
                             //dayStr = row.objectAtIndex(index) as? String
                             //let index1: String.Index = advance(dayStr.startIndex, 8)

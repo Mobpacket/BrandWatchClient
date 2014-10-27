@@ -20,8 +20,8 @@ class Metrics: NSObject {
      * comments: comments
      */
     var score: Int?                 // Engagement Score
-    var vtr: String?                   // View Through Rate (VTR) value
-    var ctr: String?                   // Click Through Rate (CTR) value
+    var vtr: Float?                   // View Through Rate (VTR) value
+    var ctr: Float?                   // Click Through Rate (CTR) value
     var views: Int?                 // Views
     var shares: Int?                // Social Shares (LinkedIn, Twitter, Facebook, etc.) value
     var favorites: Int?             // YouTube Favorites value
@@ -37,8 +37,8 @@ class Metrics: NSObject {
         self.dictionary = dictionary
         
         score = dictionary["score"] as? Int
-        vtr = dictionary["vtr"] as? String
-        ctr = dictionary["ctr"] as? String
+        vtr = dictionary["vtr"] as? Float
+        ctr = dictionary["ctr"] as? Float
         views = dictionary["views"] as? Int
         shares = dictionary["shares_count"] as? Int
         favorites = dictionary["favorites_count"] as? Int
@@ -46,5 +46,58 @@ class Metrics: NSObject {
         comments = dictionary["comments_count"] as? Int
         dateStr = dictionary["date_string"] as? String
         date = dictionary["date"] as? NSDate
+    }
+    
+    func addMetrics(metrics: Metrics) {
+        
+        if self.score != nil {
+            self.score! += metrics.score!
+        } else {
+            self.score = metrics.score
+        }
+
+        if self.vtr != nil {
+            self.vtr! += metrics.vtr!
+        } else {
+            self.vtr = metrics.vtr
+        }
+
+        if self.ctr != nil {
+            self.ctr! += metrics.ctr!
+        } else {
+            self.ctr = metrics.ctr
+        }
+
+        if self.views != nil {
+            self.views! += metrics.views!
+        } else {
+            self.views = metrics.views
+        }
+        
+        if self.shares != nil {
+            self.shares! += metrics.shares!
+        } else {
+            self.shares = metrics.shares
+        }
+        
+        if self.favorites != nil {
+            self.favorites! += metrics.favorites!
+        } else {
+            self.favorites = metrics.favorites
+        }
+
+        if self.likes != nil {
+            self.likes! += metrics.likes!
+        } else {
+            self.likes = metrics.likes
+        }
+
+        if self.comments != nil {
+            self.comments! += metrics.comments!
+        } else {
+            self.comments = metrics.comments
+        }
+
+        
     }
 }
