@@ -142,10 +142,10 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
                         self.sentimentMagicLabel.text = "\(sentiment)"
 
                         let vtr_value = campaign.metrics_total?.vtr
-                        self.vtrProgressLabel.text = "\(vtr_value!)"
+                        self.vtrProgressLabel.text = "VTR\n\(vtr_value!)"
                         
                         let ctr_value = campaign.metrics_total?.ctr
-                        self.ctrProgressLabel.text = "\(ctr_value!)"
+                        self.ctrProgressLabel.text = "CTR\n\(ctr_value!)"
                         
                         let views_value = campaign.metrics_total?.views
                         self.viewsProgressLabel.text = "V\n\(views_value!)"
