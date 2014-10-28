@@ -96,11 +96,9 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
     func reloadCampaigns() {
         // Use our campaign service to load active campaigns for this user
         var userId = YouTubeClient.sharedInstance.authorizer.userEmail
-
         CampaignService.sharedInstance.getCampaignsByUserId(userId) { (campaigns, error) -> Void in
             
             if error == nil {
-                
 
                 var activeCampaign = CampaignService.sharedInstance.getActiveCampaign()
                 
@@ -390,7 +388,7 @@ class CampaignViewController: UIViewController, JBLineChartViewDataSource, JBLin
                 
                 CampaignService.sharedInstance.setActiveCampaign(campaign)
                 
-                // Get the daily metrics to pouplate the graph
+                // Get the total metrics to pouplate the labels
                 CampaignService.sharedInstance.getCampaignTotalMetrics(campaign, callback: { (campaign, error) -> Void in
                     if error == nil {
                         

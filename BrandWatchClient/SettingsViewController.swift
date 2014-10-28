@@ -39,6 +39,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     var settingsView: UIView!
     
     var campaignVC: CampaignViewController!
+    var dashboardVC: DashboardViewController!
+
     
     override func viewDidLoad() {
         
@@ -224,7 +226,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     func cancelSettings() {
         
         println("Cancelling...")
-        self.campaignVC.reloadCampaigns()
+        self.dashboardVC.reloadCampaigns()
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
             println("going to campaign screen")
@@ -321,7 +323,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
                     
                     CampaignService.sharedInstance.saveCampaign(campaign!, callback: { (succeeded, error) -> Void in
                         
-                        self.campaignVC.reloadCampaigns()
+                        self.dashboardVC.reloadCampaigns()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 }
