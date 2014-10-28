@@ -33,6 +33,16 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
     @IBOutlet weak var commentsProgressLabel: KAProgressLabel!
     @IBOutlet weak var dislikesProgressLabel: KAProgressLabel!
     
+    // Used for progress rings
+    var vtrProgressValue: Float!
+    var ctrProgressValue: Float!
+    var viewsProgressValue: Float!
+    var sharesProgressValue: Float!
+    var likesProgressValue: Float!
+    var favoritesProgressValue: Float!
+    var commentsProgressValue: Float!
+    var dislikesProgressValue: Float!
+    
     let progressColors = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRed(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWDarkBlue()]
     
     let progressDColors = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRed(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWRed()]
@@ -126,7 +136,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
                 
                 CampaignService.sharedInstance.setActiveCampaign(campaign)
                 
-                // Get the daily metrics to pouplate the graph
+                // Get the total metrics to populate the labels and progress rings
                 CampaignService.sharedInstance.getCampaignTotalMetrics(campaign, callback: { (campaign, error) -> Void in
                     if error == nil {
                         
@@ -136,16 +146,21 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
                         let score = EngagementScorer.calculateTotalScore(campaign)
                         
                         let sentiment = SentimentScorer.calculateTotalScore(campaign)
-                        println("Sentiment Score: \(sentiment)")
+//                        println("Sentiment Score: \(sentiment)")
                         
                         self.engagementMagicLabel.text = "\(score)"
                         self.sentimentMagicLabel.text = "\(sentiment)"
 
                         let vtr_value = campaign.metrics_total?.vtr
+                        let vtr_target = campaign.vtr_target
                         self.vtrProgressLabel.text = "VTR\n\(vtr_value!)"
+                        self.vtrProgressValue = Float(vtr_value!) / Float(vtr_target!)
+                        
                         
                         let ctr_value = campaign.metrics_total?.ctr
+                        let ctr_target = campaign.ctr_target
                         self.ctrProgressLabel.text = "CTR\n\(ctr_value!)"
+                        self.ctrProgressValue = Float(ctr_value!) / Float(ctr_target!)
                         
                         let views_value = campaign.metrics_total?.views
                         self.viewsProgressLabel.text = "V\n\(views_value!)"
@@ -494,7 +509,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         headerView.titleLabel.textColor = UIColor.BWDarkBlue()
         headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        headerView.subtitleLabel.text = "Oct 20 - Oct 30"
+        headerView.subtitleLabel.text = "October"
         headerView.subtitleLabel.textColor = UIColor.BWRed()
         headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -522,11 +537,11 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         var lineChartfooterView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
         lineChartfooterView.backgroundColor = UIColor.BWRed()
-        lineChartfooterView.leftLabel.text = "Sunday"
+        lineChartfooterView.leftLabel.text = " 18 "
         lineChartfooterView.leftLabel.textColor = UIColor.BWOffWhite()
-        lineChartfooterView.rightLabel.text = "Saturday"
+        lineChartfooterView.rightLabel.text = " 28 "
         lineChartfooterView.rightLabel.textColor = UIColor.BWOffWhite()
-        lineChartfooterView.sectionCount = 10
+        lineChartfooterView.sectionCount = 10 // NAJ: replace with number of days
         self.engagementLineChartView.footerView = lineChartfooterView;
     }
     
@@ -604,9 +619,12 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         } else if lineIndex == 4 {
             
             return UIColor.greenColor()
+        } else if lineIndex == 5 {
+            
+            return UIColor.magentaColor()
         }
         
-        return UIColor.blackColor()
+        return UIColor.whiteColor()
     }
     
     func lineChartView(lineChartView: JBLineChartView!, colorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
@@ -628,12 +646,12 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             return UIColor.greenColor()
         }
         
-        return UIColor.blackColor()
+        return UIColor.whiteColor()
     }
     
     func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
         
-        return 1.0
+        return 2.0
     }
     
     func lineChartView(lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
@@ -655,19 +673,19 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         if index == 0 {
             
-            return UIColor.greenColor()
+            return UIColor.blackColor()
         } else if index == 1 {
             
-            return UIColor.redColor()
+            return UIColor.BWRed()
         } else if index == 2 {
             
-            return UIColor.yellowColor()
+            return UIColor.BWDarkBlue()
         } else if index == 3 {
             
-            return UIColor.whiteColor()
+            return UIColor.orangeColor()
         } else if index == 4 {
             
-            return UIColor.cyanColor()
+            return UIColor.greenColor()
         }
         
         return UIColor.whiteColor()
