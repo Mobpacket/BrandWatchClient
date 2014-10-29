@@ -36,8 +36,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var likesTargetSlider: ASValueTrackingSlider!
     @IBOutlet weak var commentsTargetSlider: ASValueTrackingSlider!
     
-    let defaultVTR: Float = 0.7
-    let defaultCTR: Float = 0.0002
+    let defaultVTR: Float = 70
+    let defaultCTR: Float = 0.02
     let defaultViews: Int = 300
     let defaultShares: Int = 20
     let defaultFavorites: Int = 150
@@ -160,7 +160,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         // VTR Target Slider (showed as %)
         self.vtrTargetSlider.numberFormatter = formatter
         self.vtrTargetSlider.maximumValue = 1.0
-        self.vtrTargetSlider.value = defaultVTR
+        self.vtrTargetSlider.value = defaultVTR/100
         self.vtrTargetSlider.popUpViewCornerRadius = 12.0
         self.vtrTargetSlider.showPopUpViewAnimated(true)
         self.vtrTargetSlider.setMaxFractionDigitsDisplayed(1)
@@ -171,7 +171,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         // CTR Target Slider (showed as %)
         self.ctrTargetSlider.numberFormatter = formatter
         self.ctrTargetSlider.maximumValue = 1.00
-        self.ctrTargetSlider.value = defaultCTR
+        self.ctrTargetSlider.value = defaultCTR/100
         self.ctrTargetSlider.popUpViewCornerRadius = 12.0
         self.ctrTargetSlider.showPopUpViewAnimated(true)
         self.ctrTargetSlider.setMaxFractionDigitsDisplayed(2)
@@ -255,8 +255,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount())", forState: UIControlState.Normal)
 
         
-        self.vtrTargetSlider.value       = campaign!.vtr_target ?? defaultVTR
-        self.ctrTargetSlider.value       = campaign!.ctr_target ?? defaultCTR
+        self.vtrTargetSlider.value       = (campaign!.vtr_target ?? defaultVTR)/100
+        self.ctrTargetSlider.value       = (campaign!.ctr_target ?? defaultCTR)/100
         self.viewsTargetSlider.value     = Float(campaign!.views_target!) ?? Float(defaultViews)
         self.sharesTargetSlider.value    = Float(campaign!.shares_target!) ?? Float(defaultShares)
         self.favoritesTargetSlider.value = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
@@ -264,7 +264,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.commentsTargetSlider.value  = Float(campaign!.comments_target!) ?? Float(defaultComments)
 
         vtrTargetF       = campaign!.vtr_target ?? defaultVTR
+        println("\(vtrTargetF)")
         ctrTargetF       = campaign!.ctr_target ?? defaultCTR
+        println("\(ctrTargetF)")
         viewsTargetF     = Float(campaign!.views_target!) ?? Float(defaultViews)
         sharesTargetF    = Float(campaign!.shares_target!) ?? Float(defaultShares)
         favoritesTargetF = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
@@ -292,8 +294,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("0", forState: UIControlState.Normal)
         
-        self.vtrTargetSlider.value       = defaultVTR
-        self.ctrTargetSlider.value       = defaultCTR
+        self.vtrTargetSlider.value       = defaultVTR/100
+        self.ctrTargetSlider.value       = defaultCTR/100
         self.viewsTargetSlider.value     = Float(defaultViews)
         self.sharesTargetSlider.value    = Float(defaultShares)
         self.favoritesTargetSlider.value = Float(defaultFavorites)
@@ -362,11 +364,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
             case vtrTargetSlider:
                 self.vtrTargetSlider.value = mySlider.value
-                vtrTargetF = self.vtrTargetSlider.value
+                vtrTargetF = self.vtrTargetSlider.value*100
             
             case ctrTargetSlider:
                 self.ctrTargetSlider.value = mySlider.value
-                ctrTargetF = self.ctrTargetSlider.value
+                ctrTargetF = self.ctrTargetSlider.value*100
 
             case viewsTargetSlider:
                 self.viewsTargetSlider.value = mySlider.value
