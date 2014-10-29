@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_ALPValidator 0
 #define COCOAPODS_VERSION_PATCH_ALPValidator 5
 
+// ASValueTrackingSlider
+#define COCOAPODS_POD_AVAILABLE_ASValueTrackingSlider
+#define COCOAPODS_VERSION_MAJOR_ASValueTrackingSlider 0
+#define COCOAPODS_VERSION_MINOR_ASValueTrackingSlider 9
+#define COCOAPODS_VERSION_PATCH_ASValueTrackingSlider 4
+
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
 #define COCOAPODS_VERSION_MAJOR_Bolts 1
@@ -281,6 +287,12 @@
 #define COCOAPODS_VERSION_MAJOR_TOMSMorphingLabel 0
 #define COCOAPODS_VERSION_MINOR_TOMSMorphingLabel 2
 #define COCOAPODS_VERSION_PATCH_TOMSMorphingLabel 3
+
+// VMaskTextField
+#define COCOAPODS_POD_AVAILABLE_VMaskTextField
+#define COCOAPODS_VERSION_MAJOR_VMaskTextField 1
+#define COCOAPODS_VERSION_MINOR_VMaskTextField 0
+#define COCOAPODS_VERSION_PATCH_VMaskTextField 1
 
 // gtm-oauth2
 #define COCOAPODS_POD_AVAILABLE_gtm_oauth2

@@ -22,3 +22,6 @@
 #import "DKCircleButton.h"
 #import "TOMSMorphingLabel.h"
 #import "KAProgressLabel.h"
+#import "VMaskTextField.h"
+#import "ASValueTrackingSlider.h"
+#import "ASValuePopUpView.h"

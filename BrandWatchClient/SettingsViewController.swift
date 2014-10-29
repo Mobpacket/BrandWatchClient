@@ -24,8 +24,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commentsLabel: UILabel!
     
     @IBOutlet weak var nameData: UITextField!
-    @IBOutlet weak var startData: UITextField!
-    @IBOutlet weak var endData: UITextField!
+    @IBOutlet weak var startData: VMaskTextField!
+    @IBOutlet weak var endData: VMaskTextField!
     @IBOutlet weak var videoNameMenuButton: UIButton!
     @IBOutlet weak var vtrTarget: UITextField!
     @IBOutlet weak var vtrViewSeperatorLabel: UILabel!
@@ -55,7 +55,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(settingsView)
         
         self.nameData.delegate  = self
+        self.startData.mask = "####-##-##"
         self.startData.delegate = self
+        self.endData.mask = "####-##-##"
         self.endData.delegate   = self
         self.vtrTarget.delegate = self
         self.ctrTarget.delegate = self
@@ -267,11 +269,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             case self.nameData:
                 ret = newLength <= 20
             
-            case self.startData, self.endData:
-                ret = newLength <= 10
-
-            case self.vtrTarget, self.ctrTarget:
-                ret = newLength <= 5
+            case self.startData:
+                return startData.shouldChangeCharactersInRange(range, replacementString: string)
+            
+            case self.endData:
+                return endData.shouldChangeCharactersInRange(range, replacementString: string)
 
             case self.viewsTarget, self.sharesTarget, self.likesTarget, self.commentsTarget, self.favoritesTarget:
                 ret = newLength <= 4

@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ALPValidator (0.0.5)
+  - ASValueTrackingSlider (0.9.4)
   - Bolts (1.1.3)
   - DKCircleButton (1.1)
   - Google-API-Client (0.1.1):
@@ -179,10 +180,12 @@ PODS:
     - Bolts (~> 1.1.3)
   - RWDropdownMenu (1.0.1)
   - TOMSMorphingLabel (0.2.3)
+  - VMaskTextField (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking
   - ALPValidator
+  - ASValueTrackingSlider
   - DKCircleButton
   - Google-API-Client
   - JBChartView (~> 2.8.9)
@@ -190,10 +193,12 @@ DEPENDENCIES:
   - Parse (~> 1.4)
   - RWDropdownMenu (~> 1.0.0)
   - TOMSMorphingLabel
+  - VMaskTextField
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   ALPValidator: 597b28ed21e532811702248320eea6f0bb3b2cd6
+  ASValueTrackingSlider: 74a4bbf70c8cf43d29b701ff4c7659fc5d0afd99
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   DKCircleButton: 4c259074ec4e153a2c0a37c4d80e111147ef6c8f
   Google-API-Client: 69cd2a04c649abe9f3fa6695bc4bb8965373f204
@@ -204,5 +209,6 @@ SPEC CHECKSUMS:
   Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
   RWDropdownMenu: 74ad34e54804b33acac90cf54653a0cf9b59a689
   TOMSMorphingLabel: f2443dbb4be2137847ed910ae2dd6adf3289c71c
+  VMaskTextField: 37f5d45bef1903db937eb587e9a06cf464373029
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.34.2
