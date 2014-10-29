@@ -417,6 +417,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             errorMessage = errorMessage + "- The End Date must be a valid date in the format YYYY-MM-DD.\n"
         }
         
+        var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+        
+        if campaign!.getVideoIDsCount() == 0 {
+            errorMessage = errorMessage + "- No Videos Selected. Please select a video for your campaign."
+        }
+        
         return errorMessage
     }
     

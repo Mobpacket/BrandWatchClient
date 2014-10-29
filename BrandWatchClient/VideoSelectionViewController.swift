@@ -98,6 +98,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         return videos.count ?? 1
     }
     
+
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
@@ -125,12 +126,13 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoCell.name.lineBreakMode = NSLineBreakMode.ByWordWrapping
         videoCell.name.font = fBWMenloBold15
         
+
         var videoId = videos[indexPath.row].video_id!
 
         videoCell.thumbnailImageView.setImageWithURL(NSURL(string: video.thumbnailUrl!))
         if selectedRowsArray.containsObject(videoId) {
             videoCell.selectImageView.image = UIImage(named: "checked_BWRed26.png")
-            
+        
         } else {
             videoCell.selectImageView.image = UIImage(named: "unchecked_BWRed26.png")
         }
@@ -165,7 +167,22 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+        // This is a workaround to prevent showing a bad video ID 
+        // returned by YouTube. Need to replace in the model later
+        var badRow : Int!
+        for var i = 0; i < videos.count; i++ {
+            if videos[i].video_id == "cx1Rjz8sPYY" {
+                badRow = i
+            }
+        }
         
+        if indexPath.row == badRow {
+            return 0
+        }
+
+ 
+       
         return CGFloat(250)
     }
     
