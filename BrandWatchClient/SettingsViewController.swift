@@ -27,20 +27,34 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startData: VMaskTextField!
     @IBOutlet weak var endData: VMaskTextField!
     @IBOutlet weak var videoNameMenuButton: UIButton!
-    @IBOutlet weak var vtrTarget: UITextField!
-    @IBOutlet weak var vtrViewSeperatorLabel: UILabel!
-    @IBOutlet weak var viewsTarget: UITextField!
-    @IBOutlet weak var ctrTarget: UITextField!
-    @IBOutlet weak var sharesTarget: UITextField!
-    @IBOutlet weak var favoritesTarget: UITextField!
-    @IBOutlet weak var likesTarget: UITextField!
-    @IBOutlet weak var commentsTarget: UITextField!
     
+    @IBOutlet weak var vtrTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var ctrTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var viewsTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var sharesTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var favoritesTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var likesTargetSlider: ASValueTrackingSlider!
+    @IBOutlet weak var commentsTargetSlider: ASValueTrackingSlider!
+
+    var vtrTargetF: Float!
+    var ctrTargetF: Float!
+    var viewsTargetF: Float!
+    var sharesTargetF: Float!
+    var favoritesTargetF: Float!
+    var likesTargetF: Float!
+    var commentsTargetF: Float!
     var settingsView: UIView!
+    
+    let defaultVTR: Float = 0.7
+    let defaultCTR: Float = 0.02
+    let defaultViews: Int = 100
+    let defaultShares: Int = 50
+    let defaultFavorites: Int = 50
+    let defaultLikes: Int = 50
+    let defaultComments: Int = 25
     
     var campaignVC: CampaignViewController!
     var dashboardVC: DashboardViewController!
-
     
     override func viewDidLoad() {
         
@@ -59,14 +73,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.startData.delegate = self
         self.endData.mask = "####-##-##"
         self.endData.delegate   = self
-        self.vtrTarget.delegate = self
-        self.ctrTarget.delegate = self
-        
-        self.viewsTarget.delegate     = self
-        self.sharesTarget.delegate    = self
-        self.commentsTarget.delegate  = self
-        self.likesTarget.delegate     = self
-        self.favoritesTarget.delegate = self
         
         // Set up UI
         constructUI()
@@ -95,7 +101,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         settingsMenuButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
         settingsView.backgroundColor = UIColor.clearColor()
-        settingsView.backgroundColor = UIColor.blackColor()
+        settingsView.backgroundColor = UIColor.BWOffWhite()
         
         nameLabel.textColor = UIColor.whiteColor()
         startLabel.textColor = UIColor.whiteColor()
@@ -105,18 +111,99 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         // NAJ: video(s) counter text for campaign < 1 red, > 0 green
         videoNameMenuButton.layer.borderWidth = 1
         videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
-        videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
+        videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
         videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
         metricsTitleLabel.textColor = UIColor.orangeColor()
         vtrLabel.textColor = UIColor.orangeColor()
-        vtrViewSeperatorLabel.textColor = UIColor.orangeColor()
         ctrLabel.textColor = UIColor.orangeColor()
         sharesLabel.textColor = UIColor.orangeColor()
         favoritesLabel.textColor = UIColor.orangeColor()
         likesLabel.textColor = UIColor.orangeColor()
         commentsLabel.textColor = UIColor.orangeColor()
+        
+        
+        // Setup the Target Sliders
+        
+        // For Percentage Values
+        var formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.PercentStyle
+        
+        // VTR Target Slider (showed as %)
+        self.vtrTargetSlider.numberFormatter = formatter
+        self.vtrTargetSlider.maximumValue = 1.0
+        self.vtrTargetSlider.value = defaultVTR
+        self.vtrTargetSlider.popUpViewCornerRadius = 12.0
+        self.vtrTargetSlider.showPopUpViewAnimated(true)
+        self.vtrTargetSlider.setMaxFractionDigitsDisplayed(1)
+        self.vtrTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.vtrTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.vtrTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        
+        // CTR Target Slider (showed as %)
+        self.ctrTargetSlider.numberFormatter = formatter
+        
+        self.ctrTargetSlider.maximumValue = 1.00
+        self.ctrTargetSlider.value = defaultCTR
+        self.ctrTargetSlider.popUpViewCornerRadius = 12.0
+        self.ctrTargetSlider.showPopUpViewAnimated(true)
+        self.ctrTargetSlider.setMaxFractionDigitsDisplayed(2)
+        self.ctrTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.ctrTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.ctrTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        
+        // Views Target Slider
+        self.viewsTargetSlider.maximumValue = 1000
+        self.viewsTargetSlider.value = Float(defaultViews)
+        self.viewsTargetSlider.popUpViewCornerRadius = 12.0
+        self.viewsTargetSlider.showPopUpViewAnimated(true)
+        self.viewsTargetSlider.setMaxFractionDigitsDisplayed(0)
+        self.viewsTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.viewsTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.viewsTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        // Shares Target Slider
+        self.sharesTargetSlider.maximumValue = 500
+        self.sharesTargetSlider.value = Float(defaultShares)
+        self.sharesTargetSlider.popUpViewCornerRadius = 12.0
+        self.sharesTargetSlider.showPopUpViewAnimated(true)
+        self.sharesTargetSlider.setMaxFractionDigitsDisplayed(0)
+        self.sharesTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.sharesTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.sharesTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        // Favorites Target Slider
+        self.favoritesTargetSlider.maximumValue = 500
+        self.favoritesTargetSlider.value = Float(defaultFavorites)
+        self.favoritesTargetSlider.popUpViewCornerRadius = 12.0
+        self.favoritesTargetSlider.showPopUpViewAnimated(true)
+        self.favoritesTargetSlider.setMaxFractionDigitsDisplayed(0)
+        self.favoritesTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.favoritesTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.favoritesTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        // Likes Target Slider
+        self.likesTargetSlider.maximumValue = 500
+        self.likesTargetSlider.value = Float(defaultLikes)
+        self.likesTargetSlider.popUpViewCornerRadius = 12.0
+        self.likesTargetSlider.showPopUpViewAnimated(true)
+        self.likesTargetSlider.setMaxFractionDigitsDisplayed(0)
+        self.likesTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.likesTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.likesTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
+        
+        // Comments Target Slider
+        self.commentsTargetSlider.maximumValue = 500
+        self.commentsTargetSlider.value = Float(defaultComments)
+        self.commentsTargetSlider.popUpViewCornerRadius = 12.0
+        self.commentsTargetSlider.showPopUpViewAnimated(true)
+        self.commentsTargetSlider.setMaxFractionDigitsDisplayed(0)
+        self.commentsTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
+        self.commentsTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
+        self.commentsTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
         
     }
     
@@ -141,27 +228,16 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
         self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
+
         
-        self.vtrTarget.textColor = UIColor.blackColor()
-        self.vtrTarget.text = "\(campaign!.vtr_target ?? 70)"
-        
-        self.viewsTarget.textColor = UIColor.blackColor()
-        self.viewsTarget.text = "\(campaign!.views_target ?? 100)"
-        
-        self.ctrTarget.textColor = UIColor.blackColor()
-        self.ctrTarget.text = "\(campaign!.ctr_target ?? 0.2)"
-        
-        self.sharesTarget.textColor = UIColor.blackColor()
-        self.sharesTarget.text = "\(campaign!.shares_target ?? 50)"
-        
-        self.favoritesTarget.textColor = UIColor.blackColor()
-        self.favoritesTarget.text = "\(campaign!.favorites_target ?? 50)"
-        
-        self.likesTarget.textColor = UIColor.blackColor()
-        self.likesTarget.text = "\(campaign!.likes_target ?? 50)"
-        
-        self.commentsTarget.textColor = UIColor.blackColor()
-        self.commentsTarget.text = "\(campaign!.comments_target ?? 25)"
+        self.vtrTargetSlider.value       = campaign!.vtr_target ?? defaultVTR
+        self.ctrTargetSlider.value       = campaign!.ctr_target ?? defaultCTR
+        self.viewsTargetSlider.value     = Float(campaign!.views_target!) ?? Float(defaultViews)
+        self.sharesTargetSlider.value    = Float(campaign!.shares_target!) ?? Float(defaultShares)
+        self.favoritesTargetSlider.value = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
+        self.likesTargetSlider.value     = Float(campaign!.likes_target!) ?? Float(defaultLikes)
+        self.commentsTargetSlider.value  = Float(campaign!.comments_target!) ?? Float(defaultComments)
+
     }
     
     private func loadDefaultCampaignTargets() {
@@ -182,26 +258,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("0 Videos", forState: UIControlState.Normal)
         
-        self.vtrTarget.textColor = UIColor.lightGrayColor()
-        self.vtrTarget.text = "70"
-        
-        self.viewsTarget.textColor = UIColor.lightGrayColor()
-        self.viewsTarget.text = "100"
-        
-        self.ctrTarget.textColor = UIColor.lightGrayColor()
-        self.ctrTarget.text = "0.2"
-        
-        self.sharesTarget.textColor = UIColor.lightGrayColor()
-        self.sharesTarget.text = "50"
-        
-        self.favoritesTarget.textColor = UIColor.lightGrayColor()
-        self.favoritesTarget.text = "50"
-        
-        self.likesTarget.textColor = UIColor.lightGrayColor()
-        self.likesTarget.text = "50"
-        
-        self.commentsTarget.textColor = UIColor.lightGrayColor()
-        self.commentsTarget.text = "25"
+        self.vtrTargetSlider.value       = defaultVTR
+        self.ctrTargetSlider.value       = defaultCTR
+        self.viewsTargetSlider.value     = Float(defaultViews)
+        self.sharesTargetSlider.value    = Float(defaultShares)
+        self.favoritesTargetSlider.value = Float(defaultFavorites)
+        self.likesTargetSlider.value     = Float(defaultLikes)
+        self.commentsTargetSlider.value  = Float(defaultComments)
+
     }
     
     private func assignCampaignTargets() {
@@ -214,13 +278,13 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         campaign!.start = self.startData.text
         campaign!.end = self.endData.text
         
-        campaign!.vtr_target = (self.vtrTarget.text as NSString).floatValue
-        campaign!.ctr_target = (self.ctrTarget.text as NSString).floatValue
-        campaign!.views_target = self.viewsTarget.text.toInt()
-        campaign!.shares_target = self.sharesTarget.text.toInt()
-        campaign!.favorites_target = self.favoritesTarget.text.toInt()
-        campaign!.likes_target = self.likesTarget.text.toInt()
-        campaign!.comments_target = self.commentsTarget.text.toInt()
+        campaign!.vtr_target = vtrTargetF
+        campaign!.ctr_target = ctrTargetF
+        campaign!.views_target = Int(viewsTargetF)
+        campaign!.shares_target = Int(sharesTargetF)
+        campaign!.favorites_target = Int(favoritesTargetF)
+        campaign!.likes_target = Int(likesTargetF)
+        campaign!.comments_target = Int(commentsTargetF)
         
         println("CAMPAIGN ASSIGNMENTS: \(campaign!)")
     }
@@ -233,6 +297,48 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             
             println("going to campaign screen")
         })
+    }
+    
+    
+    @IBAction func onSliderValueChanged(sender: AnyObject) {
+        
+        var mySlider = sender as ASValueTrackingSlider
+        
+        
+        switch(mySlider) {
+        
+            case vtrTargetSlider:
+                self.vtrTargetSlider.value = mySlider.value
+                vtrTargetF = self.vtrTargetSlider.value
+            
+            case ctrTargetSlider:
+                self.ctrTargetSlider.value = mySlider.value
+                ctrTargetF = self.ctrTargetSlider.value
+
+            case viewsTargetSlider:
+                self.viewsTargetSlider.value = mySlider.value
+                viewsTargetF = self.viewsTargetSlider.value
+            
+            case sharesTargetSlider:
+                self.sharesTargetSlider.value = mySlider.value
+                sharesTargetF = self.sharesTargetSlider.value
+            
+            case favoritesTargetSlider:
+                self.favoritesTargetSlider.value = mySlider.value
+                favoritesTargetF = self.favoritesTargetSlider.value
+            
+            case likesTargetSlider:
+                self.likesTargetSlider.value = mySlider.value
+                likesTargetF = self.likesTargetSlider.value
+            
+            case commentsTargetSlider:
+                self.commentsTargetSlider.value = mySlider.value
+                commentsTargetF = self.commentsTargetSlider.value
+            
+            default:
+                println("")
+
+        }
     }
     
     func validateInputs() -> String {
@@ -275,8 +381,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             case self.endData:
                 return endData.shouldChangeCharactersInRange(range, replacementString: string)
 
-            case self.viewsTarget, self.sharesTarget, self.likesTarget, self.commentsTarget, self.favoritesTarget:
-                ret = newLength <= 4
 
             default:
                 ret = true
@@ -291,7 +395,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         switch(textField)
         {
             
-            case self.startData, self.endData, self.vtrTarget, self.ctrTarget, self.viewsTarget, self.sharesTarget, self.likesTarget, self.commentsTarget, self.favoritesTarget:
+            case self.nameData, self.startData, self.endData:
                 textField.textColor = UIColor.blackColor()
             
             default:
