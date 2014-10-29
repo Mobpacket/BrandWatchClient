@@ -16,6 +16,9 @@ extension UIColor {
     //#4A96AD BWDarkBlue
     //#F5F3EE BWOffWhite
     //#FFFFFF BWWhite
+    //#33CC33 BWGreen
+    //#A2A2A2 BWGray
+    //#FFC6FF BWPink
     
     class func BWRed() -> UIColor {
     
@@ -40,6 +43,21 @@ extension UIColor {
     class func BWDarkBlue() -> UIColor {
         
         return UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0)
+    }
+    
+    class func BWGreen() -> UIColor {
+        
+        return UIColor(red: 51.0/255.0, green: 204.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+    }
+    
+    class func BWGray() -> UIColor {
+        
+        return UIColor(red: 162.0/255.0, green: 162.0/255.0, blue: 162.0/255.0, alpha: 1.0)
+    }
+    
+    class func BWPink() -> UIColor {
+        
+        return UIColor(red: 255.0/255.0, green: 198.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
 }
 

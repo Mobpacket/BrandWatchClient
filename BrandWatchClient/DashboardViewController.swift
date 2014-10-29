@@ -245,7 +245,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         // Setup Line Graph View
         GraphAreaView.layer.borderWidth = 1
         GraphAreaView.layer.borderColor = UIColor.BWDarkBlue().CGColor
-        GraphAreaView.backgroundColor = UIColor.BWOffWhite()
+        GraphAreaView.backgroundColor = UIColor.BWGray()
         
         // Setup Menu Button
         DashboardMenuButton.backgroundColor = UIColor.BWRed()
@@ -528,7 +528,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         engagementLineChartView = JBLineChartView(frame: CGRect(x: 10, y: 55, width: 300, height: 200))
         engagementLineChartView.dataSource = self
         engagementLineChartView.delegate = self
-        engagementLineChartView.backgroundColor = UIColor.BWOffWhite()
+        engagementLineChartView.backgroundColor = UIColor.BWGray()
         engagementLineChartView.layer.borderColor = UIColor.BWDarkBlue().CGColor
         engagementLineChartView.layer.borderWidth = 2
         engagementLineChartView.showsVerticalSelection = false
@@ -536,11 +536,11 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         constructGraphHeader(DashboardViewController.GraphTypeEnum.Line)
         
         var lineChartfooterView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
-        lineChartfooterView.backgroundColor = UIColor.BWRed()
+        lineChartfooterView.backgroundColor = UIColor.BWGray()
         lineChartfooterView.leftLabel.text = " 18 "
-        lineChartfooterView.leftLabel.textColor = UIColor.BWOffWhite()
+        lineChartfooterView.leftLabel.textColor = UIColor.BWRed()
         lineChartfooterView.rightLabel.text = " 28 "
-        lineChartfooterView.rightLabel.textColor = UIColor.BWOffWhite()
+        lineChartfooterView.rightLabel.textColor = UIColor.BWRed()
         lineChartfooterView.sectionCount = 10 // NAJ: replace with number of days
         self.engagementLineChartView.footerView = lineChartfooterView;
     }
@@ -606,7 +606,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         if lineIndex == 0 {
             
-            return UIColor.blackColor()
+            return UIColor.BWPink()
         } else if lineIndex == 1 {
             
             return UIColor.BWRed()
@@ -618,20 +618,17 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             return UIColor.orangeColor()
         } else if lineIndex == 4 {
             
-            return UIColor.greenColor()
-        } else if lineIndex == 5 {
-            
-            return UIColor.magentaColor()
+            return UIColor.BWGreen()
         }
         
-        return UIColor.whiteColor()
+        return UIColor.BWOffWhite()
     }
     
     func lineChartView(lineChartView: JBLineChartView!, colorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
         
         if lineIndex == 0 {
             
-            return UIColor.blackColor()
+            return UIColor.BWPink()
         } else if lineIndex == 1 {
             
             return UIColor.BWRed()
@@ -643,10 +640,10 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             return UIColor.orangeColor()
         } else if lineIndex == 4 {
             
-            return UIColor.greenColor()
+            return UIColor.BWGreen()
         }
         
-        return UIColor.whiteColor()
+        return UIColor.BWOffWhite()
     }
     
     func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
@@ -673,7 +670,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         if index == 0 {
             
-            return UIColor.blackColor()
+            return UIColor.BWPink()
         } else if index == 1 {
             
             return UIColor.BWRed()
@@ -685,10 +682,10 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             return UIColor.orangeColor()
         } else if index == 4 {
             
-            return UIColor.greenColor()
+            return UIColor.BWGreen()
         }
         
-        return UIColor.whiteColor()
+        return UIColor.BWOffWhite()
     }
     
     func barPaddingForBarChartView(barChartView: JBBarChartView!) -> CGFloat {
