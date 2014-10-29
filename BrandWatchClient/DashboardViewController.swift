@@ -77,27 +77,28 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         // Setup the charts with the correct graphs
         
+        // Do any additional setup after loading the view.
+        reloadCampaigns()
+        
         // Line Graph
-        if type == .Line {
-            constructLineGraph()
+        if self.type == .Line {
+            self.constructLineGraph()
         }
         
         // Bar Graph
-        if (type == .Bar) {
-            constructBarGraph()
+        if self.type == .Bar {
+            self.constructBarGraph()
         }
         
         // Setup the UI
-        constructUI()
-        
-        // Do any additional setup after loading the view.
-        reloadCampaigns()
+//        constructUI()
         
         if type == .Line {
             engagementLineChartView.reloadData()
         } else if type == .Bar {
             engagementBarChartView.reloadData()
         }
+
     }
 
     func reloadCampaigns() {
@@ -139,6 +140,9 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
                 // Get the total metrics to populate the labels and progress rings
                 CampaignService.sharedInstance.getCampaignTotalMetrics(campaign, callback: { (campaign, error) -> Void in
                     if error == nil {
+
+                        self.constructUI()
+                        self.constructProgressUI()
                         
                         // Set values
                         self.DashboardMenuButton.setTitle("\(campaign.name!)", forState: UIControlState.Normal)
@@ -252,12 +256,19 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         DashboardMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         DashboardMenuButton.layer.borderWidth = 2
         DashboardMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        DashboardMenuButton.titleLabel?.font = fBWMenloBold18
+    }
+    
+    func constructProgressUI() {
+        
+        // Get access to the campaign data
+        var campaign = CampaignService.sharedInstance.getActiveCampaign()
         
         // Engagement
         self.engagementLabelIndex = 0
-        self.engagementLabelData = ["Engagement Score", "90"]
+        self.engagementLabelData = ["Engagement Score", "\(EngagementScorer.calculateTotalScore(campaign!))"]
         engagementMagicLabel = TOMSMorphingLabel(frame: CGRect(x: 10, y: 265, width: 140, height: 25))
-        engagementMagicLabel.font = UIFont.systemFontOfSize(14)
+        engagementMagicLabel.font = fBWMenloBold14
         engagementMagicLabel.layer.borderColor = UIColor.BWRed().CGColor
         engagementMagicLabel.layer.borderWidth = 1
         engagementMagicLabel.backgroundColor = UIColor.BWDarkBlue()
@@ -270,9 +281,9 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         // Sentiment
         self.sentimentLabelIndex = 0
         // NAJ: Update with real data
-        self.sentimentLabelData = ["Sentiment Score", "30"]
+        self.sentimentLabelData = ["Sentiment Score", "\(SentimentScorer.calculateTotalScore(campaign!))"]
         sentimentMagicLabel = TOMSMorphingLabel(frame: CGRect(x: 170, y: 265, width: 140, height: 25))
-        sentimentMagicLabel.font = UIFont.systemFontOfSize(14)
+        sentimentMagicLabel.font = fBWMenloBold14
         sentimentMagicLabel.layer.borderColor = UIColor.BWRed().CGColor
         sentimentMagicLabel.layer.borderWidth = 1
         sentimentMagicLabel.backgroundColor = UIColor.BWDarkBlue()
@@ -283,156 +294,164 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.toggleSentimentTextForLabel(sentimentMagicLabel)
         
         // VTR
+        var vtr_value = campaign?.metrics_total?.vtr
+        var vtr_target = campaign?.vtr_target
+        var vtr_progress = CGFloat(vtr_value!/vtr_target!)
+        self.vtrProgressLabel.font = fBWMenloBold14
         self.vtrProgressLabel.progressType = ProgressLableType.LabelCircle
         self.vtrProgressLabel.backBorderWidth = 10.0
         self.vtrProgressLabel.frontBorderWidth = 9.8
         self.vtrProgressLabel.startDegree = 0
         self.vtrProgressLabel.endDegree = 0
         self.vtrProgressLabel.colorTable = progressColors
-        self.vtrProgressLabel.setProgress(0.7, timing: TPPropertyAnimationTimingEaseOut, duration: 1.0, delay: 0.5)
+        self.vtrProgressLabel.setProgress(vtr_progress, timing: TPPropertyAnimationTimingEaseOut, duration: 1.0, delay: 0.5)
         self.vtrProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-//                label.text = "VTR\n\(progress * 100)"
+                var formatVTR = NSString(format: "%.02f", Float(vtr_value!))
+                label.text = "VTR\n\(formatVTR)"
             })
         }
 
         // CTR
+        var ctr_value = campaign?.metrics_total?.ctr
+        var ctr_target = campaign?.ctr_target
+        var ctr_progress = CGFloat(ctr_value!/ctr_target!)
+        self.ctrProgressLabel.font = fBWMenloBold14
         ctrProgressLabel.progressType = ProgressLableType.LabelCircle
         self.ctrProgressLabel.backBorderWidth = 10.0
         self.ctrProgressLabel.frontBorderWidth = 9.8
         self.ctrProgressLabel.startDegree = 0
         self.ctrProgressLabel.endDegree = 0
         self.ctrProgressLabel.colorTable = progressColors
-        ctrProgressLabel.setProgress(0.32, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        ctrProgressLabel.setProgress(ctr_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.ctrProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-//                label.text = "CTR\n\(progress * 100)"
+                var formatCTR = NSString(format: "%.02f", Float(ctr_value!))
+                label.text = "CTR\n\(formatCTR)"
             })
         }
         
         // NAJ: For Views, Shares, Likes, Favorites, Comments need to call set progress with value / target, but set label to only value not progress
         // Views
+        var views_value = campaign?.metrics_total?.views
+        var views_target = campaign?.views_target
+        var views_progress = CGFloat(CGFloat(views_value!)/CGFloat(views_target!))
+        self.viewsProgressLabel.font = fBWMenloBold14
         viewsProgressLabel.progressType = ProgressLableType.LabelCircle
         self.viewsProgressLabel.backBorderWidth = 10.0
         self.viewsProgressLabel.frontBorderWidth = 9.8
         self.viewsProgressLabel.startDegree = 0
         self.viewsProgressLabel.endDegree = 0
         self.viewsProgressLabel.colorTable = progressColors
-        viewsProgressLabel.setProgress(0.87, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        viewsProgressLabel.setProgress(views_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.viewsProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-//                label.text = "V\n\(value!)"
-//                label.text = "V\n87"
-
+                label.text = "V\n\(views_value!)"
             })
         }
         
         // Shares
+        var shares_value = campaign?.metrics_total?.shares
+        var shares_target = campaign?.shares_target
+        var shares_progress = CGFloat(CGFloat(shares_value!)/CGFloat(shares_target!))
+        self.sharesProgressLabel.font = fBWMenloBold14
         sharesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.sharesProgressLabel.backBorderWidth = 10.0
         self.sharesProgressLabel.frontBorderWidth = 9.8
         self.sharesProgressLabel.startDegree = 0
         self.sharesProgressLabel.endDegree = 0
         self.sharesProgressLabel.colorTable = progressColors
-        sharesProgressLabel.setProgress(0.65, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        sharesProgressLabel.setProgress(shares_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.sharesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-//                label.text = "S\n\(value!)"
-//                label.text = "S\n11"
 
+                label.text = "L\n\(shares_value!)"
             })
         }
         
         // Likes
+        var likes_value = campaign?.metrics_total?.likes
+        var likes_target = campaign?.likes_target
+        var likes_progress = CGFloat(CGFloat(likes_value!)/CGFloat(likes_target!))
+        self.likesProgressLabel.font = fBWMenloBold14
         likesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.likesProgressLabel.backBorderWidth = 10.0
         self.likesProgressLabel.frontBorderWidth = 9.8
         self.likesProgressLabel.startDegree = 0
         self.likesProgressLabel.endDegree = 0
         self.likesProgressLabel.colorTable = progressColors
-        likesProgressLabel.setProgress(0.28, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        likesProgressLabel.setProgress(likes_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.likesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-//                label.text = "L\n\(value!)"
-//                label.text = "L\n28"
+                label.text = "L\n\(likes_value!)"
             })
         }
         
         // Favorites
+        var favorites_value = campaign?.metrics_total?.favorites
+        var favorites_target = campaign?.favorites_target
+        var favorites_progress = CGFloat(CGFloat(favorites_value!)/CGFloat(favorites_target!))
+        self.favoritesProgressLabel.font = fBWMenloBold14
         favoritesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.favoritesProgressLabel.backBorderWidth = 10.0
         self.favoritesProgressLabel.frontBorderWidth = 9.8
         self.favoritesProgressLabel.startDegree = 0
         self.favoritesProgressLabel.endDegree = 0
         self.favoritesProgressLabel.colorTable = progressColors
-        favoritesProgressLabel.setProgress(0.56, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        favoritesProgressLabel.setProgress(favorites_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.favoritesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-//                label.text = "F\n\(value!)"
-//                label.text = "F\n6"
+                label.text = "F\n\(favorites_value!)"
             })
         }
         
         // Comments
+        var comments_value = campaign?.metrics_total?.comments
+        var comments_target = campaign?.comments_target
+        var comments_progress = CGFloat(CGFloat(comments_value!)/CGFloat(comments_target!))
+        self.commentsProgressLabel.font = fBWMenloBold14
         commentsProgressLabel.progressType = ProgressLableType.LabelCircle
         self.commentsProgressLabel.backBorderWidth = 10.0
         self.commentsProgressLabel.frontBorderWidth = 9.8
         self.commentsProgressLabel.startDegree = 0
         self.commentsProgressLabel.endDegree = 0
         self.commentsProgressLabel.colorTable = progressColors
-        commentsProgressLabel.setProgress(0.2, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        commentsProgressLabel.setProgress(comments_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.commentsProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-//                label.text = "C\n\(value!)"
-//                label.text = "C\n2"
+                label.text = "C\n\(comments_value!)"
             })
         }
         
         // Dislikes
+        var dislikes_value = campaign?.metrics_total?.dislikes ?? 0
+        var dislikes_progress = CGFloat(1.0)
+        self.dislikesProgressLabel.font = fBWMenloBold14
         dislikesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.dislikesProgressLabel.backBorderWidth = 10.0
         self.dislikesProgressLabel.frontBorderWidth = 9.8
         self.dislikesProgressLabel.startDegree = 0
         self.dislikesProgressLabel.endDegree = 0
         self.dislikesProgressLabel.colorTable = progressDColors
-        dislikesProgressLabel.setProgress(5, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
+        dislikesProgressLabel.setProgress(dislikes_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.dislikesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                var nf = NSNumberFormatter()
-                nf.numberStyle = .DecimalStyle
-                var value = nf.stringFromNumber(progress)
-                label.text = "D\n\(value!)"
+                label.text = "D\n\(dislikes_value)"
             })
         }
     }
@@ -486,6 +505,8 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
 
     func constructGraphHeader(type: GraphTypeEnum) {
         
+        var campaign = CampaignService.sharedInstance.getActiveCampaign()
+        
         var headerView: JBChartHeaderView!
         // Line Graph
         if type == .Line {
@@ -497,12 +518,18 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             headerView = JBChartHeaderView(frame: CGRect(x: self.engagementBarChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 75.0))
         }
         
-        headerView.titleLabel.font = UIFont(name: "GillSans-Bold", size: 20)
+        headerView.titleLabel.font = fBWGillsManBold16
         headerView.titleLabel.text = "Daily Metrics"
         headerView.titleLabel.textColor = UIColor.BWDarkBlue()
         headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        headerView.subtitleLabel.text = "October"
+        var start = campaign?.start!
+        var end = campaign?.end!
+        println("start: \(start)")
+        println("end: \(end)")
+//        var dateString = "\(campaign?.start!) - \(campaign?.end!)"
+        headerView.subtitleLabel.font = fBWGillsManBold12
+        headerView.subtitleLabel.text = "10/18 - 10/28"
         headerView.subtitleLabel.textColor = UIColor.BWRed()
         headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -529,6 +556,8 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         constructGraphHeader(DashboardViewController.GraphTypeEnum.Line)
         
         var lineChartfooterView = JBLineChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementLineChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 20.0))
+        lineChartfooterView.leftLabel.font = fBWGillsManBold10
+        lineChartfooterView.rightLabel.font = fBWGillsManBold10
         lineChartfooterView.backgroundColor = UIColor.BWGray()
         lineChartfooterView.leftLabel.text = " 18 "
         lineChartfooterView.leftLabel.textColor = UIColor.BWRed()

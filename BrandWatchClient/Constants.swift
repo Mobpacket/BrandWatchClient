@@ -9,7 +9,13 @@
 import Foundation
 
 // Fonts
-let fGillsManBold20 = UIFont(name: "GillSans-Bold", size: 20)
+let fBWGillsManBold16 = UIFont(name: "GillSans-Bold", size: 16)
+let fBWGillsManBold12 = UIFont(name: "GillSans-Bold", size: 12)
+let fBWGillsManBold10 = UIFont(name: "GillSans-Bold", size: 10)
+let fBWMenloBold14 = UIFont(name: "Menlo-Bold", size: 14)
+let fBWMenloBold15 = UIFont(name: "Menlo-Bold", size: 15)
+let fBWMenloBold16 = UIFont(name: "Menlo-Bold", size: 16)
+let fBWMenloBold18 = UIFont(name: "Menlo-Bold", size: 18)
 
 // Colors
 

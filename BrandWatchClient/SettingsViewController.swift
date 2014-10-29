@@ -115,24 +115,36 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         settingsView.backgroundColor = UIColor.clearColor()
         settingsView.backgroundColor = UIColor.BWOffWhite()
         
+        nameLabel.font = fBWMenloBold16
         nameLabel.textColor = UIColor.BWDarkBlue()
+        startLabel.font = fBWMenloBold16
         startLabel.textColor = UIColor.BWDarkBlue()
+        endLabel.font = fBWMenloBold16
         endLabel.textColor = UIColor.BWDarkBlue()
+        videosLabel.font = fBWMenloBold16
         videosLabel.textColor = UIColor.BWDarkBlue()
         
         // NAJ: video(s) counter text for campaign < 1 red, > 0 green
+        videoNameMenuButton.titleLabel?.font = fBWMenloBold18
         videoNameMenuButton.layer.borderWidth = 1
         videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
         videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
+        vtrLabel.font = fBWMenloBold16
         vtrLabel.textColor = UIColor.BWRed()
+        ctrLabel.font = fBWMenloBold16
         ctrLabel.textColor = UIColor.BWRed()
+        viewsLabel.font = fBWMenloBold16
         viewsLabel.textColor = UIColor.BWRed()
+        sharesLabel.font = fBWMenloBold16
         sharesLabel.textColor = UIColor.BWRed()
+        favoritesLabel.font = fBWMenloBold16
         favoritesLabel.textColor = UIColor.BWRed()
+        likesLabel.font = fBWMenloBold16
         likesLabel.textColor = UIColor.BWRed()
+        commentsLabel.font = fBWMenloBold16
         commentsLabel.textColor = UIColor.BWRed()
         
         // Setup the Target Sliders
@@ -230,6 +242,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.endData.text = campaign!.end
 
         // Setting up video title
+        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold18
         self.videoNameMenuButton.layer.borderWidth = 1
         self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
@@ -258,6 +271,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.endData.textColor = UIColor.lightGrayColor()
         self.endData.text = "YYYY-MM-DD"
         
+        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold18
         self.videoNameMenuButton.layer.borderWidth = 1
         self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
