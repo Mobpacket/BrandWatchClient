@@ -8,6 +8,9 @@
 
 import Foundation
 
+// Fonts
+let fGillsManBold20 = UIFont(name: "GillSans-Bold", size: 20)
+
 // Colors
 
 extension UIColor {

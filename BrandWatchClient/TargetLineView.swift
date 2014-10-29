@@ -18,7 +18,7 @@ class TargetLineView: UIView {
         
         var context = UIGraphicsGetCurrentContext()
         
-        CGContextSetStrokeColorWithColor(context, UIColor.orangeColor().CGColor)
+        CGContextSetStrokeColorWithColor(context, UIColor.BWRed().CGColor)
         
         CGContextBeginPath(context)
         

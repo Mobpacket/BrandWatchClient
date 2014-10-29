@@ -60,8 +60,8 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
     
     // NAJ: Used for switching between graphs (testing)
     var type = GraphTypeEnum.Line
-    //    var type = GraphTypeEnum.Bar
-    
+//    var type = GraphTypeEnum.Bar
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -252,24 +252,6 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         DashboardMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         DashboardMenuButton.layer.borderWidth = 2
         DashboardMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
-//        brandLabel.textColor = UIColor.BWRed()
-//        brandLabel.layer.backgroundColor = UIColor.BWOffWhite().CGColor
-//        watchLabel.textColor = UIColor.BWOffWhite()
-//        watchLabel.layer.backgroundColor = UIColor.BWRed().CGColor
-        
-//        engagementCircleButton = DKCircleButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//        engagementCircleButton.center = CGPointMake(160, 380)
-//        engagementCircleButton.titleLabel?.font = UIFont.systemFontOfSize(14)
-//        engagementCircleButton.titleLabel?.numberOfLines = 0
-//        engagementCircleButton.titleLabel?.preferredMaxLayoutWidth = 10
-//        engagementCircleButton.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-//        engagementCircleButton.backgroundColor = UIColor.BWDarkBlue()
-//        engagementCircleButton.borderColor = UIColor.BWRed()
-//        engagementCircleButton.borderSize = 3
-//        engagementCircleButton.setTitle("Engagement Score", forState: UIControlState.Normal)
-//        engagementCircleButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
-//        engagementCircleButton.addTarget(self, action: "engagementCircleButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
-//        view.addSubview(engagementCircleButton)
         
         // Engagement
         self.engagementLabelIndex = 0
@@ -504,7 +486,18 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
 
     func constructGraphHeader(type: GraphTypeEnum) {
         
-        var headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
+        var headerView: JBChartHeaderView!
+        // Line Graph
+        if type == .Line {
+            headerView = JBChartHeaderView(frame: CGRect(x: self.engagementLineChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementLineChartView.bounds.size.width - (10.0 * 2), height: 75.0))
+        }
+        
+        // Bar Graph
+        if (type == .Bar) {
+            headerView = JBChartHeaderView(frame: CGRect(x: self.engagementBarChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 75.0))
+        }
+        
+        headerView.titleLabel.font = UIFont(name: "GillSans-Bold", size: 20)
         headerView.titleLabel.text = "Daily Metrics"
         headerView.titleLabel.textColor = UIColor.BWDarkBlue()
         headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
@@ -553,7 +546,9 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         engagementBarChartView.headerPadding = 20.0
         engagementBarChartView.minimumValue = 0.0
         engagementBarChartView.inverted = false
-        engagementBarChartView.backgroundColor = UIColor.BWOffWhite()
+        engagementBarChartView.backgroundColor = UIColor.BWGray()
+        engagementBarChartView.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        engagementBarChartView.layer.borderWidth = 2
         engagementBarChartView.showsVerticalSelection = true
         self.view.addSubview(engagementBarChartView)
         
@@ -561,10 +556,11 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         var barChartfooterView = JBBarChartFooterView(frame: CGRect(x: 10.0, y: ceil(self.engagementBarChartView.bounds.size.height * 0.5) - ceil(20.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 20.0))
         barChartfooterView.padding = 10.0
+        barChartfooterView.backgroundColor = UIColor.BWGray()
         barChartfooterView.leftLabel.text = "Views"
-        barChartfooterView.leftLabel.textColor = UIColor.whiteColor()
+        barChartfooterView.leftLabel.textColor = UIColor.BWRed()
         barChartfooterView.rightLabel.text = "Comments"
-        barChartfooterView.rightLabel.textColor = UIColor.whiteColor()
+        barChartfooterView.rightLabel.textColor = UIColor.BWRed()
         self.engagementBarChartView.footerView = barChartfooterView;
     }
     

@@ -15,9 +15,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var videosLabel: UILabel!
-    @IBOutlet weak var metricsTitleLabel: UILabel!
     @IBOutlet weak var vtrLabel: UILabel!
     @IBOutlet weak var ctrLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     var settingsView: UIView!
     
     let defaultVTR: Float = 0.7
-    let defaultCTR: Float = 0.02
+    let defaultCTR: Float = 0.0002
     let defaultViews: Int = 100
     let defaultShares: Int = 50
     let defaultFavorites: Int = 50
@@ -76,11 +76,15 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
         // Set up UI
         constructUI()
+        
         var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+        
         if campaign!.isNewRecord() {
+            
             // Create
             loadDefaultCampaignTargets()
         } else {
+            
             // Edit
             loadCampaignTargets()
         }
@@ -97,32 +101,39 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
         var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
         
+        // Setup custom line for Targets
+        var targetsLineView = TargetLineView(frame: CGRect(x: 5, y: 226, width: 300, height: 4))
+        targetsLineView.backgroundColor = UIColor.clearColor()
+        view.addSubview(targetsLineView)
+        
         // Setup color scheme for view
+        settingsMenuButton.backgroundColor = UIColor.BWRed()
+        settingsMenuButton.layer.borderWidth = 2
+        settingsMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         settingsMenuButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
         settingsView.backgroundColor = UIColor.clearColor()
         settingsView.backgroundColor = UIColor.BWOffWhite()
         
-        nameLabel.textColor = UIColor.whiteColor()
-        startLabel.textColor = UIColor.whiteColor()
-        endLabel.textColor = UIColor.whiteColor()
-        videosLabel.textColor = UIColor.whiteColor()
+        nameLabel.textColor = UIColor.BWDarkBlue()
+        startLabel.textColor = UIColor.BWDarkBlue()
+        endLabel.textColor = UIColor.BWDarkBlue()
+        videosLabel.textColor = UIColor.BWDarkBlue()
         
         // NAJ: video(s) counter text for campaign < 1 red, > 0 green
         videoNameMenuButton.layer.borderWidth = 1
-        videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
+        videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
-        videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
-        metricsTitleLabel.textColor = UIColor.orangeColor()
-        vtrLabel.textColor = UIColor.orangeColor()
-        ctrLabel.textColor = UIColor.orangeColor()
-        sharesLabel.textColor = UIColor.orangeColor()
-        favoritesLabel.textColor = UIColor.orangeColor()
-        likesLabel.textColor = UIColor.orangeColor()
-        commentsLabel.textColor = UIColor.orangeColor()
-        
+        vtrLabel.textColor = UIColor.BWRed()
+        ctrLabel.textColor = UIColor.BWRed()
+        viewsLabel.textColor = UIColor.BWRed()
+        sharesLabel.textColor = UIColor.BWRed()
+        favoritesLabel.textColor = UIColor.BWRed()
+        likesLabel.textColor = UIColor.BWRed()
+        commentsLabel.textColor = UIColor.BWRed()
         
         // Setup the Target Sliders
         
@@ -141,10 +152,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.vtrTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
         self.vtrTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
         
-        
         // CTR Target Slider (showed as %)
         self.ctrTargetSlider.numberFormatter = formatter
-        
         self.ctrTargetSlider.maximumValue = 1.00
         self.ctrTargetSlider.value = defaultCTR
         self.ctrTargetSlider.popUpViewCornerRadius = 12.0
@@ -153,7 +162,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.ctrTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
         self.ctrTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
         self.ctrTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
-        
         
         // Views Target Slider
         self.viewsTargetSlider.maximumValue = 1000
@@ -204,7 +212,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.commentsTargetSlider.popUpViewColor = UIColor(hue: 0.55, saturation: 0.8, brightness: 0.9, alpha: 0.7)
         self.commentsTargetSlider.font = UIFont(name: "GillSans-Bold", size: 15)
         self.commentsTargetSlider.textColor = UIColor(hue: 0.55, saturation: 1.0, brightness: 0.5, alpha: 1.0)
-        
     }
     
     func loadCampaignTargets() {
@@ -224,10 +231,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         // Setting up video title
         self.videoNameMenuButton.layer.borderWidth = 1
-        self.videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
-        self.videoNameMenuButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
-        self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
+        self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        self.videoNameMenuButton.setTitleColor(UIColor.BWGreen(), forState: UIControlState.Normal)
+        self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount())", forState: UIControlState.Normal)
 
         
         self.vtrTargetSlider.value       = campaign!.vtr_target ?? defaultVTR
@@ -237,7 +244,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.favoritesTargetSlider.value = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
         self.likesTargetSlider.value     = Float(campaign!.likes_target!) ?? Float(defaultLikes)
         self.commentsTargetSlider.value  = Float(campaign!.comments_target!) ?? Float(defaultComments)
-
     }
     
     private func loadDefaultCampaignTargets() {
@@ -253,10 +259,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.endData.text = "YYYY-MM-DD"
         
         self.videoNameMenuButton.layer.borderWidth = 1
-        self.videoNameMenuButton.layer.borderColor = UIColor.blackColor().CGColor
-        self.videoNameMenuButton.layer.backgroundColor = UIColor.blackColor().CGColor
-        self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        self.videoNameMenuButton.setTitle("0 Videos", forState: UIControlState.Normal)
+        self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        self.videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
+        self.videoNameMenuButton.setTitle("0", forState: UIControlState.Normal)
         
         self.vtrTargetSlider.value       = defaultVTR
         self.ctrTargetSlider.value       = defaultCTR
@@ -265,7 +271,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.favoritesTargetSlider.value = Float(defaultFavorites)
         self.likesTargetSlider.value     = Float(defaultLikes)
         self.commentsTargetSlider.value  = Float(defaultComments)
-
     }
     
     private func assignCampaignTargets() {
@@ -292,6 +297,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     func cancelSettings() {
         
         println("Cancelling...")
+        
         self.dashboardVC.reloadCampaigns()
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
