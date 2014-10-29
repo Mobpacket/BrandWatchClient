@@ -67,7 +67,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoSelectionTableView.registerNib(videoCellNib, forCellReuseIdentifier: "VideoCell")
         
         videoSelectionTableView.estimatedRowHeight = UITableViewAutomaticDimension
-        videoSelectionTableView.rowHeight = UITableViewAutomaticDimension
+        //videoSelectionTableView.rowHeight = UITableViewAutomaticDimension
         
         videoSelectionTableView.reloadData()
     }
@@ -95,6 +95,9 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         var videoCell = videoSelectionTableView.dequeueReusableCellWithIdentifier("VideoCell")
         as VideoCell
         
+        videoCell.contentView.layoutSubviews()
+        
+        
 //        cell.textLabel.numberOfLines = 0;
 //        cell.textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
 //        cell.textLabel.frame = CGRectMake(20, 10, 20, 200)
@@ -103,9 +106,11 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         var video = videos[indexPath.row]
         videoCell.name.text = video.name!
         videoCell.name.preferredMaxLayoutWidth = 300
+        videoCell.name.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
         var videoId = videos[indexPath.row].video_id!
 
+        videoCell.thumbnailImageView.setImageWithURL(NSURL(string: video.thumbnailUrl!))
         if selectedRowsArray.containsObject(videoId) {
             videoCell.selectImageView.image = UIImage(named: "checked.png")
             
@@ -117,6 +122,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         var checkboxTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleChecking:"))
         videoCell.selectImageView.addGestureRecognizer(checkboxTap)
         videoCell.selectImageView.userInteractionEnabled = true
+        
         
         
         //cell.contentView.addSubview(UIView(frame: CGRect(x: 50, y: 100, width: 300, height: 20)))
@@ -147,18 +153,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
 
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var cellText: String = "Go get some text for your cell."
-        let mycellText: NSString = cellText as NSString
-        var cellFont: UIFont = UIFont(name: "Arial", size: 12.0)!
-        //var constraintSize: CGSize = CGSize(width: 280.0f, height: MAXFLOAT)
-       
-        var attributedText: NSAttributedString = NSAttributedString(string: mycellText, attributes:
-            [NSForegroundColorAttributeName: UIColor.lightGrayColor(),
-            NSFontAttributeName: cellFont])
-        
-        var rect: CGRect = attributedText.boundingRectWithSize(CGSizeMake(videoSelectionTableView.bounds.size.width, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
-        
-        return rect.size.height + 20
+        return CGFloat(250)
     }
     
     override func didReceiveMemoryWarning() {

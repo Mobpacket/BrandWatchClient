@@ -25,3 +25,4 @@
 #import "VMaskTextField.h"
 #import "ASValueTrackingSlider.h"
 #import "ASValuePopUpView.h"
+#import "UIImageView+AFNetworking.h"
