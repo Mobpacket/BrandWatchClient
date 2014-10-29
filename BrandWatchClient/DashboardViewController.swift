@@ -521,8 +521,8 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             headerView = JBChartHeaderView(frame: CGRect(x: self.engagementBarChartView.bounds.size.height * 0.5, y: ceil(75.0 * 0.5), width: self.engagementBarChartView.bounds.size.width - (10.0 * 2), height: 75.0))
         }
         
-        headerView.titleLabel.font = fBWGillsManBold16
-        headerView.titleLabel.text = "Daily Metrics"
+        headerView.titleLabel.font = fBWMenloBold16
+        headerView.titleLabel.text = "10/18 - 10/28"
         headerView.titleLabel.textColor = UIColor.BWDarkBlue()
         headerView.titleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
         headerView.titleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -531,11 +531,11 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         println("start: \(start)")
         println("end: \(end)")
 //        var dateString = "\(campaign?.start!) - \(campaign?.end!)"
-        headerView.subtitleLabel.font = fBWGillsManBold12
-        headerView.subtitleLabel.text = "10/18 - 10/28"
-        headerView.subtitleLabel.textColor = UIColor.BWRed()
-        headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
-        headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+//        headerView.subtitleLabel.font = fBWGillsManBold12
+//        headerView.subtitleLabel.text = "10/18 - 10/28"
+//        headerView.subtitleLabel.textColor = UIColor.BWRed()
+//        headerView.subtitleLabel.shadowColor = UIColor(white: 1.0, alpha: 0.25)
+//        headerView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
         headerView.separatorColor = UIColor.BWDarkBlue()
         
         switch type {
