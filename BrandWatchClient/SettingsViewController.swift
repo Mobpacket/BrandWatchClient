@@ -113,6 +113,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         settingsMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         settingsMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         settingsMenuButton.titleLabel?.font = fBWMenloBold18
+        settingsMenuButton.layer.cornerRadius = 8
         
         settingsView.backgroundColor = UIColor.clearColor()
         settingsView.backgroundColor = UIColor.BWOffWhite()
@@ -127,10 +128,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         videosLabel.textColor = UIColor.BWDarkBlue()
         
         // NAJ: video(s) counter text for campaign < 1 red, > 0 green
-        videoNameMenuButton.titleLabel?.font = fBWMenloBold18
+        videoNameMenuButton.titleLabel?.font = fBWMenloBold14
         videoNameMenuButton.layer.borderWidth = 1
         videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        videoNameMenuButton.layer.cornerRadius = 8
         videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
@@ -244,10 +246,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.endData.text = campaign!.end
 
         // Setting up video title
-        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold18
+        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold14
         self.videoNameMenuButton.layer.borderWidth = 1
         self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        self.videoNameMenuButton.layer.cornerRadius = 8
         self.videoNameMenuButton.setTitleColor(UIColor.BWGreen(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount())", forState: UIControlState.Normal)
 
@@ -273,10 +276,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.endData.textColor = UIColor.lightGrayColor()
         self.endData.text = "YYYY-MM-DD"
         
-        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold18
+        self.videoNameMenuButton.titleLabel?.font = fBWMenloBold14
         self.videoNameMenuButton.layer.borderWidth = 1
         self.videoNameMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         self.videoNameMenuButton.layer.backgroundColor = UIColor.BWOffWhite().CGColor
+        self.videoNameMenuButton.layer.cornerRadius = 8
         self.videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("0", forState: UIControlState.Normal)
         
@@ -490,7 +494,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         println("moving to video selection view...")
         var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
         
-        self.videoNameMenuButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        self.videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
         
         self.loadVideoSelectionView()

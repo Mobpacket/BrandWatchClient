@@ -29,6 +29,7 @@ class VideoCell: UITableViewCell {
         
         self.thumbnailImageView.layer.borderWidth = 2
         self.thumbnailImageView.layer.borderColor = UIColor.BWRed().CGColor
+        self.thumbnailImageView.layer.cornerRadius = 8
+        self.thumbnailImageView.clipsToBounds = true
     }
-    
 }

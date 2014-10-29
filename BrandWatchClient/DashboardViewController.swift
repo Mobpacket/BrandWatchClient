@@ -254,6 +254,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         // Setup Menu Button
         DashboardMenuButton.backgroundColor = UIColor.BWRed()
         DashboardMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
+        DashboardMenuButton.layer.cornerRadius = 8
         DashboardMenuButton.layer.borderWidth = 2
         DashboardMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         DashboardMenuButton.titleLabel?.font = fBWMenloBold18
@@ -372,7 +373,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
 
-                label.text = "L\n\(shares_value!)"
+                label.text = "S\n\(shares_value!)"
             })
         }
         

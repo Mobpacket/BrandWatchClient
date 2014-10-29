@@ -77,6 +77,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         self.VideoSelectionTitleMenuButton.backgroundColor = UIColor.BWRed()
         self.VideoSelectionTitleMenuButton.layer.borderWidth = 2
         self.VideoSelectionTitleMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        self.VideoSelectionTitleMenuButton.layer.cornerRadius = 8
         self.VideoSelectionTitleMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         self.VideoSelectionTitleMenuButton.titleLabel?.font = fBWMenloBold18
         
