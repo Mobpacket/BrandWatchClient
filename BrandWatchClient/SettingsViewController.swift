@@ -452,7 +452,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func settingsMenuButtonTapped(sender: UIButton) {
     
         var styleItems = NSArray(objects:
-            RWDropdownMenuItem(text:"Create/Save", image:nil, action:{
+            RWDropdownMenuItem(text:"Create/Save", image: UIImage(named: "save_BWOffWhite25.png"), action:{
                 
                 println("creating campaign")
                 
@@ -481,12 +481,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
                 
             }),
             
-            RWDropdownMenuItem(text:"Cancel", image:nil, action:{
+            RWDropdownMenuItem(text:"Cancel", image: UIImage(named: "cancel_BWOffWhite25.png"), action:{
                 self.cancelSettings()
             })
         )
         
-        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Left, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
     
     @IBAction func videoNameButtonPressed(sender: UIButton) {

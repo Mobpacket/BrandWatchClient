@@ -180,7 +180,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         
         if selectedRowsArray.count > 0 {
             styleItems.append(
-                RWDropdownMenuItem(text:"Continue Create/Edit (\(selectedRowsArray.count))", image:nil, action:{
+                RWDropdownMenuItem(text:"Continue (\(selectedRowsArray.count))", image: UIImage(named: "checklist_BWOffWhite25.png"), action:{
                     
                     println("loading settings view (edit)")
                     //selected videos
@@ -199,13 +199,13 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         }
         
         styleItems.append(
-            RWDropdownMenuItem(text:"Cancel", image:nil, action:{
+            RWDropdownMenuItem(text:"Cancel", image: UIImage(named: "cancel_BWOffWhite25.png"), action:{
                 println("cancelling...")
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         )
         
-        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+        RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Left, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
     }
 }

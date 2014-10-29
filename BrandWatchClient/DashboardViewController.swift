@@ -743,7 +743,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         
         CampaignService.sharedInstance.getCampaigns { (campaigns, error) -> Void in
             styleItems.append(
-                RWDropdownMenuItem(text:"Create Campaign", image:nil, action:{
+                RWDropdownMenuItem(text:"Create Campaign", image: UIImage(named: "plus_BWOffWhite25.png"), action:{
                     
                     println("loading settings view (create)")
                     
@@ -752,7 +752,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             )
             
             styleItems.append(
-                RWDropdownMenuItem(text:"Edit Campaign", image:nil, action:{
+                RWDropdownMenuItem(text:"Edit Campaign", image: UIImage(named: "edit_BWOffWhite24.png"), action:{
                     
                     println("loading settings view (edit)")
                     
@@ -762,7 +762,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             
             for campaign in campaigns {
                 styleItems.append(
-                    RWDropdownMenuItem(text:campaign.name!, image:nil, action:{
+                    RWDropdownMenuItem(text:campaign.name!, image: UIImage(named: "campaign_BWOffWhite26.png"), action:{
                         
                         println("loading campaign \(campaign.name!)")
                         
@@ -774,13 +774,13 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
             }
             
             styleItems.append(
-                RWDropdownMenuItem(text:"Sign Out", image:nil, action:{
+                RWDropdownMenuItem(text:"Sign Out", image: UIImage(named: "logout_BWOffWhite26.png"), action:{
                     
                     self.signOut()
                 })
             )
             
-            RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Center, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
+            RWDropdownMenu.presentFromViewController(self, withItems: styleItems, align: RWDropdownMenuCellAlignment.Left, style: RWDropdownMenuStyle.Translucent, navBarImage: nil, completion: nil)
         }
     }
     
