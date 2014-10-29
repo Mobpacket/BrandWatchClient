@@ -362,6 +362,7 @@ class CampaignService: NSObject {
         totalMetrics.likes     = 144
         totalMetrics.favorites = 28
         totalMetrics.comments  = 412
+        totalMetrics.dislikes  = 30
         
         campaign.metrics_total = totalMetrics
     }
