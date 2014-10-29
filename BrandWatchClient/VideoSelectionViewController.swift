@@ -128,10 +128,10 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
 
         videoCell.thumbnailImageView.setImageWithURL(NSURL(string: video.thumbnailUrl!))
         if selectedRowsArray.containsObject(videoId) {
-            videoCell.selectImageView.image = UIImage(named: "checked.png")
+            videoCell.selectImageView.image = UIImage(named: "checked_BWRed26.png")
             
         } else {
-            videoCell.selectImageView.image = UIImage(named: "unchecked.png")
+            videoCell.selectImageView.image = UIImage(named: "unchecked_BWRed26.png")
         }
         
         //cell.imageView.image = UIImage(named: "unchecked.png")
