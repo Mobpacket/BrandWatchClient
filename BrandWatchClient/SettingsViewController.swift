@@ -262,6 +262,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.favoritesTargetSlider.value = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
         self.likesTargetSlider.value     = Float(campaign!.likes_target!) ?? Float(defaultLikes)
         self.commentsTargetSlider.value  = Float(campaign!.comments_target!) ?? Float(defaultComments)
+
+        vtrTargetF       = campaign!.vtr_target ?? defaultVTR
+        ctrTargetF       = campaign!.ctr_target ?? defaultCTR
+        viewsTargetF     = Float(campaign!.views_target!) ?? Float(defaultViews)
+        sharesTargetF    = Float(campaign!.shares_target!) ?? Float(defaultShares)
+        favoritesTargetF = Float(campaign!.favorites_target!) ?? Float(defaultFavorites)
+        likesTargetF     = Float(campaign!.likes_target!) ?? Float(defaultLikes)
+        commentsTargetF  = Float(campaign!.comments_target!) ?? Float(defaultComments)
     }
     
     private func loadDefaultCampaignTargets() {
@@ -493,6 +501,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
         println("moving to video selection view...")
         var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+        campaign!.name = self.nameData.text
+        campaign!.start = self.startData.text
+        campaign!.end = self.endData.text
+        
+        campaign!.vtr_target = vtrTargetF
+        campaign!.ctr_target = ctrTargetF
+        campaign!.views_target = Int(viewsTargetF)
+        campaign!.shares_target = Int(sharesTargetF)
+        campaign!.favorites_target = Int(favoritesTargetF)
+        campaign!.likes_target = Int(likesTargetF)
+        campaign!.comments_target = Int(commentsTargetF)
+
         
         self.videoNameMenuButton.setTitleColor(UIColor.BWRed(), forState: UIControlState.Normal)
         self.videoNameMenuButton.setTitle("\(campaign!.getVideoIDsCount()) Videos", forState: UIControlState.Normal)
