@@ -63,7 +63,11 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoSelectionTableView.dataSource = self
         videoSelectionTableView.delegate = self
         
-        videoSelectionTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        var videoCellNib = UINib(nibName: "VideoCell", bundle: nil)
+        videoSelectionTableView.registerNib(videoCellNib, forCellReuseIdentifier: "VideoCell")
+        
+        videoSelectionTableView.estimatedRowHeight = UITableViewAutomaticDimension
+        videoSelectionTableView.rowHeight = UITableViewAutomaticDimension
         
         videoSelectionTableView.reloadData()
     }
@@ -86,33 +90,38 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         
         //var cell: UITableViewCell! = UITableViewCell()
         
-        var cell:UITableViewCell = videoSelectionTableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+//        var cell:UITableViewCell = videoSelectionTableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+//        
+        var videoCell = videoSelectionTableView.dequeueReusableCellWithIdentifier("VideoCell")
+        as VideoCell
         
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        cell.textLabel.frame = CGRectMake(20, 10, 20, 200)
-        var myFont: UIFont = UIFont(name: "Arial", size: 14.0)!
-        cell.textLabel.font  = myFont;
-        cell.textLabel.text = videos[indexPath.row].name!
+//        cell.textLabel.numberOfLines = 0;
+//        cell.textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//        cell.textLabel.frame = CGRectMake(20, 10, 20, 200)
+//        var myFont: UIFont = UIFont(name: "Arial", size: 14.0)!
+//        cell.textLabel.font  = myFont;
+        var video = videos[indexPath.row]
+        videoCell.name.text = video.name!
+        videoCell.name.preferredMaxLayoutWidth = 300
         
         var videoId = videos[indexPath.row].video_id!
 
         if selectedRowsArray.containsObject(videoId) {
-            cell.imageView.image = UIImage(named: "checked.png")
+            videoCell.selectImageView.image = UIImage(named: "checked.png")
             
         } else {
-            cell.imageView.image = UIImage(named: "unchecked.png")
+            videoCell.selectImageView.image = UIImage(named: "unchecked.png")
         }
         
         //cell.imageView.image = UIImage(named: "unchecked.png")
         var checkboxTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleChecking:"))
-        cell.imageView.addGestureRecognizer(checkboxTap)
-        cell.imageView.userInteractionEnabled = true
+        videoCell.selectImageView.addGestureRecognizer(checkboxTap)
+        videoCell.selectImageView.userInteractionEnabled = true
         
         
         //cell.contentView.addSubview(UIView(frame: CGRect(x: 50, y: 100, width: 300, height: 20)))
         
-        return cell
+        return videoCell
     }
     
     func handleChecking(tapRecognizer: UITapGestureRecognizer) {

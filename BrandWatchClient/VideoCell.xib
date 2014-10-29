@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="VideoCell" selectionStyle="default" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="VideoCell" customModule="BrandWatchClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNs-ZE-xZ8">
+                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Oes-5L-kMc"/>
+                            <constraint firstAttribute="width" constant="20" id="wDz-Wh-jsK"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-bU-daj">
+                        <rect key="frame" x="40" y="10" width="550" height="180"/>
+                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1O9-bU-daj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0Rp-FS-NAr"/>
+                    <constraint firstAttribute="bottom" secondItem="1O9-bU-daj" secondAttribute="bottom" constant="10" id="69L-BT-un0"/>
+                    <constraint firstItem="dNs-ZE-xZ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="7gk-Fy-qjD"/>
+                    <constraint firstAttribute="trailing" secondItem="1O9-bU-daj" secondAttribute="trailing" constant="10" id="OaT-tS-imw"/>
+                    <constraint firstItem="dNs-ZE-xZ8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Yr7-Q6-azI"/>
+                    <constraint firstItem="1O9-bU-daj" firstAttribute="leading" secondItem="dNs-ZE-xZ8" secondAttribute="trailing" constant="10" id="hq6-oA-uwJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="name" destination="1O9-bU-daj" id="FPA-ZO-5HN"/>
+                <outlet property="selectImageView" destination="dNs-ZE-xZ8" id="geU-Et-xdr"/>
+            </connections>
+            <point key="canvasLocation" x="470" y="-63"/>
+        </tableViewCell>
+    </objects>
+</document>

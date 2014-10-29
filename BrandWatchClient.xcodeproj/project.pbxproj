@@ -29,6 +29,8 @@
 		A8027CF419FE03F700D9D92F /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8027CF319FE03F700D9D92F /* Consts.swift */; };
 		A840109F19FCDFBA00BD30A9 /* TTLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A840109E19FCDFBA00BD30A9 /* TTLCache.swift */; };
 		A86E341B19EBBEEC00745230 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E341A19EBBEEC00745230 /* Helper.swift */; };
+		A875E9C71A00A618007027BA /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A875E9C51A00A618007027BA /* VideoCell.swift */; };
+		A875E9C81A00A618007027BA /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A875E9C61A00A618007027BA /* VideoCell.xib */; };
 		A8901A4519F335850061581F /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4419F335850061581F /* CampaignService.swift */; };
 		A8901A4719F3361B0061581F /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4619F3361B0061581F /* ParseClient.swift */; };
 		A8901A4D19F4B9060061581F /* EngagementScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8901A4C19F4B9060061581F /* EngagementScorer.swift */; };
@@ -103,6 +105,8 @@
 		A8027CF319FE03F700D9D92F /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		A840109E19FCDFBA00BD30A9 /* TTLCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTLCache.swift; sourceTree = "<group>"; };
 		A86E341A19EBBEEC00745230 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A875E9C51A00A618007027BA /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		A875E9C61A00A618007027BA /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		A8901A4419F335850061581F /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		A8901A4619F3361B0061581F /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		A8901A4C19F4B9060061581F /* EngagementScorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementScorer.swift; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
 				D9726BAD19EE374200B9FF1A /* SettingsView.xib */,
 				D9B749CC19F727C800DFA7FC /* VideoSelectionView.xib */,
+				A875E9C51A00A618007027BA /* VideoCell.swift */,
+				A875E9C61A00A618007027BA /* VideoCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 			files = (
 				D9E3D3EF19EA1A4600101EC6 /* CampaignView.xib in Resources */,
 				1D9B5C4119E797A20062F44A /* Main.storyboard in Resources */,
+				A875E9C81A00A618007027BA /* VideoCell.xib in Resources */,
 				D92AF6CF19EB51FE0060D832 /* LoginView.xib in Resources */,
 				1D9B5C4619E797A20062F44A /* LaunchScreen.xib in Resources */,
 				D9B0015419FFAE4300557A87 /* menu_BWOffWhite_25.png in Resources */,
@@ -522,6 +529,7 @@
 				D986C31619F30F97009EDAE1 /* Metrics.swift in Sources */,
 				A8027CF419FE03F700D9D92F /* Consts.swift in Sources */,
 				A86E341B19EBBEEC00745230 /* Helper.swift in Sources */,
+				A875E9C71A00A618007027BA /* VideoCell.swift in Sources */,
 				D9726BB019EE375A00B9FF1A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
