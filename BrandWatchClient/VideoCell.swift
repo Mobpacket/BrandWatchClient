@@ -25,6 +25,10 @@ class VideoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        self.backgroundColor = UIColor.BWOffWhite()
+        
+        self.thumbnailImageView.layer.borderWidth = 2
+        self.thumbnailImageView.layer.borderColor = UIColor.BWRed().CGColor
     }
     
 }

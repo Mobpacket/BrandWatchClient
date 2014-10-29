@@ -23,11 +23,9 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
     
     var settingsVC: SettingsViewController!
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         
         // Retrieve a list of uploaded videos for the User's channel
         CampaignService.sharedInstance.getVideos(){ (videos, error) -> Void in
@@ -47,7 +45,6 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
                 self.selectedRowsArray.addObject(videoId)
             }
         }
-        
         
         NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: "reloadVideos", userInfo: nil, repeats: false)
 
@@ -69,10 +66,28 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoSelectionTableView.estimatedRowHeight = UITableViewAutomaticDimension
         //videoSelectionTableView.rowHeight = UITableViewAutomaticDimension
         
+        constructUI()
+        
         videoSelectionTableView.reloadData()
     }
     
+    func constructUI() {
+        
+        // Setup menu button
+        self.VideoSelectionTitleMenuButton.backgroundColor = UIColor.BWRed()
+        self.VideoSelectionTitleMenuButton.layer.borderWidth = 2
+        self.VideoSelectionTitleMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
+        self.VideoSelectionTitleMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
+        
+        self.videoSelectionView.backgroundColor = UIColor.clearColor()
+        self.videoSelectionView.backgroundColor = UIColor.BWOffWhite()
+        
+        self.videoSelectionView.backgroundColor = UIColor.BWOffWhite()
+        self.videoSelectionTableView.backgroundColor = UIColor.BWOffWhite()
+    }
+    
     func reloadVideos() {
+        
         self.videoSelectionTableView.reloadData()
     }
 
@@ -96,7 +111,6 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         as VideoCell
         
         videoCell.contentView.layoutSubviews()
-        
         
 //        cell.textLabel.numberOfLines = 0;
 //        cell.textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -123,8 +137,6 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoCell.selectImageView.addGestureRecognizer(checkboxTap)
         videoCell.selectImageView.userInteractionEnabled = true
         
-        
-        
         //cell.contentView.addSubview(UIView(frame: CGRect(x: 50, y: 100, width: 300, height: 20)))
         
         return videoCell
@@ -147,24 +159,21 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         }
         
         videoSelectionTableView.reloadData()
-        
     }
     
-
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return CGFloat(250)
     }
     
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     @IBAction func videoListMenuTapped(sender: UIButton) {
         var styleItems = [RWDropdownMenuItem]()
-        
         
         styleItems.append(
             RWDropdownMenuItem(text:"Select", image:nil, action:{

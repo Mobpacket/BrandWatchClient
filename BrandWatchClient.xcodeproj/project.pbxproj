@@ -319,7 +319,6 @@
 				D92AF6CE19EB51FE0060D832 /* LoginView.xib */,
 				D9726BAD19EE374200B9FF1A /* SettingsView.xib */,
 				D9B749CC19F727C800DFA7FC /* VideoSelectionView.xib */,
-				A875E9C51A00A618007027BA /* VideoCell.swift */,
 				A875E9C61A00A618007027BA /* VideoCell.xib */,
 			);
 			name = Views;
@@ -353,6 +352,7 @@
 				D9E3D3F419EA7AE100101EC6 /* Campaign.swift */,
 				D986C31319F30F74009EDAE1 /* Video.swift */,
 				D986C31519F30F97009EDAE1 /* Metrics.swift */,
+				A875E9C51A00A618007027BA /* VideoCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

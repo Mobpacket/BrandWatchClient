@@ -110,7 +110,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         settingsMenuButton.backgroundColor = UIColor.BWRed()
         settingsMenuButton.layer.borderWidth = 2
         settingsMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
-        settingsMenuButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        settingsMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
         
         settingsView.backgroundColor = UIColor.clearColor()
         settingsView.backgroundColor = UIColor.BWOffWhite()
