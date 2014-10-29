@@ -45,7 +45,9 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
     
     let progressColors = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRed(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWDarkBlue()]
     
-    let progressDColors = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRed(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWRed()]
+    let progressDColors = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRedAlpha(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWRed()]
+    
+    let progressColorsAlpha = [NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.FillColor) : UIColor.clearColor(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.TrackColor) : UIColor.BWRedAlpha(), NSStringFromProgressLabelColorTableKey(ProgressLabelColorTable.ProgressColor) : UIColor.BWDarkBlue()]
     
     var engagementLineChartView = JBLineChartView()
     var engagementBarChartView = JBBarChartView()
@@ -304,7 +306,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.vtrProgressLabel.frontBorderWidth = 9.8
         self.vtrProgressLabel.startDegree = 0
         self.vtrProgressLabel.endDegree = 0
-        self.vtrProgressLabel.colorTable = progressColors
+        self.vtrProgressLabel.colorTable = progressColorsAlpha
         self.vtrProgressLabel.setProgress(vtr_progress, timing: TPPropertyAnimationTimingEaseOut, duration: 1.0, delay: 0.5)
         self.vtrProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -325,7 +327,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.ctrProgressLabel.frontBorderWidth = 9.8
         self.ctrProgressLabel.startDegree = 0
         self.ctrProgressLabel.endDegree = 0
-        self.ctrProgressLabel.colorTable = progressColors
+        self.ctrProgressLabel.colorTable = progressColorsAlpha
         ctrProgressLabel.setProgress(ctr_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.ctrProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -347,7 +349,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.viewsProgressLabel.frontBorderWidth = 9.8
         self.viewsProgressLabel.startDegree = 0
         self.viewsProgressLabel.endDegree = 0
-        self.viewsProgressLabel.colorTable = progressColors
+        self.viewsProgressLabel.colorTable = progressColorsAlpha
         viewsProgressLabel.setProgress(views_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.viewsProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -367,7 +369,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.sharesProgressLabel.frontBorderWidth = 9.8
         self.sharesProgressLabel.startDegree = 0
         self.sharesProgressLabel.endDegree = 0
-        self.sharesProgressLabel.colorTable = progressColors
+        self.sharesProgressLabel.colorTable = progressColorsAlpha
         sharesProgressLabel.setProgress(shares_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.sharesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -387,7 +389,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.likesProgressLabel.frontBorderWidth = 9.8
         self.likesProgressLabel.startDegree = 0
         self.likesProgressLabel.endDegree = 0
-        self.likesProgressLabel.colorTable = progressColors
+        self.likesProgressLabel.colorTable = progressColorsAlpha
         likesProgressLabel.setProgress(likes_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.likesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -407,7 +409,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.favoritesProgressLabel.frontBorderWidth = 9.8
         self.favoritesProgressLabel.startDegree = 0
         self.favoritesProgressLabel.endDegree = 0
-        self.favoritesProgressLabel.colorTable = progressColors
+        self.favoritesProgressLabel.colorTable = progressColorsAlpha
         favoritesProgressLabel.setProgress(favorites_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.favoritesProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             
@@ -427,7 +429,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         self.commentsProgressLabel.frontBorderWidth = 9.8
         self.commentsProgressLabel.startDegree = 0
         self.commentsProgressLabel.endDegree = 0
-        self.commentsProgressLabel.colorTable = progressColors
+        self.commentsProgressLabel.colorTable = progressColorsAlpha
         commentsProgressLabel.setProgress(comments_progress, timing: TPPropertyAnimationTimingEaseIn, duration: 1.0, delay: 0.5)
         self.commentsProgressLabel.progressLabelVCBlock = { (label: KAProgressLabel!, progress: CGFloat) in
             

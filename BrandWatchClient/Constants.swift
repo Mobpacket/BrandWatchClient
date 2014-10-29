@@ -68,5 +68,17 @@ extension UIColor {
         
         return UIColor(red: 255.0/255.0, green: 198.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     }
+    class func BWRedAlpha() -> UIColor {
+        
+        return UIColor(red: 125.0/255.0, green: 25.0/255.0, blue: 53.0/255.0, alpha: 0.5)
+
+//        return UIColor(hue: 343, saturation: 0.66, brightness: 0.3, alpha: 0.5)
+    }
+    class func BWDarkBlueAlpha() -> UIColor {
+        
+        return UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 0.5)
+
+//        return UIColor(hue: 211, saturation: 0.28, brightness: 0.24, alpha: 0.5)
+    }
 }
 
