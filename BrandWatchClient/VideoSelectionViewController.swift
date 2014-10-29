@@ -177,23 +177,25 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
     @IBAction func videoListMenuTapped(sender: UIButton) {
         var styleItems = [RWDropdownMenuItem]()
         
-        styleItems.append(
-            RWDropdownMenuItem(text:"Select", image:nil, action:{
-                
-                println("loading settings view (edit)")
-                //selected videos
-                var selectedVideos = [String]()
-                for videoId in self.selectedRowsArray {
-                    selectedVideos.append(videoId as String)
-                }
-                var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
-                campaign?.video_ids = selectedVideos
-
-                //Make all the changes in CampaignService
-                self.settingsVC.loadCampaignTargets()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
-        )
+        if selectedRowsArray.count > 0 {
+            styleItems.append(
+                RWDropdownMenuItem(text:"Continue Create/Edit (\(selectedRowsArray.count))", image:nil, action:{
+                    
+                    println("loading settings view (edit)")
+                    //selected videos
+                    var selectedVideos = [String]()
+                    for videoId in self.selectedRowsArray {
+                        selectedVideos.append(videoId as String)
+                    }
+                    var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+                    campaign?.video_ids = selectedVideos
+                    
+                    //Make all the changes in CampaignService
+                    self.settingsVC.loadCampaignTargets()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            )
+        }
         
         styleItems.append(
             RWDropdownMenuItem(text:"Cancel", image:nil, action:{
