@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -37,19 +37,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBn-dL-Dov">
-                    <rect key="frame" x="10" y="70" width="43" height="19.5"/>
+                    <rect key="frame" x="10" y="70" width="43" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzk-NZ-yNL">
-                    <rect key="frame" x="10" y="109" width="73.5" height="19.5"/>
+                    <rect key="frame" x="10" y="110" width="74" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1m-7J-V24">
-                    <rect key="frame" x="10" y="149" width="67" height="19.5"/>
+                    <rect key="frame" x="10" y="150" width="67" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -82,37 +82,37 @@
                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VTR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-L8-JCb">
-                    <rect key="frame" x="10" y="245" width="30.5" height="19.5"/>
+                    <rect key="frame" x="10" y="252" width="31" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tV-Iw-br1">
-                    <rect key="frame" x="10" y="290" width="32.5" height="19.5"/>
+                    <rect key="frame" x="10" y="298" width="33" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shares" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUR-KJ-y2e">
-                    <rect key="frame" x="10" y="381" width="50.5" height="19.5"/>
+                    <rect key="frame" x="10" y="390" width="51" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3d-2N-xBc">
-                    <rect key="frame" x="10" y="427" width="66.5" height="19.5"/>
+                    <rect key="frame" x="10" y="436" width="67" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kF-f3-Wxu">
-                    <rect key="frame" x="10" y="472" width="38" height="19.5"/>
+                    <rect key="frame" x="10" y="482" width="38" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4o9-Fn-vVh">
-                    <rect key="frame" x="10" y="518" width="79.5" height="19.5"/>
+                    <rect key="frame" x="10" y="528" width="80" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -133,13 +133,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaU-yZ-nHo">
-                    <rect key="frame" x="10" y="188" width="41" height="19.5"/>
+                    <rect key="frame" x="10" y="190" width="41" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="jWa-m6-Nse" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="281" width="154" height="31"/>
+                    <rect key="frame" x="128" y="291" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="75R-1a-TrV"/>
                     </constraints>
@@ -148,7 +148,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nxU-QG-xGp" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="372" width="154" height="31"/>
+                    <rect key="frame" x="128" y="382" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="KRM-bj-eVq"/>
                     </constraints>
@@ -157,7 +157,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vPc-EF-0MF" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="418" width="154" height="31"/>
+                    <rect key="frame" x="128" y="428" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="YK4-cV-n61"/>
                     </constraints>
@@ -166,7 +166,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-gq-f0M" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="463" width="154" height="31"/>
+                    <rect key="frame" x="128" y="473" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="V1h-vh-9rc"/>
                     </constraints>
@@ -175,7 +175,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pM7-lo-zya" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="509" width="154" height="31"/>
+                    <rect key="frame" x="128" y="519" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="LeE-MF-Apz"/>
                     </constraints>
@@ -184,7 +184,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nce-VN-7ho" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="327" width="154" height="31"/>
+                    <rect key="frame" x="128" y="337" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="yf8-zY-NY5"/>
                     </constraints>
@@ -193,7 +193,7 @@
                     </connections>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Views" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO9-2d-LxE">
-                    <rect key="frame" x="10" y="336" width="42.5" height="19.5"/>
+                    <rect key="frame" x="10" y="344" width="43" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -214,7 +214,7 @@
                     </connections>
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="mbg-XV-4sM" customClass="ASValueTrackingSlider">
-                    <rect key="frame" x="128" y="236" width="154" height="31"/>
+                    <rect key="frame" x="128" y="246" width="154" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="oY0-Vg-f1j"/>
                     </constraints>
@@ -271,7 +271,7 @@
                 <constraint firstAttribute="trailing" secondItem="jWa-m6-Nse" secondAttribute="trailing" constant="320" id="oJX-cR-6iE"/>
                 <constraint firstItem="xaU-yZ-nHo" firstAttribute="top" secondItem="t1m-7J-V24" secondAttribute="bottom" constant="20" id="ovJ-xZ-0Ef"/>
                 <constraint firstItem="AjR-3d-Xuj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="oyF-ON-7Qp"/>
-                <constraint firstItem="mbg-XV-4sM" firstAttribute="top" secondItem="4Kq-AF-oVP" secondAttribute="bottom" constant="27" id="psZ-Rl-hY6"/>
+                <constraint firstItem="mbg-XV-4sM" firstAttribute="top" secondItem="4Kq-AF-oVP" secondAttribute="bottom" constant="37" id="psZ-Rl-hY6"/>
                 <constraint firstItem="6kF-f3-Wxu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rm7-Tq-r4A"/>
                 <constraint firstItem="CdB-PN-uY8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="130" id="tEW-4c-fU6"/>
                 <constraint firstItem="VVi-xK-hLi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="130" id="uqX-vw-VvH"/>
@@ -280,7 +280,7 @@
                 <constraint firstItem="YO9-2d-LxE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yEr-sf-LKK"/>
                 <constraint firstItem="i4c-wB-BAj" firstAttribute="top" secondItem="VVi-xK-hLi" secondAttribute="bottom" constant="12" id="yKU-6s-98k"/>
                 <constraint firstItem="jWa-m6-Nse" firstAttribute="top" secondItem="mbg-XV-4sM" secondAttribute="bottom" constant="15" id="yM5-RM-sxm"/>
-                <constraint firstItem="rMK-L8-JCb" firstAttribute="top" secondItem="xaU-yZ-nHo" secondAttribute="bottom" constant="38" id="zue-SA-Gm1"/>
+                <constraint firstItem="rMK-L8-JCb" firstAttribute="top" secondItem="xaU-yZ-nHo" secondAttribute="bottom" constant="42" id="zue-SA-Gm1"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

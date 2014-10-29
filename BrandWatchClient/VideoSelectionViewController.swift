@@ -78,6 +78,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         self.VideoSelectionTitleMenuButton.layer.borderWidth = 2
         self.VideoSelectionTitleMenuButton.layer.borderColor = UIColor.BWDarkBlue().CGColor
         self.VideoSelectionTitleMenuButton.setTitleColor(UIColor.BWOffWhite(), forState: UIControlState.Normal)
+        self.VideoSelectionTitleMenuButton.titleLabel?.font = fBWMenloBold18
         
         self.videoSelectionView.backgroundColor = UIColor.clearColor()
         self.videoSelectionView.backgroundColor = UIColor.BWOffWhite()
@@ -121,6 +122,7 @@ class VideoSelectionViewController: UIViewController, UITableViewDataSource, UIT
         videoCell.name.text = video.name!
         videoCell.name.preferredMaxLayoutWidth = 300
         videoCell.name.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        videoCell.name.font = fBWMenloBold15
         
         var videoId = videos[indexPath.row].video_id!
 
