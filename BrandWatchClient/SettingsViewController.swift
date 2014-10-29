@@ -35,6 +35,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var favoritesTargetSlider: ASValueTrackingSlider!
     @IBOutlet weak var likesTargetSlider: ASValueTrackingSlider!
     @IBOutlet weak var commentsTargetSlider: ASValueTrackingSlider!
+    
+    let defaultVTR: Float = 0.7
+    let defaultCTR: Float = 0.0002
+    let defaultViews: Int = 300
+    let defaultShares: Int = 20
+    let defaultFavorites: Int = 150
+    let defaultLikes: Int = 300
+    let defaultComments: Int = 50
 
     var vtrTargetF: Float!
     var ctrTargetF: Float!
@@ -44,14 +52,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     var likesTargetF: Float!
     var commentsTargetF: Float!
     var settingsView: UIView!
-    
-    let defaultVTR: Float = 0.7
-    let defaultCTR: Float = 0.0002
-    let defaultViews: Int = 100
-    let defaultShares: Int = 50
-    let defaultFavorites: Int = 50
-    let defaultLikes: Int = 50
-    let defaultComments: Int = 25
+
     
     var campaignVC: CampaignViewController!
     var dashboardVC: DashboardViewController!
@@ -285,6 +286,25 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         self.favoritesTargetSlider.value = Float(defaultFavorites)
         self.likesTargetSlider.value     = Float(defaultLikes)
         self.commentsTargetSlider.value  = Float(defaultComments)
+        
+        vtrTargetF = defaultVTR
+        ctrTargetF = defaultCTR
+        viewsTargetF = Float(defaultViews)
+        sharesTargetF    = Float(defaultShares)
+        favoritesTargetF = Float(defaultFavorites)
+        likesTargetF     = Float(defaultLikes)
+        commentsTargetF  = Float(defaultComments)
+        
+        var campaign = CampaignService.sharedInstance.getActiveWriteCampaign()
+        
+        campaign!.vtr_target = vtrTargetF
+        campaign!.ctr_target = ctrTargetF
+        campaign!.views_target = Int(viewsTargetF)
+        campaign!.shares_target = Int(sharesTargetF)
+        campaign!.favorites_target = Int(favoritesTargetF)
+        campaign!.likes_target = Int(likesTargetF)
+        campaign!.comments_target = Int(commentsTargetF)
+
     }
     
     private func assignCampaignTargets() {
