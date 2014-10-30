@@ -343,6 +343,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         var views_value = campaign?.metrics_total?.views
         var views_target = campaign?.views_target
         var views_progress = CGFloat(CGFloat(views_value!)/CGFloat(views_target!))
+        self.viewsProgressLabel.textColor = UIColor.BWRed()
         self.viewsProgressLabel.font = fBWMenloBold14
         viewsProgressLabel.progressType = ProgressLableType.LabelCircle
         self.viewsProgressLabel.backBorderWidth = 10.0
@@ -363,6 +364,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         var shares_value = campaign?.metrics_total?.shares
         var shares_target = campaign?.shares_target
         var shares_progress = CGFloat(CGFloat(shares_value!)/CGFloat(shares_target!))
+        self.sharesProgressLabel.textColor = UIColor.orangeColor()
         self.sharesProgressLabel.font = fBWMenloBold14
         sharesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.sharesProgressLabel.backBorderWidth = 10.0
@@ -383,6 +385,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         var likes_value = campaign?.metrics_total?.likes
         var likes_target = campaign?.likes_target
         var likes_progress = CGFloat(CGFloat(likes_value!)/CGFloat(likes_target!))
+        self.likesProgressLabel.textColor = UIColor.BWDarkBlue()
         self.likesProgressLabel.font = fBWMenloBold14
         likesProgressLabel.progressType = ProgressLableType.LabelCircle
         self.likesProgressLabel.backBorderWidth = 10.0
@@ -423,6 +426,7 @@ class DashboardViewController: UIViewController, JBLineChartViewDataSource, JBLi
         var comments_value = campaign?.metrics_total?.comments
         var comments_target = campaign?.comments_target
         var comments_progress = CGFloat(CGFloat(comments_value!)/CGFloat(comments_target!))
+        self.commentsProgressLabel.textColor = UIColor.BWGreen()
         self.commentsProgressLabel.font = fBWMenloBold14
         commentsProgressLabel.progressType = ProgressLableType.LabelCircle
         self.commentsProgressLabel.backBorderWidth = 10.0
