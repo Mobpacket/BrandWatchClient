@@ -63,7 +63,7 @@ class CampaignService: NSObject {
                 if error == nil {
                     var campaignObj = Campaign(object: pfCampaign)
                     
-                    TTLCache.sharedInstance.put(campaignObj, forKey: id)
+                    //TTLCache.sharedInstance.put(campaignObj, forKey: id)
                     
                     callback(campaign: campaignObj, error: nil)
                 } else {
@@ -90,7 +90,7 @@ class CampaignService: NSObject {
                     
                     var campaignObj = Campaign(object: pfCampaign)
                     
-                    TTLCache.sharedInstance.put(campaignObj, forKey: name)
+                    //TTLCache.sharedInstance.put(campaignObj, forKey: name)
                     
                     callback(campaign: campaignObj, error: nil)
                 } else {
@@ -141,7 +141,7 @@ class CampaignService: NSObject {
                             }
                             
                             // Populate cache
-                            TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
+                            //TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsTotal")
                             
                             if index >= videos.count - 1 {
                                 
@@ -222,7 +222,7 @@ class CampaignService: NSObject {
                                 }
                             }
                             
-                            TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
+                            //TTLCache.sharedInstance.put(metrics, forKey: "\(id).metricsDaily")
                         
                             if index >= videos.count - 1 {
                                 
@@ -266,7 +266,7 @@ class CampaignService: NSObject {
                         campaignArr.append(Campaign(object: pfObject))
                     }
                     
-                    TTLCache.sharedInstance.put(campaignArr, forKey: "campaigns")
+                    //TTLCache.sharedInstance.put(campaignArr, forKey: "campaigns")
                     
                     callback(campaigns: campaignArr, error: nil)
                 } else {
